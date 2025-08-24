@@ -707,7 +707,10 @@ export class SystemIntegrationsComponent implements OnInit {
     return filtered.sort((a, b) => b.modifiedAt.getTime() - a.modifiedAt.getTime());
   });
 
-  constructor(private adminService: SystemAdminService) {}
+  constructor(
+    private adminService: SystemAdminService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadIntegrations();
