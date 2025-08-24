@@ -469,10 +469,9 @@ export class SystemAdminService {
       description: 'Production environment system configuration',
       category: ConfigCategory.Performance,
       settings: [],
-      isActive: true,
-      version: '1.0.0',
       lastModified: new Date(),
-      modifiedBy: 'system-admin'
+      modifiedBy: 'system-admin',
+      version: '1.0.0'
     };
 
     return of(mockConfig).pipe(delay(500));
