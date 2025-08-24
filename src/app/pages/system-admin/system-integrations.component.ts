@@ -753,8 +753,7 @@ export class SystemIntegrationsComponent implements OnInit {
   }
 
   configureIntegration(integration: SystemIntegration): void {
-    console.log('Configure integration:', integration.id);
-    // Navigate to configuration page or open configuration modal
+    this.router.navigate(['/admin/integrations/configure', integration.id]);
   }
 
   viewIntegrationDetails(integration: SystemIntegration): void {
