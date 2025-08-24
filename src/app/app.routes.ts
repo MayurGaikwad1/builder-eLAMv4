@@ -15,6 +15,7 @@ import { SystemAdminComponent } from './pages/system-admin/system-admin.componen
 import { RolesPoliciesComponent } from './pages/system-admin/roles-policies.component';
 import { SystemIntegrationsComponent } from './pages/system-admin/system-integrations.component';
 import { IntegrationConfigurationComponent } from './pages/system-admin/integration-configuration.component';
+import { SystemConfigurationComponent } from './pages/system-admin/system-configuration.component';
 import { PlaceholderComponent } from './pages/placeholder.component';
 
 export const routes: Routes = [
