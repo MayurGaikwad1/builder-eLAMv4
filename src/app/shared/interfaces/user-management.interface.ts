@@ -317,3 +317,6 @@ export enum AuditResult {
   Warning = 'warning',
   Blocked = 'blocked'
 }
+
+// Re-export from user.interface for convenience
+export { UrgencyLevel, RiskLevel } from './user.interface';
