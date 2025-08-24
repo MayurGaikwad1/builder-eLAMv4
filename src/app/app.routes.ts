@@ -35,29 +35,35 @@ export const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard]
   },
-  { 
-    path: 'requests', 
-    component: AccessRequestsComponent 
+  {
+    path: 'requests',
+    component: AccessRequestsComponent,
+    canActivate: [AuthGuard]
   },
-  { 
-    path: 'requests/my-requests', 
-    component: AccessRequestsComponent 
+  {
+    path: 'requests/my-requests',
+    component: AccessRequestsComponent,
+    canActivate: [AuthGuard]
   },
-  { 
-    path: 'requests/new', 
-    component: AccessRequestsComponent 
+  {
+    path: 'requests/new',
+    component: AccessRequestsComponent,
+    canActivate: [AuthGuard]
   },
-  { 
-    path: 'requests/history', 
-    component: AccessRequestsComponent 
+  {
+    path: 'requests/history',
+    component: AccessRequestsComponent,
+    canActivate: [AuthGuard]
   },
-  { 
-    path: 'approvals', 
-    component: ApprovalManagementComponent
+  {
+    path: 'approvals',
+    component: ApprovalManagementComponent,
+    canActivate: [AuthGuard]
   },
-  { 
-    path: 'approvals/queue', 
-    component: ApprovalQueueComponent
+  {
+    path: 'approvals/queue',
+    component: ApprovalQueueComponent,
+    canActivate: [AuthGuard]
   },
   { 
     path: 'approvals/bulk', 
