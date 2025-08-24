@@ -460,6 +460,160 @@ export class SystemAdminService {
     return this.analyticsSubject.asObservable();
   }
 
+  // System Configuration Management
+  getSystemConfiguration(): Observable<SystemConfiguration | null> {
+    // Return mock configuration data
+    const mockConfig: SystemConfiguration = {
+      id: 'config-001',
+      name: 'Production Configuration',
+      description: 'Production environment system configuration',
+      category: ConfigCategory.General,
+      settings: {
+        general: {
+          systemName: 'ELAM Production System',
+          systemDescription: 'Enterprise Lifecycle and Access Management System',
+          organizationName: 'Acme Corporation',
+          contactEmail: 'admin@company.com',
+          systemUrl: 'https://elam.company.com',
+          defaultTimezone: 'UTC',
+          defaultLanguage: 'en',
+          maintenanceMode: false,
+          debugMode: false,
+          analyticsEnabled: true
+        },
+        security: {
+          minPasswordLength: 12,
+          passwordExpiryDays: 90,
+          requireUppercase: true,
+          requireLowercase: true,
+          requireNumbers: true,
+          requireSpecialChars: true,
+          maxLoginAttempts: 5,
+          lockoutDurationMinutes: 30,
+          idleTimeoutMinutes: 60,
+          enforceIpWhitelist: false,
+          requireMfa: true,
+          auditLogging: true,
+          encryptionAlgorithm: 'AES-256',
+          keyRotationDays: 90
+        },
+        authentication: {
+          defaultAuthMethod: 'saml',
+          sessionDurationHours: 8,
+          allowRememberMe: true,
+          enableSso: true,
+          requireEmailVerification: true,
+          enableTotp: true,
+          enableSmsAuth: false,
+          enableEmailAuth: true,
+          enableBiometric: false,
+          mfaGracePeriodHours: 24
+        },
+        notifications: {
+          smtpServer: 'smtp.company.com',
+          smtpPort: 587,
+          smtpUsername: 'noreply@company.com',
+          smtpPassword: '***encrypted***',
+          fromEmail: 'noreply@company.com',
+          smtpSsl: true,
+          enableEmailNotifications: true,
+          notifyUserRegistration: true,
+          notifyPasswordReset: true,
+          notifyAccessRequests: true,
+          notifySecurityAlerts: true,
+          notifySystemMaintenance: true,
+          notifyComplianceViolations: true,
+          notifyWorkflowUpdates: true,
+          notifyIntegrationErrors: true,
+          notifyScheduledReports: true
+        },
+        api: {
+          baseUrl: 'https://api.company.com/v1',
+          version: 'v1.0',
+          timeoutSeconds: 30,
+          enableApiDocs: true,
+          enableCors: true,
+          rateLimitPerMinute: 100,
+          rateLimitPerHour: 1000,
+          burstLimit: 20,
+          enableRateLimiting: true,
+          enableApiKeyAuth: true
+        },
+        backup: {
+          enableBackups: true,
+          backupFrequency: 'daily',
+          retentionDays: 90,
+          storageLocation: '/backups',
+          compressBackups: true,
+          encryptBackups: true,
+          maintenanceDay: 'sunday',
+          maintenanceTime: '02:00',
+          maintenanceDurationHours: 2,
+          enableMaintenanceMode: true,
+          notifyUsersBeforeMaintenance: true
+        },
+        logging: {
+          logLevel: 'info',
+          logRetentionDays: 90,
+          maxLogFileSizeMb: 100,
+          enableFileLogging: true,
+          enableDatabaseLogging: true,
+          enableRemoteLogging: false,
+          metricsInterval: 60,
+          performanceThreshold: 80,
+          enablePerformanceMonitoring: true,
+          enableHealthChecks: true,
+          enableAlerting: true
+        },
+        features: {
+          enableUserProvisioning: true,
+          enableAccessRequests: true,
+          enableApprovalWorkflows: true,
+          enableAuditTrails: true,
+          enableRiskAnalysis: true,
+          enableMachineLearning: false,
+          enableAdvancedReporting: true,
+          enableAutoRemediation: false,
+          enableBetaFeatures: false,
+          enableExperimentalUi: false,
+          enableNewWorkflowEngine: false,
+          enableAiAssistant: false
+        }
+      },
+      isActive: true,
+      version: '1.0.0',
+      lastModified: new Date(),
+      modifiedBy: 'system-admin'
+    };
+
+    return of(mockConfig).pipe(delay(500));
+  }
+
+  updateSystemConfiguration(configData: any): Observable<SystemConfiguration> {
+    // Simulate configuration update
+    const updatedConfig: SystemConfiguration = {
+      id: 'config-001',
+      name: 'Production Configuration',
+      description: 'Production environment system configuration',
+      category: ConfigCategory.General,
+      settings: configData,
+      isActive: true,
+      version: '1.0.1',
+      lastModified: new Date(),
+      modifiedBy: 'system-admin'
+    };
+
+    return of(updatedConfig).pipe(delay(1000));
+  }
+
+  exportSystemConfiguration(): Observable<any> {
+    // Return configuration data for export
+    return this.getSystemConfiguration().pipe(
+      map(config => config?.settings || {}),
+      delay(1500)
+    );
+  }
+
   // Helper methods
   searchRoles(query: string): Observable<SystemRole[]> {
     return this.rolesSubject.pipe(
