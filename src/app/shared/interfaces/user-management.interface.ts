@@ -1,4 +1,4 @@
-import { User, UserStatus, RiskLevel, UrgencyLevel } from './user.interface';
+import { User, UserStatus } from './user.interface';
 
 export interface UserProfile extends User {
   employeeId: string;
@@ -6,8 +6,8 @@ export interface UserProfile extends User {
   location: string;
   hireDate: Date;
   terminationDate?: Date;
-  manager?: UserProfile;
-  directReports: UserProfile[];
+  manager?: string;
+  directReports: string[];
   securityClearance?: SecurityClearance;
   complianceStatus: ComplianceStatus;
   lastPasswordChange?: Date;

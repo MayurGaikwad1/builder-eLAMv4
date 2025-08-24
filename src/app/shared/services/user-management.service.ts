@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
-import { 
-  UserProfile, 
-  ProvisioningWorkflow, 
-  WorkflowType, 
-  WorkflowStatus, 
+import {
+  UserProfile,
+  ProvisioningWorkflow,
+  WorkflowType,
+  WorkflowStatus,
   TaskStatus,
   UserAnalytics,
   IntegrationStatus,
@@ -13,14 +13,12 @@ import {
   ComplianceStatus,
   SecurityClearance,
   DataClassification,
-  RiskLevel,
-  UrgencyLevel,
   ConnectionStatus,
   AuditResult,
   ComplianceFramework,
   CertificationStatus
 } from '../interfaces/user-management.interface';
-import { UserStatus } from '../interfaces/user.interface';
+import { UserStatus, RiskLevel, UrgencyLevel } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
