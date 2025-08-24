@@ -57,47 +57,47 @@ export interface Approval {
 }
 
 export enum UserStatus {
-  Active = 'active',
-  Inactive = 'inactive',
-  Suspended = 'suspended',
-  Terminated = 'terminated'
+  Active = "active",
+  Inactive = "inactive",
+  Suspended = "suspended",
+  Terminated = "terminated",
 }
 
 export enum RequestType {
-  NewAccess = 'new_access',
-  ModifyAccess = 'modify_access',
-  RemoveAccess = 'remove_access',
-  Emergency = 'emergency'
+  NewAccess = "new_access",
+  ModifyAccess = "modify_access",
+  RemoveAccess = "remove_access",
+  Emergency = "emergency",
 }
 
 export enum RequestStatus {
-  Draft = 'draft',
-  Submitted = 'submitted',
-  InReview = 'in_review',
-  Approved = 'approved',
-  Rejected = 'rejected',
-  Provisioning = 'provisioning',
-  Completed = 'completed',
-  Expired = 'expired'
+  Draft = "draft",
+  Submitted = "submitted",
+  InReview = "in_review",
+  Approved = "approved",
+  Rejected = "rejected",
+  Provisioning = "provisioning",
+  Completed = "completed",
+  Expired = "expired",
 }
 
 export enum ApprovalStatus {
-  Pending = 'pending',
-  Approved = 'approved',
-  Rejected = 'rejected',
-  Delegated = 'delegated'
+  Pending = "pending",
+  Approved = "approved",
+  Rejected = "rejected",
+  Delegated = "delegated",
 }
 
 export enum UrgencyLevel {
-  Low = 'low',
-  Medium = 'medium',
-  High = 'high',
-  Critical = 'critical'
+  Low = "low",
+  Medium = "medium",
+  High = "high",
+  Critical = "critical",
 }
 
 export enum RiskLevel {
-  Low = 'low',
-  Medium = 'medium',
-  High = 'high',
-  Critical = 'critical'
+  Low = "low",
+  Medium = "medium",
+  High = "high",
+  Critical = "critical",
 }

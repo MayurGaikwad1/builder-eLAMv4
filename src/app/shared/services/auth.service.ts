@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable, of } from "rxjs";
+import { delay, map } from "rxjs/operators";
 
 export interface User {
   id: string;
   email: string;
   name: string;
-  role: 'admin' | 'manager' | 'user';
+  role: "admin" | "manager" | "user";
   avatar?: string;
   permissions: string[];
   isActive: boolean;
@@ -21,7 +21,7 @@ export interface AuthResponse {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
   private currentUserSubject = new BehaviorSubject<User | null>(null);
@@ -30,51 +30,72 @@ export class AuthService {
   // Demo users with different roles
   private demoUsers: User[] = [
     {
-      id: 'admin-001',
-      email: 'admin@company.com',
-      name: 'System Administrator',
-      role: 'admin',
+      id: "admin-001",
+      email: "admin@company.com",
+      name: "System Administrator",
+      role: "admin",
       permissions: [
-        'user.create', 'user.read', 'user.update', 'user.delete',
-        'role.create', 'role.read', 'role.update', 'role.delete',
-        'system.config', 'system.admin', 'audit.read',
-        'integration.manage', 'workflow.create', 'approval.override'
+        "user.create",
+        "user.read",
+        "user.update",
+        "user.delete",
+        "role.create",
+        "role.read",
+        "role.update",
+        "role.delete",
+        "system.config",
+        "system.admin",
+        "audit.read",
+        "integration.manage",
+        "workflow.create",
+        "approval.override",
       ],
       isActive: true,
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+      avatar:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },
     {
-      id: 'manager-001',
-      email: 'manager@company.com',
-      name: 'Department Manager',
-      role: 'manager',
+      id: "manager-001",
+      email: "manager@company.com",
+      name: "Department Manager",
+      role: "manager",
       permissions: [
-        'user.read', 'user.update',
-        'approval.create', 'approval.read', 'approval.update',
-        'request.approve', 'report.read', 'team.manage'
+        "user.read",
+        "user.update",
+        "approval.create",
+        "approval.read",
+        "approval.update",
+        "request.approve",
+        "report.read",
+        "team.manage",
       ],
       isActive: true,
-      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612c1d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+      avatar:
+        "https://images.unsplash.com/photo-1494790108755-2616b612c1d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },
     {
-      id: 'user-001',
-      email: 'user@company.com',
-      name: 'Regular User',
-      role: 'user',
+      id: "user-001",
+      email: "user@company.com",
+      name: "Regular User",
+      role: "user",
       permissions: [
-        'profile.read', 'profile.update',
-        'request.create', 'request.read', 'request.update'
+        "profile.read",
+        "profile.update",
+        "request.create",
+        "request.read",
+        "request.update",
       ],
       isActive: true,
-      avatar: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-    }
+      avatar:
+        "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    },
   ];
 
   // Demo passwords (in real app, these would be hashed)
   private demoCredentials: Record<string, string> = {
-    'admin@company.com': 'admin123',
-    'manager@company.com': 'manager123',
-    'user@company.com': 'user123'
+    "admin@company.com": "admin123",
+    "manager@company.com": "manager123",
+    "user@company.com": "user123",
   };
 
   public currentUser$ = this.currentUserSubject.asObservable();
@@ -85,7 +106,11 @@ export class AuthService {
     this.checkStoredAuth();
   }
 
-  login(email: string, password: string, rememberMe: boolean = false): Observable<boolean> {
+  login(
+    email: string,
+    password: string,
+    rememberMe: boolean = false,
+  ): Observable<boolean> {
     return of(null).pipe(
       delay(1500), // Simulate network delay
       map(() => {
@@ -96,7 +121,9 @@ export class AuthService {
         }
 
         // Find user
-        const user = this.demoUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
+        const user = this.demoUsers.find(
+          (u) => u.email.toLowerCase() === email.toLowerCase(),
+        );
         if (!user || !user.isActive) {
           return false;
         }
@@ -109,13 +136,13 @@ export class AuthService {
           user,
           token: this.generateDemoToken(),
           loginTime: new Date().toISOString(),
-          rememberMe
+          rememberMe,
         };
 
         if (rememberMe) {
-          localStorage.setItem('elam_auth', JSON.stringify(authData));
+          localStorage.setItem("elam_auth", JSON.stringify(authData));
         } else {
-          sessionStorage.setItem('elam_auth', JSON.stringify(authData));
+          sessionStorage.setItem("elam_auth", JSON.stringify(authData));
         }
 
         // Update subjects
@@ -123,7 +150,7 @@ export class AuthService {
         this.isAuthenticatedSubject.next(true);
 
         return true;
-      })
+      }),
     );
   }
 
@@ -132,15 +159,15 @@ export class AuthService {
       delay(500),
       map(() => {
         // Clear stored authentication
-        localStorage.removeItem('elam_auth');
-        sessionStorage.removeItem('elam_auth');
+        localStorage.removeItem("elam_auth");
+        sessionStorage.removeItem("elam_auth");
 
         // Update subjects
         this.currentUserSubject.next(null);
         this.isAuthenticatedSubject.next(false);
 
         return true;
-      })
+      }),
     );
   }
 
@@ -172,7 +199,10 @@ export class AuthService {
     return of(this.isAuthenticated()).pipe(delay(500));
   }
 
-  changePassword(currentPassword: string, newPassword: string): Observable<boolean> {
+  changePassword(
+    currentPassword: string,
+    newPassword: string,
+  ): Observable<boolean> {
     return of(null).pipe(
       delay(1000),
       map(() => {
@@ -182,7 +212,7 @@ export class AuthService {
         // In a real app, you would validate the current password and update it
         // For demo purposes, we'll just return success
         return true;
-      })
+      }),
     );
   }
 
@@ -201,24 +231,24 @@ export class AuthService {
         this.updateStoredAuth(updatedUser);
 
         return true;
-      })
+      }),
     );
   }
 
   private checkStoredAuth(): void {
-    const localAuth = localStorage.getItem('elam_auth');
-    const sessionAuth = sessionStorage.getItem('elam_auth');
-    
+    const localAuth = localStorage.getItem("elam_auth");
+    const sessionAuth = sessionStorage.getItem("elam_auth");
+
     const authData = localAuth || sessionAuth;
     if (authData) {
       try {
         const parsedAuth = JSON.parse(authData);
         const loginTime = new Date(parsedAuth.loginTime);
         const now = new Date();
-        
+
         // Check if session is still valid (24 hours for localStorage, 8 hours for sessionStorage)
         const maxAge = localAuth ? 24 * 60 * 60 * 1000 : 8 * 60 * 60 * 1000;
-        
+
         if (now.getTime() - loginTime.getTime() < maxAge) {
           this.currentUserSubject.next(parsedAuth.user);
           this.isAuthenticatedSubject.next(true);
@@ -234,26 +264,27 @@ export class AuthService {
   }
 
   private updateStoredAuth(user: User): void {
-    const localAuth = localStorage.getItem('elam_auth');
-    const sessionAuth = sessionStorage.getItem('elam_auth');
-    
+    const localAuth = localStorage.getItem("elam_auth");
+    const sessionAuth = sessionStorage.getItem("elam_auth");
+
     if (localAuth) {
       const authData = JSON.parse(localAuth);
       authData.user = user;
-      localStorage.setItem('elam_auth', JSON.stringify(authData));
+      localStorage.setItem("elam_auth", JSON.stringify(authData));
     }
-    
+
     if (sessionAuth) {
       const authData = JSON.parse(sessionAuth);
       authData.user = user;
-      sessionStorage.setItem('elam_auth', JSON.stringify(authData));
+      sessionStorage.setItem("elam_auth", JSON.stringify(authData));
     }
   }
 
   private generateDemoToken(): string {
     // Generate a simple demo token
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let token = '';
+    const chars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let token = "";
     for (let i = 0; i < 32; i++) {
       token += chars.charAt(Math.floor(Math.random() * chars.length));
     }

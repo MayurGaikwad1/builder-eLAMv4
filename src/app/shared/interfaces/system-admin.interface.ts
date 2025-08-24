@@ -1,4 +1,4 @@
-import { RiskLevel, UrgencyLevel } from './user.interface';
+import { RiskLevel, UrgencyLevel } from "./user.interface";
 
 // Role Management Interfaces
 export interface SystemRole {
@@ -699,364 +699,364 @@ export interface ControlsStatus {
 
 // Enums
 export enum RoleType {
-  System = 'system',
-  Business = 'business',
-  Application = 'application',
-  Custom = 'custom'
+  System = "system",
+  Business = "business",
+  Application = "application",
+  Custom = "custom",
 }
 
 export enum ActionType {
-  Create = 'create',
-  Read = 'read',
-  Update = 'update',
-  Delete = 'delete',
-  Execute = 'execute',
-  Approve = 'approve',
-  Assign = 'assign'
+  Create = "create",
+  Read = "read",
+  Update = "update",
+  Delete = "delete",
+  Execute = "execute",
+  Approve = "approve",
+  Assign = "assign",
 }
 
 export enum ActionScope {
-  Own = 'own',
-  Department = 'department',
-  Organization = 'organization',
-  System = 'system'
+  Own = "own",
+  Department = "department",
+  Organization = "organization",
+  System = "system",
 }
 
 export enum ConditionType {
-  Time = 'time',
-  Location = 'location',
-  Device = 'device',
-  Network = 'network',
-  Risk = 'risk',
-  Custom = 'custom'
+  Time = "time",
+  Location = "location",
+  Device = "device",
+  Network = "network",
+  Risk = "risk",
+  Custom = "custom",
 }
 
 export enum ConditionOperator {
-  Equals = 'equals',
-  NotEquals = 'not_equals',
-  GreaterThan = 'greater_than',
-  LessThan = 'less_than',
-  GreaterThanOrEqual = 'greater_than_or_equal',
-  LessThanOrEqual = 'less_than_or_equal',
-  Contains = 'contains',
-  StartsWith = 'starts_with',
-  EndsWith = 'ends_with',
-  In = 'in',
-  NotIn = 'not_in',
-  Between = 'between',
-  Exists = 'exists',
-  NotExists = 'not_exists'
+  Equals = "equals",
+  NotEquals = "not_equals",
+  GreaterThan = "greater_than",
+  LessThan = "less_than",
+  GreaterThanOrEqual = "greater_than_or_equal",
+  LessThanOrEqual = "less_than_or_equal",
+  Contains = "contains",
+  StartsWith = "starts_with",
+  EndsWith = "ends_with",
+  In = "in",
+  NotIn = "not_in",
+  Between = "between",
+  Exists = "exists",
+  NotExists = "not_exists",
 }
 
 export enum LogicalOperator {
-  And = 'and',
-  Or = 'or',
-  Not = 'not'
+  And = "and",
+  Or = "or",
+  Not = "not",
 }
 
 export enum ConstraintType {
-  Time = 'time',
-  Location = 'location',
-  Concurrency = 'concurrency',
-  Approval = 'approval',
-  Segregation = 'segregation'
+  Time = "time",
+  Location = "location",
+  Concurrency = "concurrency",
+  Approval = "approval",
+  Segregation = "segregation",
 }
 
 export enum PolicyType {
-  Access = 'access',
-  Security = 'security',
-  Compliance = 'compliance',
-  Business = 'business',
-  Technical = 'technical'
+  Access = "access",
+  Security = "security",
+  Compliance = "compliance",
+  Business = "business",
+  Technical = "technical",
 }
 
 export enum PolicyCategory {
-  Authentication = 'authentication',
-  Authorization = 'authorization',
-  DataProtection = 'data_protection',
-  AuditLogging = 'audit_logging',
-  RiskManagement = 'risk_management',
-  ChangeManagement = 'change_management'
+  Authentication = "authentication",
+  Authorization = "authorization",
+  DataProtection = "data_protection",
+  AuditLogging = "audit_logging",
+  RiskManagement = "risk_management",
+  ChangeManagement = "change_management",
 }
 
 export enum EnforcementLevel {
-  Advisory = 'advisory',
-  Warning = 'warning',
-  Blocking = 'blocking',
-  Automatic = 'automatic'
+  Advisory = "advisory",
+  Warning = "warning",
+  Blocking = "blocking",
+  Automatic = "automatic",
 }
 
 export enum PolicyConditionType {
-  User = 'user',
-  Resource = 'resource',
-  Action = 'action',
-  Time = 'time',
-  Location = 'location',
-  Risk = 'risk'
+  User = "user",
+  Resource = "resource",
+  Action = "action",
+  Time = "time",
+  Location = "location",
+  Risk = "risk",
 }
 
 export enum PolicyActionType {
-  Allow = 'allow',
-  Deny = 'deny',
-  Require = 'require',
-  Log = 'log',
-  Alert = 'alert',
-  Escalate = 'escalate'
+  Allow = "allow",
+  Deny = "deny",
+  Require = "require",
+  Log = "log",
+  Alert = "alert",
+  Escalate = "escalate",
 }
 
 export enum IntegrationType {
-  Identity = 'identity',
-  Directory = 'directory',
-  Database = 'database',
-  Application = 'application',
-  Monitoring = 'monitoring',
-  Security = 'security',
-  Compliance = 'compliance'
+  Identity = "identity",
+  Directory = "directory",
+  Database = "database",
+  Application = "application",
+  Monitoring = "monitoring",
+  Security = "security",
+  Compliance = "compliance",
 }
 
 export enum IntegrationCategory {
-  Authentication = 'authentication',
-  UserProvisioning = 'user_provisioning',
-  DataSync = 'data_sync',
-  Monitoring = 'monitoring',
-  Reporting = 'reporting',
-  Workflow = 'workflow'
+  Authentication = "authentication",
+  UserProvisioning = "user_provisioning",
+  DataSync = "data_sync",
+  Monitoring = "monitoring",
+  Reporting = "reporting",
+  Workflow = "workflow",
 }
 
 export enum IntegrationStatus {
-  Active = 'active',
-  Inactive = 'inactive',
-  Error = 'error',
-  Pending = 'pending',
-  Configuring = 'configuring'
+  Active = "active",
+  Inactive = "inactive",
+  Error = "error",
+  Pending = "pending",
+  Configuring = "configuring",
 }
 
 export enum AuthenticationType {
-  Basic = 'basic',
-  OAuth2 = 'oauth2',
-  JWT = 'jwt',
-  ApiKey = 'api_key',
-  Certificate = 'certificate',
-  Kerberos = 'kerberos',
-  SAML = 'saml'
+  Basic = "basic",
+  OAuth2 = "oauth2",
+  JWT = "jwt",
+  ApiKey = "api_key",
+  Certificate = "certificate",
+  Kerberos = "kerberos",
+  SAML = "saml",
 }
 
 export enum DataType {
-  String = 'string',
-  Number = 'number',
-  Boolean = 'boolean',
-  Date = 'date',
-  Array = 'array',
-  Object = 'object',
-  Email = 'email',
-  URL = 'url',
-  Password = 'password'
+  String = "string",
+  Number = "number",
+  Boolean = "boolean",
+  Date = "date",
+  Array = "array",
+  Object = "object",
+  Email = "email",
+  URL = "url",
+  Password = "password",
 }
 
 export enum ValidationType {
-  Required = 'required',
-  Pattern = 'pattern',
-  Length = 'length',
-  Range = 'range',
-  Custom = 'custom'
+  Required = "required",
+  Pattern = "pattern",
+  Length = "length",
+  Range = "range",
+  Custom = "custom",
 }
 
 export enum HealthCheckType {
-  Ping = 'ping',
-  HTTP = 'http',
-  Database = 'database',
-  Service = 'service',
-  Custom = 'custom'
+  Ping = "ping",
+  HTTP = "http",
+  Database = "database",
+  Service = "service",
+  Custom = "custom",
 }
 
 export enum LogLevel {
-  Error = 'error',
-  Warning = 'warning',
-  Info = 'info',
-  Debug = 'debug',
-  Trace = 'trace'
+  Error = "error",
+  Warning = "warning",
+  Info = "info",
+  Debug = "debug",
+  Trace = "trace",
 }
 
 export enum AlertChannelType {
-  Email = 'email',
-  SMS = 'sms',
-  Slack = 'slack',
-  Teams = 'teams',
-  Webhook = 'webhook',
-  PagerDuty = 'pagerduty'
+  Email = "email",
+  SMS = "sms",
+  Slack = "slack",
+  Teams = "teams",
+  Webhook = "webhook",
+  PagerDuty = "pagerduty",
 }
 
 export enum ThresholdOperator {
-  GreaterThan = 'greater_than',
-  LessThan = 'less_than',
-  Equals = 'equals',
-  NotEquals = 'not_equals'
+  GreaterThan = "greater_than",
+  LessThan = "less_than",
+  Equals = "equals",
+  NotEquals = "not_equals",
 }
 
 export enum AlertSeverity {
-  Info = 'info',
-  Warning = 'warning',
-  Critical = 'critical',
-  Emergency = 'emergency'
+  Info = "info",
+  Warning = "warning",
+  Critical = "critical",
+  Emergency = "emergency",
 }
 
 export enum WidgetType {
-  Chart = 'chart',
-  Table = 'table',
-  Metric = 'metric',
-  Status = 'status',
-  Log = 'log',
-  Custom = 'custom'
+  Chart = "chart",
+  Table = "table",
+  Metric = "metric",
+  Status = "status",
+  Log = "log",
+  Custom = "custom",
 }
 
 export enum WidgetSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-  ExtraLarge = 'extra_large'
+  Small = "small",
+  Medium = "medium",
+  Large = "large",
+  ExtraLarge = "extra_large",
 }
 
 export enum ConfigCategory {
-  Security = 'security',
-  Authentication = 'authentication',
-  Authorization = 'authorization',
-  Audit = 'audit',
-  Performance = 'performance',
-  Integration = 'integration',
-  Notification = 'notification',
-  Compliance = 'compliance'
+  Security = "security",
+  Authentication = "authentication",
+  Authorization = "authorization",
+  Audit = "audit",
+  Performance = "performance",
+  Integration = "integration",
+  Notification = "notification",
+  Compliance = "compliance",
 }
 
 export enum MFAType {
-  SMS = 'sms',
-  Email = 'email',
-  TOTP = 'totp',
-  Push = 'push',
-  Hardware = 'hardware',
-  Biometric = 'biometric'
+  SMS = "sms",
+  Email = "email",
+  TOTP = "totp",
+  Push = "push",
+  Hardware = "hardware",
+  Biometric = "biometric",
 }
 
 export enum SSOType {
-  SAML = 'saml',
-  OAuth2 = 'oauth2',
-  OpenIDConnect = 'openid_connect',
-  LDAP = 'ldap',
-  Kerberos = 'kerberos'
+  SAML = "saml",
+  OAuth2 = "oauth2",
+  OpenIDConnect = "openid_connect",
+  LDAP = "ldap",
+  Kerberos = "kerberos",
 }
 
 export enum ReportFrequency {
-  Daily = 'daily',
-  Weekly = 'weekly',
-  Monthly = 'monthly',
-  Quarterly = 'quarterly',
-  Annually = 'annually'
+  Daily = "daily",
+  Weekly = "weekly",
+  Monthly = "monthly",
+  Quarterly = "quarterly",
+  Annually = "annually",
 }
 
 export enum WorkflowCategory {
-  AccessManagement = 'access_management',
-  UserLifecycle = 'user_lifecycle',
-  Compliance = 'compliance',
-  Security = 'security',
-  Business = 'business',
-  Custom = 'custom'
+  AccessManagement = "access_management",
+  UserLifecycle = "user_lifecycle",
+  Compliance = "compliance",
+  Security = "security",
+  Business = "business",
+  Custom = "custom",
 }
 
 export enum WorkflowType {
-  Sequential = 'sequential',
-  Parallel = 'parallel',
-  Conditional = 'conditional',
-  Loop = 'loop',
-  Hybrid = 'hybrid'
+  Sequential = "sequential",
+  Parallel = "parallel",
+  Conditional = "conditional",
+  Loop = "loop",
+  Hybrid = "hybrid",
 }
 
 export enum StageType {
-  Approval = 'approval',
-  Review = 'review',
-  Execution = 'execution',
-  Notification = 'notification',
-  Wait = 'wait',
-  Decision = 'decision'
+  Approval = "approval",
+  Review = "review",
+  Execution = "execution",
+  Notification = "notification",
+  Wait = "wait",
+  Decision = "decision",
 }
 
 export enum TriggerType {
-  Manual = 'manual',
-  Automatic = 'automatic',
-  Scheduled = 'scheduled',
-  Event = 'event',
-  Condition = 'condition'
+  Manual = "manual",
+  Automatic = "automatic",
+  Scheduled = "scheduled",
+  Event = "event",
+  Condition = "condition",
 }
 
 export enum VariableScope {
-  Workflow = 'workflow',
-  Stage = 'stage',
-  Global = 'global'
+  Workflow = "workflow",
+  Stage = "stage",
+  Global = "global",
 }
 
 export enum EscalationActionType {
-  Notify = 'notify',
-  Reassign = 'reassign',
-  AutoApprove = 'auto_approve',
-  Escalate = 'escalate',
-  Cancel = 'cancel'
+  Notify = "notify",
+  Reassign = "reassign",
+  AutoApprove = "auto_approve",
+  Escalate = "escalate",
+  Cancel = "cancel",
 }
 
 export enum ApproverType {
-  User = 'user',
-  Role = 'role',
-  Group = 'group',
-  Manager = 'manager',
-  ResourceOwner = 'resource_owner'
+  User = "user",
+  Role = "role",
+  Group = "group",
+  Manager = "manager",
+  ResourceOwner = "resource_owner",
 }
 
 export enum TimeoutType {
-  Stage = 'stage',
-  Approval = 'approval',
-  Response = 'response'
+  Stage = "stage",
+  Approval = "approval",
+  Response = "response",
 }
 
 export enum TimeoutAction {
-  AutoApprove = 'auto_approve',
-  AutoReject = 'auto_reject',
-  Escalate = 'escalate',
-  Notify = 'notify'
+  AutoApprove = "auto_approve",
+  AutoReject = "auto_reject",
+  Escalate = "escalate",
+  Notify = "notify",
 }
 
 export enum NotificationType {
-  Email = 'email',
-  SMS = 'sms',
-  InApp = 'in_app',
-  Push = 'push',
-  Webhook = 'webhook'
+  Email = "email",
+  SMS = "sms",
+  InApp = "in_app",
+  Push = "push",
+  Webhook = "webhook",
 }
 
 export enum RecipientType {
-  User = 'user',
-  Role = 'role',
-  Group = 'group',
-  Email = 'email'
+  User = "user",
+  Role = "role",
+  Group = "group",
+  Email = "email",
 }
 
 export enum NotificationTrigger {
-  StageStart = 'stage_start',
-  StageComplete = 'stage_complete',
-  Approval = 'approval',
-  Rejection = 'rejection',
-  Timeout = 'timeout',
-  Escalation = 'escalation'
+  StageStart = "stage_start",
+  StageComplete = "stage_complete",
+  Approval = "approval",
+  Rejection = "rejection",
+  Timeout = "timeout",
+  Escalation = "escalation",
 }
 
 export enum NotificationChannel {
-  Email = 'email',
-  SMS = 'sms',
-  Slack = 'slack',
-  Teams = 'teams',
-  InApp = 'in_app'
+  Email = "email",
+  SMS = "sms",
+  Slack = "slack",
+  Teams = "teams",
+  InApp = "in_app",
 }
 
 export enum SystemStatus {
-  Healthy = 'healthy',
-  Warning = 'warning',
-  Critical = 'critical',
-  Down = 'down',
-  Maintenance = 'maintenance'
+  Healthy = "healthy",
+  Warning = "warning",
+  Critical = "critical",
+  Down = "down",
+  Maintenance = "maintenance",
 }

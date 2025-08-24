@@ -1,4 +1,4 @@
-import { UrgencyLevel, RiskLevel } from './user.interface';
+import { UrgencyLevel, RiskLevel } from "./user.interface";
 
 export interface ApprovalRequest {
   id: string;
@@ -240,137 +240,137 @@ export interface EscalationRule {
 
 // Enums
 export enum RequestType {
-  AccessRequest = 'access_request',
-  RoleChange = 'role_change',
-  PermissionModification = 'permission_modification',
-  SystemAccess = 'system_access',
-  EmergencyAccess = 'emergency_access',
-  DataAccess = 'data_access',
-  AdminAccess = 'admin_access'
+  AccessRequest = "access_request",
+  RoleChange = "role_change",
+  PermissionModification = "permission_modification",
+  SystemAccess = "system_access",
+  EmergencyAccess = "emergency_access",
+  DataAccess = "data_access",
+  AdminAccess = "admin_access",
 }
 
 export enum AccessType {
-  SystemAccount = 'system_account',
-  ApplicationAccess = 'application_access',
-  DatabaseAccess = 'database_access',
-  NetworkAccess = 'network_access',
-  PhysicalAccess = 'physical_access',
-  DataAccess = 'data_access',
-  AdminRights = 'admin_rights'
+  SystemAccount = "system_account",
+  ApplicationAccess = "application_access",
+  DatabaseAccess = "database_access",
+  NetworkAccess = "network_access",
+  PhysicalAccess = "physical_access",
+  DataAccess = "data_access",
+  AdminRights = "admin_rights",
 }
 
 export enum ApprovalStatus {
-  Pending = 'pending',
-  InReview = 'in_review',
-  Approved = 'approved',
-  Rejected = 'rejected',
-  Escalated = 'escalated',
-  Delegated = 'delegated',
-  Expired = 'expired',
-  OnHold = 'on_hold'
+  Pending = "pending",
+  InReview = "in_review",
+  Approved = "approved",
+  Rejected = "rejected",
+  Escalated = "escalated",
+  Delegated = "delegated",
+  Expired = "expired",
+  OnHold = "on_hold",
 }
 
 export enum ApprovalDecision {
-  Pending = 'pending',
-  Approved = 'approved',
-  Rejected = 'rejected',
-  Escalated = 'escalated',
-  Delegated = 'delegated',
-  ConditionalApproval = 'conditional_approval'
+  Pending = "pending",
+  Approved = "approved",
+  Rejected = "rejected",
+  Escalated = "escalated",
+  Delegated = "delegated",
+  ConditionalApproval = "conditional_approval",
 }
 
 export enum ApprovalActionType {
-  Approve = 'approve',
-  Reject = 'reject',
-  Delegate = 'delegate',
-  Escalate = 'escalate',
-  RequestMoreInfo = 'request_more_info',
-  ConditionalApprove = 'conditional_approve',
-  BulkApprove = 'bulk_approve',
-  BulkReject = 'bulk_reject'
+  Approve = "approve",
+  Reject = "reject",
+  Delegate = "delegate",
+  Escalate = "escalate",
+  RequestMoreInfo = "request_more_info",
+  ConditionalApprove = "conditional_approve",
+  BulkApprove = "bulk_approve",
+  BulkReject = "bulk_reject",
 }
 
 export enum ApprovalPriority {
-  Low = 'low',
-  Normal = 'normal',
-  High = 'high',
-  Critical = 'critical',
-  Emergency = 'emergency'
+  Low = "low",
+  Normal = "normal",
+  High = "high",
+  Critical = "critical",
+  Emergency = "emergency",
 }
 
 export enum RiskFactorType {
-  HighPrivilegeAccess = 'high_privilege_access',
-  SensitiveData = 'sensitive_data',
-  ExternalSystem = 'external_system',
-  BypassControls = 'bypass_controls',
-  MultipleSystems = 'multiple_systems',
-  EmergencyRequest = 'emergency_request',
-  OutsideBusinessHours = 'outside_business_hours'
+  HighPrivilegeAccess = "high_privilege_access",
+  SensitiveData = "sensitive_data",
+  ExternalSystem = "external_system",
+  BypassControls = "bypass_controls",
+  MultipleSystems = "multiple_systems",
+  EmergencyRequest = "emergency_request",
+  OutsideBusinessHours = "outside_business_hours",
 }
 
 export enum ConflictType {
-  SeparationOfDuties = 'separation_of_duties',
-  PrivilegeEscalation = 'privilege_escalation',
-  DataClassificationConflict = 'data_classification_conflict',
-  GeographicalRestriction = 'geographical_restriction',
-  TimeRestriction = 'time_restriction',
-  ConcurrentAccess = 'concurrent_access'
+  SeparationOfDuties = "separation_of_duties",
+  PrivilegeEscalation = "privilege_escalation",
+  DataClassificationConflict = "data_classification_conflict",
+  GeographicalRestriction = "geographical_restriction",
+  TimeRestriction = "time_restriction",
+  ConcurrentAccess = "concurrent_access",
 }
 
 export enum ConflictSeverity {
-  Low = 'low',
-  Medium = 'medium',
-  High = 'high',
-  Critical = 'critical',
-  Blocking = 'blocking'
+  Low = "low",
+  Medium = "medium",
+  High = "high",
+  Critical = "critical",
+  Blocking = "blocking",
 }
 
 export enum ConditionType {
-  TimeLimit = 'time_limit',
-  LocationRestriction = 'location_restriction',
-  DeviceRestriction = 'device_restriction',
-  DataClassification = 'data_classification',
-  MonitoringRequired = 'monitoring_required',
-  ReviewRequired = 'review_required'
+  TimeLimit = "time_limit",
+  LocationRestriction = "location_restriction",
+  DeviceRestriction = "device_restriction",
+  DataClassification = "data_classification",
+  MonitoringRequired = "monitoring_required",
+  ReviewRequired = "review_required",
 }
 
 export enum ApproverType {
-  DirectManager = 'direct_manager',
-  ResourceOwner = 'resource_owner',
-  SecurityTeam = 'security_team',
-  ComplianceOfficer = 'compliance_officer',
-  DataOwner = 'data_owner',
-  SystemOwner = 'system_owner',
-  SpecificUser = 'specific_user',
-  Role = 'role'
+  DirectManager = "direct_manager",
+  ResourceOwner = "resource_owner",
+  SecurityTeam = "security_team",
+  ComplianceOfficer = "compliance_officer",
+  DataOwner = "data_owner",
+  SystemOwner = "system_owner",
+  SpecificUser = "specific_user",
+  Role = "role",
 }
 
 export enum ConditionOperator {
-  Equals = 'equals',
-  NotEquals = 'not_equals',
-  GreaterThan = 'greater_than',
-  LessThan = 'less_than',
-  Contains = 'contains',
-  In = 'in',
-  NotIn = 'not_in'
+  Equals = "equals",
+  NotEquals = "not_equals",
+  GreaterThan = "greater_than",
+  LessThan = "less_than",
+  Contains = "contains",
+  In = "in",
+  NotIn = "not_in",
 }
 
 export enum LogicalOperator {
-  And = 'and',
-  Or = 'or',
-  Not = 'not'
+  And = "and",
+  Or = "or",
+  Not = "not",
 }
 
 export enum StepConditionType {
-  RiskThreshold = 'risk_threshold',
-  DepartmentMatch = 'department_match',
-  AmountThreshold = 'amount_threshold',
-  AccessType = 'access_type',
-  UserLevel = 'user_level'
+  RiskThreshold = "risk_threshold",
+  DepartmentMatch = "department_match",
+  AmountThreshold = "amount_threshold",
+  AccessType = "access_type",
+  UserLevel = "user_level",
 }
 
 export enum EscalationType {
-  AutoEscalate = 'auto_escalate',
-  NotifyOnly = 'notify_only',
-  RequireAction = 'require_action'
+  AutoEscalate = "auto_escalate",
+  NotifyOnly = "notify_only",
+  RequireAction = "require_action",
 }

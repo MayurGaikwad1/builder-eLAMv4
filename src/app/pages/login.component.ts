@@ -1,16 +1,22 @@
-import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../shared/services/auth.service';
+import { Component, signal } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
+import { Router } from "@angular/router";
+import { AuthService } from "../shared/services/auth.service";
 
 interface LoginError {
   message: string;
-  type: 'error' | 'warning' | 'info';
+  type: "error" | "warning" | "info";
 }
 
 @Component({
-  selector: 'app-login',
+  selector: "app-login",
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   template: `
@@ -180,7 +186,7 @@ interface LoginError {
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -191,18 +197,18 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      rememberMe: [false]
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.minLength(6)]],
+      rememberMe: [false],
     });
 
     // Auto-fill admin credentials for demo
     this.loginForm.patchValue({
-      email: 'admin@company.com',
-      password: 'admin123'
+      email: "admin@company.com",
+      password: "admin123",
     });
   }
 
@@ -222,27 +228,29 @@ export class LoginComponent {
           this.isLoading.set(false);
           if (success) {
             // Redirect to stored URL or dashboard
-            const redirectUrl = sessionStorage.getItem('elam_redirect_url') || '/dashboard';
-            sessionStorage.removeItem('elam_redirect_url');
+            const redirectUrl =
+              sessionStorage.getItem("elam_redirect_url") || "/dashboard";
+            sessionStorage.removeItem("elam_redirect_url");
             this.router.navigate([redirectUrl]);
           } else {
             this.loginError.set({
-              message: 'Invalid credentials. Please check your email and password.',
-              type: 'error'
+              message:
+                "Invalid credentials. Please check your email and password.",
+              type: "error",
             });
           }
         },
         error: (error) => {
           this.isLoading.set(false);
           this.loginError.set({
-            message: 'Login failed. Please try again.',
-            type: 'error'
+            message: "Login failed. Please try again.",
+            type: "error",
           });
-        }
+        },
       });
     } else {
       // Mark all fields as touched to show validation errors
-      Object.keys(this.loginForm.controls).forEach(key => {
+      Object.keys(this.loginForm.controls).forEach((key) => {
         this.loginForm.get(key)?.markAsTouched();
       });
     }

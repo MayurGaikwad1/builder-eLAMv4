@@ -1,26 +1,41 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
-import { AccessRequest, User, RequestStatus, UrgencyLevel, RiskLevel, UserStatus, RequestType, ApprovalStatus } from '../interfaces/user.interface';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable, of } from "rxjs";
+import { delay } from "rxjs/operators";
+import {
+  AccessRequest,
+  User,
+  RequestStatus,
+  UrgencyLevel,
+  RiskLevel,
+  UserStatus,
+  RequestType,
+  ApprovalStatus,
+} from "../interfaces/user.interface";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MockDataService {
   private currentUser = {
-    id: '1',
-    email: 'john.doe@company.com',
-    firstName: 'John',
-    lastName: 'Doe',
-    displayName: 'John Doe',
-    department: 'Engineering',
-    title: 'Senior Software Engineer',
-    manager: 'Jane Smith',
+    id: "1",
+    email: "john.doe@company.com",
+    firstName: "John",
+    lastName: "Doe",
+    displayName: "John Doe",
+    department: "Engineering",
+    title: "Senior Software Engineer",
+    manager: "Jane Smith",
     roles: [
-      { id: 'r1', name: 'Employee', description: 'Standard employee access', permissions: [], riskLevel: RiskLevel.Low }
+      {
+        id: "r1",
+        name: "Employee",
+        description: "Standard employee access",
+        permissions: [],
+        riskLevel: RiskLevel.Low,
+      },
     ],
     status: UserStatus.Active,
-    riskScore: 25
+    riskScore: 25,
   };
 
   private dashboardMetrics = {
@@ -28,83 +43,104 @@ export class MockDataService {
     pendingApprovals: 23,
     activeUsers: 3842,
     riskScore: 67,
-    requestsTrend: '+12%',
-    approvalsTrend: '-8%',
-    usersTrend: '+3%',
-    riskTrend: '+5%'
+    requestsTrend: "+12%",
+    approvalsTrend: "-8%",
+    usersTrend: "+3%",
+    riskTrend: "+5%",
   };
 
   private mockRequests: AccessRequest[] = [
     {
-      id: 'req-001',
-      requesterId: '2',
-      requesterName: 'Sarah Wilson',
+      id: "req-001",
+      requesterId: "2",
+      requesterName: "Sarah Wilson",
       requestType: RequestType.NewAccess,
       requestedRoles: [
-        { id: 'r2', name: 'Database Admin', description: 'Database administration access', permissions: [], riskLevel: RiskLevel.High }
+        {
+          id: "r2",
+          name: "Database Admin",
+          description: "Database administration access",
+          permissions: [],
+          riskLevel: RiskLevel.High,
+        },
       ],
-      requestedResources: ['Production Database', 'Backup Systems'],
-      justification: 'Need access to troubleshoot critical production issues and perform database maintenance tasks.',
+      requestedResources: ["Production Database", "Backup Systems"],
+      justification:
+        "Need access to troubleshoot critical production issues and perform database maintenance tasks.",
       urgency: UrgencyLevel.High,
       status: RequestStatus.InReview,
-      submittedAt: new Date('2024-01-15T10:30:00'),
+      submittedAt: new Date("2024-01-15T10:30:00"),
       approvals: [
         {
-          id: 'app-001',
-          approverId: '3',
-          approverName: 'Mike Johnson',
+          id: "app-001",
+          approverId: "3",
+          approverName: "Mike Johnson",
           status: ApprovalStatus.Approved,
-          comments: 'Approved for production support',
-          timestamp: new Date('2024-01-15T11:00:00'),
-          level: 1
-        }
+          comments: "Approved for production support",
+          timestamp: new Date("2024-01-15T11:00:00"),
+          level: 1,
+        },
       ],
       riskScore: 85,
-      deadline: new Date('2024-01-17T17:00:00')
+      deadline: new Date("2024-01-17T17:00:00"),
     },
     {
-      id: 'req-002',
-      requesterId: '4',
-      requesterName: 'Alex Chen',
+      id: "req-002",
+      requesterId: "4",
+      requesterName: "Alex Chen",
       requestType: RequestType.ModifyAccess,
       requestedRoles: [
-        { id: 'r3', name: 'Security Analyst', description: 'Security analysis and monitoring', permissions: [], riskLevel: RiskLevel.Medium }
+        {
+          id: "r3",
+          name: "Security Analyst",
+          description: "Security analysis and monitoring",
+          permissions: [],
+          riskLevel: RiskLevel.Medium,
+        },
       ],
-      requestedResources: ['SIEM Tools', 'Security Dashboards'],
-      justification: 'Temporary assignment to security team for Q1 compliance audit.',
+      requestedResources: ["SIEM Tools", "Security Dashboards"],
+      justification:
+        "Temporary assignment to security team for Q1 compliance audit.",
       urgency: UrgencyLevel.Medium,
       status: RequestStatus.Submitted,
-      submittedAt: new Date('2024-01-16T09:15:00'),
+      submittedAt: new Date("2024-01-16T09:15:00"),
       approvals: [],
-      riskScore: 45
+      riskScore: 45,
     },
     {
-      id: 'req-003',
-      requesterId: '5',
-      requesterName: 'Emma Davis',
+      id: "req-003",
+      requesterId: "5",
+      requesterName: "Emma Davis",
       requestType: RequestType.Emergency,
       requestedRoles: [
-        { id: 'r4', name: 'Emergency Admin', description: 'Emergency administrative access', permissions: [], riskLevel: RiskLevel.Critical }
+        {
+          id: "r4",
+          name: "Emergency Admin",
+          description: "Emergency administrative access",
+          permissions: [],
+          riskLevel: RiskLevel.Critical,
+        },
       ],
-      requestedResources: ['All Systems'],
-      justification: 'Critical system outage - need immediate access to restore services.',
+      requestedResources: ["All Systems"],
+      justification:
+        "Critical system outage - need immediate access to restore services.",
       urgency: UrgencyLevel.Critical,
       status: RequestStatus.Approved,
-      submittedAt: new Date('2024-01-16T14:45:00'),
+      submittedAt: new Date("2024-01-16T14:45:00"),
       approvals: [
         {
-          id: 'app-002',
-          approverId: '6',
-          approverName: 'David Brown',
+          id: "app-002",
+          approverId: "6",
+          approverName: "David Brown",
           status: ApprovalStatus.Approved,
-          comments: 'Emergency approval granted',
-          timestamp: new Date('2024-01-16T14:50:00'),
-          level: 1
-        }
+          comments: "Emergency approval granted",
+          timestamp: new Date("2024-01-16T14:50:00"),
+          level: 1,
+        },
       ],
       riskScore: 95,
-      deadline: new Date('2024-01-16T18:00:00')
-    }
+      deadline: new Date("2024-01-16T18:00:00"),
+    },
   ];
 
   getCurrentUser(): Observable<User> {
@@ -120,18 +156,24 @@ export class MockDataService {
   }
 
   getPendingApprovals(): Observable<AccessRequest[]> {
-    const pending = this.mockRequests.filter(req => 
-      req.status === RequestStatus.InReview || req.status === RequestStatus.Submitted
+    const pending = this.mockRequests.filter(
+      (req) =>
+        req.status === RequestStatus.InReview ||
+        req.status === RequestStatus.Submitted,
     );
     return of(pending).pipe(delay(400));
   }
 
   getMyRequests(userId: string): Observable<AccessRequest[]> {
-    const myRequests = this.mockRequests.filter(req => req.requesterId === userId);
+    const myRequests = this.mockRequests.filter(
+      (req) => req.requesterId === userId,
+    );
     return of(myRequests).pipe(delay(400));
   }
 
-  submitAccessRequest(request: Partial<AccessRequest>): Observable<AccessRequest> {
+  submitAccessRequest(
+    request: Partial<AccessRequest>,
+  ): Observable<AccessRequest> {
     const newRequest: AccessRequest = {
       id: `req-${Date.now()}`,
       requesterId: this.currentUser.id,
@@ -139,20 +181,20 @@ export class MockDataService {
       requestType: request.requestType || RequestType.NewAccess,
       requestedRoles: request.requestedRoles || [],
       requestedResources: request.requestedResources || [],
-      justification: request.justification || '',
+      justification: request.justification || "",
       urgency: request.urgency || UrgencyLevel.Medium,
       status: RequestStatus.Submitted,
       submittedAt: new Date(),
       approvals: [],
-      riskScore: Math.floor(Math.random() * 100)
+      riskScore: Math.floor(Math.random() * 100),
     };
-    
+
     this.mockRequests.unshift(newRequest);
     return of(newRequest).pipe(delay(300));
   }
 
   approveRequest(requestId: string, comments?: string): Observable<boolean> {
-    const request = this.mockRequests.find(r => r.id === requestId);
+    const request = this.mockRequests.find((r) => r.id === requestId);
     if (request) {
       request.status = RequestStatus.Approved;
       request.approvals.push({
@@ -162,14 +204,14 @@ export class MockDataService {
         status: ApprovalStatus.Approved,
         comments: comments,
         timestamp: new Date(),
-        level: 1
+        level: 1,
       });
     }
     return of(true).pipe(delay(300));
   }
 
   rejectRequest(requestId: string, comments: string): Observable<boolean> {
-    const request = this.mockRequests.find(r => r.id === requestId);
+    const request = this.mockRequests.find((r) => r.id === requestId);
     if (request) {
       request.status = RequestStatus.Rejected;
       request.approvals.push({
@@ -179,7 +221,7 @@ export class MockDataService {
         status: ApprovalStatus.Rejected,
         comments: comments,
         timestamp: new Date(),
-        level: 1
+        level: 1,
       });
     }
     return of(true).pipe(delay(300));

@@ -1,4 +1,4 @@
-import { RiskLevel, UrgencyLevel } from './user.interface';
+import { RiskLevel, UrgencyLevel } from "./user.interface";
 
 export interface AuditLog {
   id: string;
@@ -445,315 +445,315 @@ export interface ReviewerInfo {
 
 // Enums
 export enum AuditEventType {
-  UserLogin = 'user_login',
-  UserLogout = 'user_logout',
-  AccessGranted = 'access_granted',
-  AccessDenied = 'access_denied',
-  PermissionChanged = 'permission_changed',
-  RoleAssigned = 'role_assigned',
-  RoleRevoked = 'role_revoked',
-  DataAccess = 'data_access',
-  DataModification = 'data_modification',
-  ConfigurationChange = 'configuration_change',
-  PolicyViolation = 'policy_violation',
-  SecurityIncident = 'security_incident',
-  SystemStartup = 'system_startup',
-  SystemShutdown = 'system_shutdown',
-  BackupCreated = 'backup_created',
-  BackupRestored = 'backup_restored'
+  UserLogin = "user_login",
+  UserLogout = "user_logout",
+  AccessGranted = "access_granted",
+  AccessDenied = "access_denied",
+  PermissionChanged = "permission_changed",
+  RoleAssigned = "role_assigned",
+  RoleRevoked = "role_revoked",
+  DataAccess = "data_access",
+  DataModification = "data_modification",
+  ConfigurationChange = "configuration_change",
+  PolicyViolation = "policy_violation",
+  SecurityIncident = "security_incident",
+  SystemStartup = "system_startup",
+  SystemShutdown = "system_shutdown",
+  BackupCreated = "backup_created",
+  BackupRestored = "backup_restored",
 }
 
 export enum AuditCategory {
-  Authentication = 'authentication',
-  Authorization = 'authorization',
-  DataAccess = 'data_access',
-  SystemAdmin = 'system_admin',
-  Security = 'security',
-  Compliance = 'compliance',
-  Privacy = 'privacy',
-  Operations = 'operations'
+  Authentication = "authentication",
+  Authorization = "authorization",
+  DataAccess = "data_access",
+  SystemAdmin = "system_admin",
+  Security = "security",
+  Compliance = "compliance",
+  Privacy = "privacy",
+  Operations = "operations",
 }
 
 export enum AuditSeverity {
-  Informational = 'informational',
-  Low = 'low',
-  Medium = 'medium',
-  High = 'high',
-  Critical = 'critical'
+  Informational = "informational",
+  Low = "low",
+  Medium = "medium",
+  High = "high",
+  Critical = "critical",
 }
 
 export enum AuditOutcome {
-  Success = 'success',
-  Failure = 'failure',
-  Warning = 'warning',
-  Error = 'error',
-  Blocked = 'blocked'
+  Success = "success",
+  Failure = "failure",
+  Warning = "warning",
+  Error = "error",
+  Blocked = "blocked",
 }
 
 export enum ChangeType {
-  Created = 'created',
-  Updated = 'updated',
-  Deleted = 'deleted',
-  Restored = 'restored'
+  Created = "created",
+  Updated = "updated",
+  Deleted = "deleted",
+  Restored = "restored",
 }
 
 export enum Environment {
-  Development = 'development',
-  Testing = 'testing',
-  Staging = 'staging',
-  Production = 'production'
+  Development = "development",
+  Testing = "testing",
+  Staging = "staging",
+  Production = "production",
 }
 
 export enum ReportType {
-  Compliance = 'compliance',
-  Security = 'security',
-  Risk = 'risk',
-  Performance = 'performance',
-  Audit = 'audit',
-  Custom = 'custom'
+  Compliance = "compliance",
+  Security = "security",
+  Risk = "risk",
+  Performance = "performance",
+  Audit = "audit",
+  Custom = "custom",
 }
 
 export enum ReportStatus {
-  Draft = 'draft',
-  InProgress = 'in_progress',
-  Review = 'review',
-  Approved = 'approved',
-  Published = 'published',
-  Archived = 'archived'
+  Draft = "draft",
+  InProgress = "in_progress",
+  Review = "review",
+  Approved = "approved",
+  Published = "published",
+  Archived = "archived",
 }
 
 export enum ReportFrequency {
-  Daily = 'daily',
-  Weekly = 'weekly',
-  Monthly = 'monthly',
-  Quarterly = 'quarterly',
-  SemiAnnually = 'semi_annually',
-  Annually = 'annually',
-  OnDemand = 'on_demand'
+  Daily = "daily",
+  Weekly = "weekly",
+  Monthly = "monthly",
+  Quarterly = "quarterly",
+  SemiAnnually = "semi_annually",
+  Annually = "annually",
+  OnDemand = "on_demand",
 }
 
 export enum ControlType {
-  Preventive = 'preventive',
-  Detective = 'detective',
-  Corrective = 'corrective',
-  Compensating = 'compensating'
+  Preventive = "preventive",
+  Detective = "detective",
+  Corrective = "corrective",
+  Compensating = "compensating",
 }
 
 export enum ControlFrequency {
-  Continuous = 'continuous',
-  Daily = 'daily',
-  Weekly = 'weekly',
-  Monthly = 'monthly',
-  Quarterly = 'quarterly',
-  Annually = 'annually'
+  Continuous = "continuous",
+  Daily = "daily",
+  Weekly = "weekly",
+  Monthly = "monthly",
+  Quarterly = "quarterly",
+  Annually = "annually",
 }
 
 export enum AutomationType {
-  FullyAutomated = 'fully_automated',
-  SemiAutomated = 'semi_automated',
-  Manual = 'manual'
+  FullyAutomated = "fully_automated",
+  SemiAutomated = "semi_automated",
+  Manual = "manual",
 }
 
 export enum ControlStatus {
-  Passed = 'passed',
-  Failed = 'failed',
-  Warning = 'warning',
-  NotTested = 'not_tested',
-  Exception = 'exception',
-  InProgress = 'in_progress'
+  Passed = "passed",
+  Failed = "failed",
+  Warning = "warning",
+  NotTested = "not_tested",
+  Exception = "exception",
+  InProgress = "in_progress",
 }
 
 export enum EvidenceType {
-  Screenshot = 'screenshot',
-  Document = 'document',
-  LogFile = 'log_file',
-  Configuration = 'configuration',
-  Report = 'report',
-  Certificate = 'certificate',
-  Testimony = 'testimony'
+  Screenshot = "screenshot",
+  Document = "document",
+  LogFile = "log_file",
+  Configuration = "configuration",
+  Report = "report",
+  Certificate = "certificate",
+  Testimony = "testimony",
 }
 
 export enum RemediationStatus {
-  Planned = 'planned',
-  InProgress = 'in_progress',
-  Completed = 'completed',
-  Cancelled = 'cancelled',
-  OnHold = 'on_hold'
+  Planned = "planned",
+  InProgress = "in_progress",
+  Completed = "completed",
+  Cancelled = "cancelled",
+  OnHold = "on_hold",
 }
 
 export enum StepStatus {
-  NotStarted = 'not_started',
-  InProgress = 'in_progress',
-  Completed = 'completed',
-  Blocked = 'blocked',
-  Skipped = 'skipped'
+  NotStarted = "not_started",
+  InProgress = "in_progress",
+  Completed = "completed",
+  Blocked = "blocked",
+  Skipped = "skipped",
 }
 
 export enum ViolationType {
-  PolicyBreach = 'policy_breach',
-  AccessViolation = 'access_violation',
-  DataMisuse = 'data_misuse',
-  ProcedureViolation = 'procedure_violation',
-  ComplianceFailure = 'compliance_failure',
-  SecurityIncident = 'security_incident'
+  PolicyBreach = "policy_breach",
+  AccessViolation = "access_violation",
+  DataMisuse = "data_misuse",
+  ProcedureViolation = "procedure_violation",
+  ComplianceFailure = "compliance_failure",
+  SecurityIncident = "security_incident",
 }
 
 export enum ViolationSeverity {
-  Low = 'low',
-  Medium = 'medium',
-  High = 'high',
-  Critical = 'critical'
+  Low = "low",
+  Medium = "medium",
+  High = "high",
+  Critical = "critical",
 }
 
 export enum DetectionSource {
-  Automated = 'automated',
-  ManualReview = 'manual_review',
-  UserReport = 'user_report',
-  Audit = 'audit',
-  Monitoring = 'monitoring'
+  Automated = "automated",
+  ManualReview = "manual_review",
+  UserReport = "user_report",
+  Audit = "audit",
+  Monitoring = "monitoring",
 }
 
 export enum ViolationStatus {
-  Open = 'open',
-  InInvestigation = 'in_investigation',
-  Resolved = 'resolved',
-  Dismissed = 'dismissed',
-  Escalated = 'escalated'
+  Open = "open",
+  InInvestigation = "in_investigation",
+  Resolved = "resolved",
+  Dismissed = "dismissed",
+  Escalated = "escalated",
 }
 
 export enum InvolvementType {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Witness = 'witness',
-  Approver = 'approver'
+  Primary = "primary",
+  Secondary = "secondary",
+  Witness = "witness",
+  Approver = "approver",
 }
 
 export enum ResolutionAction {
-  AccessRevoked = 'access_revoked',
-  UserTraining = 'user_training',
-  PolicyUpdate = 'policy_update',
-  ProcessImprovement = 'process_improvement',
-  SystemConfiguration = 'system_configuration',
-  NoAction = 'no_action'
+  AccessRevoked = "access_revoked",
+  UserTraining = "user_training",
+  PolicyUpdate = "policy_update",
+  ProcessImprovement = "process_improvement",
+  SystemConfiguration = "system_configuration",
+  NoAction = "no_action",
 }
 
 export enum FindingCategory {
-  AccessControl = 'access_control',
-  DataProtection = 'data_protection',
-  SystemSecurity = 'system_security',
-  ProcessControl = 'process_control',
-  Governance = 'governance',
-  Monitoring = 'monitoring'
+  AccessControl = "access_control",
+  DataProtection = "data_protection",
+  SystemSecurity = "system_security",
+  ProcessControl = "process_control",
+  Governance = "governance",
+  Monitoring = "monitoring",
 }
 
 export enum FindingSeverity {
-  Low = 'low',
-  Medium = 'medium',
-  High = 'high',
-  Critical = 'critical'
+  Low = "low",
+  Medium = "medium",
+  High = "high",
+  Critical = "critical",
 }
 
 export enum FindingStatus {
-  New = 'new',
-  Acknowledged = 'acknowledged',
-  InProgress = 'in_progress',
-  Resolved = 'resolved',
-  Accepted = 'accepted',
-  Deferred = 'deferred'
+  New = "new",
+  Acknowledged = "acknowledged",
+  InProgress = "in_progress",
+  Resolved = "resolved",
+  Accepted = "accepted",
+  Deferred = "deferred",
 }
 
 export enum RecommendationCategory {
-  Security = 'security',
-  Compliance = 'compliance',
-  Risk = 'risk',
-  Process = 'process',
-  Technology = 'technology',
-  Training = 'training'
+  Security = "security",
+  Compliance = "compliance",
+  Risk = "risk",
+  Process = "process",
+  Technology = "technology",
+  Training = "training",
 }
 
 export enum RecommendationStatus {
-  Proposed = 'proposed',
-  Approved = 'approved',
-  InImplementation = 'in_implementation',
-  Completed = 'completed',
-  Rejected = 'rejected',
-  OnHold = 'on_hold'
+  Proposed = "proposed",
+  Approved = "approved",
+  InImplementation = "in_implementation",
+  Completed = "completed",
+  Rejected = "rejected",
+  OnHold = "on_hold",
 }
 
 export enum EffortLevel {
-  Low = 'low',
-  Medium = 'medium',
-  High = 'high',
-  VeryHigh = 'very_high'
+  Low = "low",
+  Medium = "medium",
+  High = "high",
+  VeryHigh = "very_high",
 }
 
 export enum CostLevel {
-  Low = 'low',
-  Medium = 'medium',
-  High = 'high',
-  VeryHigh = 'very_high'
+  Low = "low",
+  Medium = "medium",
+  High = "high",
+  VeryHigh = "very_high",
 }
 
 export enum ResourceType {
-  Personnel = 'personnel',
-  Technology = 'technology',
-  Budget = 'budget',
-  External = 'external'
+  Personnel = "personnel",
+  Technology = "technology",
+  Budget = "budget",
+  External = "external",
 }
 
 export enum ReviewType {
-  AccessCertification = 'access_certification',
-  RoleCertification = 'role_certification',
-  PermissionReview = 'permission_review',
-  OrphanedAccountReview = 'orphaned_account_review',
-  PrivilegedAccessReview = 'privileged_access_review',
-  ComplianceReview = 'compliance_review'
+  AccessCertification = "access_certification",
+  RoleCertification = "role_certification",
+  PermissionReview = "permission_review",
+  OrphanedAccountReview = "orphaned_account_review",
+  PrivilegedAccessReview = "privileged_access_review",
+  ComplianceReview = "compliance_review",
 }
 
 export enum ReviewStatus {
-  Planned = 'planned',
-  InProgress = 'in_progress',
-  Review = 'review',
-  Completed = 'completed',
-  Cancelled = 'cancelled',
-  Overdue = 'overdue'
+  Planned = "planned",
+  InProgress = "in_progress",
+  Review = "review",
+  Completed = "completed",
+  Cancelled = "cancelled",
+  Overdue = "overdue",
 }
 
 export enum ReviewFrequency {
-  Monthly = 'monthly',
-  Quarterly = 'quarterly',
-  SemiAnnually = 'semi_annually',
-  Annually = 'annually',
-  Continuous = 'continuous',
-  OnDemand = 'on_demand'
+  Monthly = "monthly",
+  Quarterly = "quarterly",
+  SemiAnnually = "semi_annually",
+  Annually = "annually",
+  Continuous = "continuous",
+  OnDemand = "on_demand",
 }
 
 export enum FindingType {
-  ExcessiveAccess = 'excessive_access',
-  OrphanedAccount = 'orphaned_account',
-  InactiveUser = 'inactive_user',
-  PolicyViolation = 'policy_violation',
-  RiskFlag = 'risk_flag',
-  ComplianceGap = 'compliance_gap'
+  ExcessiveAccess = "excessive_access",
+  OrphanedAccount = "orphaned_account",
+  InactiveUser = "inactive_user",
+  PolicyViolation = "policy_violation",
+  RiskFlag = "risk_flag",
+  ComplianceGap = "compliance_gap",
 }
 
 export enum CertificationDecision {
-  Approved = 'approved',
-  Revoked = 'revoked',
-  Modified = 'modified',
-  Escalated = 'escalated',
-  Deferred = 'deferred'
+  Approved = "approved",
+  Revoked = "revoked",
+  Modified = "modified",
+  Escalated = "escalated",
+  Deferred = "deferred",
 }
 
 export enum TrendDirection {
-  Improving = 'improving',
-  Stable = 'stable',
-  Declining = 'declining'
+  Improving = "improving",
+  Stable = "stable",
+  Declining = "declining",
 }
 
 export enum ConfidentialityLevel {
-  Public = 'public',
-  Internal = 'internal',
-  Confidential = 'confidential',
-  Restricted = 'restricted'
+  Public = "public",
+  Internal = "internal",
+  Confidential = "confidential",
+  Restricted = "restricted",
 }

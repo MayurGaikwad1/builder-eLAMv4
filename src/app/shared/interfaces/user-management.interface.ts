@@ -1,4 +1,4 @@
-import { User, UserStatus, UrgencyLevel, RiskLevel } from './user.interface';
+import { User, UserStatus, UrgencyLevel, RiskLevel } from "./user.interface";
 
 export interface UserProfile extends User {
   employeeId: string;
@@ -198,122 +198,122 @@ export interface AnalyticsTrend {
   period: string;
   value: number;
   change: number;
-  trend: 'up' | 'down' | 'stable';
+  trend: "up" | "down" | "stable";
 }
 
 // Enums
 export enum WorkflowType {
-  UserProvisioning = 'user_provisioning',
-  UserDeprovisioning = 'user_deprovisioning',
-  AccessModification = 'access_modification',
-  RoleAssignment = 'role_assignment',
-  ComplianceReview = 'compliance_review',
-  SecurityIncident = 'security_incident'
+  UserProvisioning = "user_provisioning",
+  UserDeprovisioning = "user_deprovisioning",
+  AccessModification = "access_modification",
+  RoleAssignment = "role_assignment",
+  ComplianceReview = "compliance_review",
+  SecurityIncident = "security_incident",
 }
 
 export enum WorkflowStatus {
-  Draft = 'draft',
-  Pending = 'pending',
-  InProgress = 'in_progress',
-  Approved = 'approved',
-  Rejected = 'rejected',
-  Completed = 'completed',
-  Failed = 'failed',
-  Cancelled = 'cancelled',
-  OnHold = 'on_hold'
+  Draft = "draft",
+  Pending = "pending",
+  InProgress = "in_progress",
+  Approved = "approved",
+  Rejected = "rejected",
+  Completed = "completed",
+  Failed = "failed",
+  Cancelled = "cancelled",
+  OnHold = "on_hold",
 }
 
 export enum TaskType {
-  CreateAccount = 'create_account',
-  DeleteAccount = 'delete_account',
-  ModifyAccount = 'modify_account',
-  AssignRole = 'assign_role',
-  RevokeRole = 'revoke_role',
-  SetPermissions = 'set_permissions',
-  SendNotification = 'send_notification',
-  UpdateDirectory = 'update_directory',
-  SyncData = 'sync_data',
-  GenerateReport = 'generate_report'
+  CreateAccount = "create_account",
+  DeleteAccount = "delete_account",
+  ModifyAccount = "modify_account",
+  AssignRole = "assign_role",
+  RevokeRole = "revoke_role",
+  SetPermissions = "set_permissions",
+  SendNotification = "send_notification",
+  UpdateDirectory = "update_directory",
+  SyncData = "sync_data",
+  GenerateReport = "generate_report",
 }
 
 export enum TaskStatus {
-  Pending = 'pending',
-  Running = 'running',
-  Completed = 'completed',
-  Failed = 'failed',
-  Skipped = 'skipped',
-  Cancelled = 'cancelled',
-  Retrying = 'retrying'
+  Pending = "pending",
+  Running = "running",
+  Completed = "completed",
+  Failed = "failed",
+  Skipped = "skipped",
+  Cancelled = "cancelled",
+  Retrying = "retrying",
 }
 
 export enum ApprovalStatus {
-  Pending = 'pending',
-  Approved = 'approved',
-  Rejected = 'rejected',
-  Delegated = 'delegated',
-  Expired = 'expired'
+  Pending = "pending",
+  Approved = "approved",
+  Rejected = "rejected",
+  Delegated = "delegated",
+  Expired = "expired",
 }
 
 export enum SecurityClearance {
-  Public = 'public',
-  Internal = 'internal',
-  Confidential = 'confidential',
-  Secret = 'secret',
-  TopSecret = 'top_secret'
+  Public = "public",
+  Internal = "internal",
+  Confidential = "confidential",
+  Secret = "secret",
+  TopSecret = "top_secret",
 }
 
 export enum DataClassification {
-  Public = 'public',
-  Internal = 'internal',
-  Confidential = 'confidential',
-  Restricted = 'restricted',
-  Classified = 'classified'
+  Public = "public",
+  Internal = "internal",
+  Confidential = "confidential",
+  Restricted = "restricted",
+  Classified = "classified",
 }
 
 export enum AuditLevel {
-  Basic = 'basic',
-  Enhanced = 'enhanced',
-  Comprehensive = 'comprehensive'
+  Basic = "basic",
+  Enhanced = "enhanced",
+  Comprehensive = "comprehensive",
 }
 
 export enum RiskFactorType {
-  AccessLevel = 'access_level',
-  DataSensitivity = 'data_sensitivity',
-  SystemCriticality = 'system_criticality',
-  UserBehavior = 'user_behavior',
-  ComplianceImpact = 'compliance_impact',
-  GeographicLocation = 'geographic_location',
-  DeviceCompliance = 'device_compliance'
+  AccessLevel = "access_level",
+  DataSensitivity = "data_sensitivity",
+  SystemCriticality = "system_criticality",
+  UserBehavior = "user_behavior",
+  ComplianceImpact = "compliance_impact",
+  GeographicLocation = "geographic_location",
+  DeviceCompliance = "device_compliance",
 }
 
 export enum ComplianceFramework {
-  SOX = 'sox',
-  PCI_DSS = 'pci_dss',
-  GDPR = 'gdpr',
-  HIPAA = 'hipaa',
-  ISO27001 = 'iso27001',
-  NIST = 'nist',
-  COSO = 'coso'
+  SOX = "sox",
+  PCI_DSS = "pci_dss",
+  GDPR = "gdpr",
+  HIPAA = "hipaa",
+  ISO27001 = "iso27001",
+  NIST = "nist",
+  COSO = "coso",
 }
 
 export enum CertificationStatus {
-  Valid = 'valid',
-  Expired = 'expired',
-  Expiring = 'expiring',
-  Suspended = 'suspended',
-  Revoked = 'revoked'
+  Valid = "valid",
+  Expired = "expired",
+  Expiring = "expiring",
+  Suspended = "suspended",
+  Revoked = "revoked",
 }
 
 export enum ConnectionStatus {
-  Connected = 'connected',
-  Disconnected = 'disconnected',
-  Error = 'error',
-  Maintenance = 'maintenance'
+  Connected = "connected",
+  Disconnected = "disconnected",
+  Error = "error",
+  Maintenance = "maintenance",
 }
 
 export enum AuditResult {
-  Success = 'success',
-  Failure = 'failure',
-  Warning = 'warning',
-  Blocked = 'blocked'
+  Success = "success",
+  Failure = "failure",
+  Warning = "warning",
+  Blocked = "blocked",
 }
