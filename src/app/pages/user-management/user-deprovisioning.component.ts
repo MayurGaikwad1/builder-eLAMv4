@@ -273,7 +273,7 @@ import { UserStatus } from '../../shared/interfaces/user.interface';
                 <svg class="w-5 h-5 text-warning-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
                   <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 00-1 1v6a1 1 0 001 1v1a2 2 0 01-2-2V5zM15 5a2 2 0 00-2-2v1a1 1 0 011 1v6a1 1 0 01-1 1v1a2 2 0 002-2V5z" clip-rule="evenodd"></path>
-                </div>
+                </svg>
                 <div>
                   <p class="text-sm font-medium text-warning-800">Compliance Requirements</p>
                   <ul class="text-sm text-warning-700 mt-1 space-y-1">

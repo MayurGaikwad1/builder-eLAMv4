@@ -1,4 +1,4 @@
-import { User, UserStatus } from './user.interface';
+import { User, UserStatus, UrgencyLevel, RiskLevel } from './user.interface';
 
 export interface UserProfile extends User {
   employeeId: string;
@@ -317,6 +317,3 @@ export enum AuditResult {
   Warning = 'warning',
   Blocked = 'blocked'
 }
-
-// Re-export from user.interface for convenience
-export { UrgencyLevel, RiskLevel } from './user.interface';
