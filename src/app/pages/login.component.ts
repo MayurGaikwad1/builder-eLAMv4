@@ -221,7 +221,10 @@ export class LoginComponent {
         next: (success) => {
           this.isLoading.set(false);
           if (success) {
-            this.router.navigate(['/dashboard']);
+            // Redirect to stored URL or dashboard
+            const redirectUrl = sessionStorage.getItem('elam_redirect_url') || '/dashboard';
+            sessionStorage.removeItem('elam_redirect_url');
+            this.router.navigate([redirectUrl]);
           } else {
             this.loginError.set({
               message: 'Invalid credentials. Please check your email and password.',
