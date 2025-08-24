@@ -467,7 +467,7 @@ export class SystemAdminService {
       id: 'config-001',
       name: 'Production Configuration',
       description: 'Production environment system configuration',
-      category: ConfigCategory.General,
+      category: ConfigCategory.Performance,
       settings: {
         general: {
           systemName: 'ELAM Production System',
