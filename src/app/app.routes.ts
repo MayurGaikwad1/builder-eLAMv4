@@ -21,14 +21,19 @@ import { PlaceholderComponent } from './pages/placeholder.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 
 export const routes: Routes = [
-  { 
-    path: '', 
-    redirectTo: '/dashboard', 
-    pathMatch: 'full' 
+  {
+    path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
   },
-  { 
-    path: 'dashboard', 
-    component: DashboardComponent 
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   },
   { 
     path: 'requests', 
