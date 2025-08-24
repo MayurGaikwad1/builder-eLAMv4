@@ -178,61 +178,6 @@ export class SystemAdminService {
     return this.integrationsSubject.asObservable();
   }
 
-  createIntegration(integration: Partial<SystemIntegration>): Observable<SystemIntegration> {
-    const newIntegration: SystemIntegration = {
-      id: `integration-${Date.now()}`,
-      name: integration.name || '',
-      displayName: integration.displayName || '',
-      description: integration.description || '',
-      type: integration.type || IntegrationType.Application,
-      category: integration.category || IntegrationCategory.DataSync,
-      vendor: integration.vendor || '',
-      version: integration.version || '1.0',
-      status: IntegrationStatus.Pending,
-      isEnabled: false,
-      configuration: integration.configuration || {
-        protocol: 'https',
-        timeout: 30000,
-        retryAttempts: 3,
-        customSettings: {}
-      },
-      authentication: integration.authentication || {
-        type: AuthenticationType.ApiKey,
-        credentials: {}
-      },
-      dataMappings: integration.dataMappings || [],
-      healthCheck: integration.healthCheck || {
-        enabled: true,
-        interval: 300,
-        timeout: 30,
-        checks: []
-      },
-      monitoring: integration.monitoring || {
-        enabled: true,
-        metricsCollection: true,
-        logLevel: LogLevel.Info,
-        alerting: {
-          enabled: true,
-          channels: [],
-          thresholds: [],
-          escalation: []
-        },
-        dashboard: {
-          enabled: true,
-          widgets: [],
-          refreshInterval: 60
-        }
-      },
-      createdAt: new Date(),
-      modifiedAt: new Date(),
-      modifiedBy: 'current-user'
-    };
-
-    const integrations = this.integrationsSubject.value;
-    this.integrationsSubject.next([...integrations, newIntegration]);
-    
-    return of(newIntegration).pipe(delay(500));
-  }
 
   testIntegrationConnection(id: string): Observable<boolean> {
     // Simulate connection test
