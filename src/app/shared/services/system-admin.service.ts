@@ -481,14 +481,11 @@ export class SystemAdminService {
     // Simulate configuration update
     const updatedConfig: SystemConfiguration = {
       id: 'config-001',
-      name: 'Production Configuration',
-      description: 'Production environment system configuration',
       category: ConfigCategory.Performance,
-      settings: configData,
-      isActive: true,
-      version: '1.0.1',
+      settings: [],
       lastModified: new Date(),
-      modifiedBy: 'system-admin'
+      modifiedBy: 'system-admin',
+      version: '1.0.1'
     };
 
     return of(updatedConfig).pipe(delay(1000));
