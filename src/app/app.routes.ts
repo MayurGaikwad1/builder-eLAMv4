@@ -7,6 +7,10 @@ import { UserProvisioningComponent } from './pages/user-management/user-provisio
 import { UserDeprovisioningComponent } from './pages/user-management/user-deprovisioning.component';
 import { ApprovalManagementComponent } from './pages/approval-management/approval-management.component';
 import { ApprovalQueueComponent } from './pages/approval-management/approval-queue.component';
+import { AuditComplianceComponent } from './pages/audit-compliance/audit-compliance.component';
+import { AuditLogsComponent } from './pages/audit-compliance/audit-logs.component';
+import { ComplianceReportsComponent } from './pages/audit-compliance/compliance-reports.component';
+import { AccessReviewsComponent } from './pages/audit-compliance/access-reviews.component';
 import { PlaceholderComponent } from './pages/placeholder.component';
 
 export const routes: Routes = [
