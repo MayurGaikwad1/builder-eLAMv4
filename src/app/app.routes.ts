@@ -162,8 +162,7 @@ export const routes: Routes = [
   },
   {
     path: 'admin/config',
-    component: PlaceholderComponent,
-    data: { title: 'System Configuration', moduleType: 'configuration panel' }
+    component: SystemConfigurationComponent
   },
   { 
     path: 'admin/workflows', 
