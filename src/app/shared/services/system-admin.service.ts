@@ -410,8 +410,6 @@ export class SystemAdminService {
     // Return mock configuration data
     const mockConfig: SystemConfiguration = {
       id: 'config-001',
-      name: 'Production Configuration',
-      description: 'Production environment system configuration',
       category: ConfigCategory.Performance,
       settings: [],
       lastModified: new Date(),
