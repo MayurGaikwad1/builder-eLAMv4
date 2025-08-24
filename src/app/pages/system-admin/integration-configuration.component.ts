@@ -1185,7 +1185,7 @@ export class IntegrationConfigurationComponent implements OnInit {
         enabled: integration.healthCheck.enabled,
         interval: integration.healthCheck.interval,
         timeout: integration.healthCheck.timeout,
-        retryAttempts: integration.healthCheck.retryAttempts
+        // retryAttempts: integration.healthCheck.retryAttempts // Property doesn't exist in interface
       },
       monitoring: {
         enabled: integration.monitoring.enabled,
