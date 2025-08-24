@@ -4,6 +4,7 @@ import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { SidebarComponent } from './components/layout/sidebar.component';
 import { HeaderComponent } from './components/layout/header.component';
+import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
