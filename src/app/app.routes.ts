@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard.component';
+import { LoginComponent } from './pages/login.component';
 import { AccessRequestsComponent } from './pages/access-requests.component';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { AllUsersComponent } from './pages/user-management/all-users.component';
@@ -17,6 +18,7 @@ import { SystemIntegrationsComponent } from './pages/system-admin/system-integra
 import { IntegrationConfigurationComponent } from './pages/system-admin/integration-configuration.component';
 import { SystemConfigurationComponent } from './pages/system-admin/system-configuration.component';
 import { PlaceholderComponent } from './pages/placeholder.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 export const routes: Routes = [
   { 
