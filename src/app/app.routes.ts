@@ -167,23 +167,28 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
-    component: SystemAdminComponent
+    component: SystemAdminComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin/roles',
-    component: RolesPoliciesComponent
+    component: RolesPoliciesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin/integrations',
-    component: SystemIntegrationsComponent
+    component: SystemIntegrationsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin/integrations/configure/:id',
-    component: IntegrationConfigurationComponent
+    component: IntegrationConfigurationComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin/config',
-    component: SystemConfigurationComponent
+    component: SystemConfigurationComponent,
+    canActivate: [AuthGuard]
   },
   { 
     path: 'admin/workflows', 
