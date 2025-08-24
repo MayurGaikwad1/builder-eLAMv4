@@ -14,6 +14,7 @@ import { AccessReviewsComponent } from './pages/audit-compliance/access-reviews.
 import { SystemAdminComponent } from './pages/system-admin/system-admin.component';
 import { RolesPoliciesComponent } from './pages/system-admin/roles-policies.component';
 import { SystemIntegrationsComponent } from './pages/system-admin/system-integrations.component';
+import { IntegrationConfigurationComponent } from './pages/system-admin/integration-configuration.component';
 import { PlaceholderComponent } from './pages/placeholder.component';
 
 export const routes: Routes = [
