@@ -123,35 +123,21 @@ export const routes: Routes = [
     path: 'users/deprovisioning', 
     component: UserDeprovisioningComponent
   },
-  { 
-    path: 'audit', 
-    component: PlaceholderComponent,
-    data: { 
-      title: 'Audit & Compliance', 
-      moduleType: 'audit system',
-      plannedFeatures: [
-        'Immutable audit logging',
-        'Compliance reporting (SOX, PCI, GDPR)',
-        'Access certification campaigns',
-        'Anomaly detection',
-        'Evidence management'
-      ]
-    }
+  {
+    path: 'audit',
+    component: AuditComplianceComponent
   },
-  { 
-    path: 'audit/logs', 
-    component: PlaceholderComponent,
-    data: { title: 'Audit Logs', moduleType: 'audit viewer' }
+  {
+    path: 'audit/logs',
+    component: AuditLogsComponent
   },
-  { 
-    path: 'audit/compliance', 
-    component: PlaceholderComponent,
-    data: { title: 'Compliance Reports', moduleType: 'compliance dashboard' }
+  {
+    path: 'audit/compliance',
+    component: ComplianceReportsComponent
   },
-  { 
-    path: 'audit/reviews', 
-    component: PlaceholderComponent,
-    data: { title: 'Access Reviews', moduleType: 'review management' }
+  {
+    path: 'audit/reviews',
+    component: AccessReviewsComponent
   },
   { 
     path: 'admin', 
