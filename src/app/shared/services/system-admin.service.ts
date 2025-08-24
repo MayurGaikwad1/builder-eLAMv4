@@ -251,7 +251,8 @@ export class SystemAdminService {
         alerting: {
           enabled: integrationData.monitoring.alerting.enabled || false,
           channels: integrationData.monitoring.alerting.channels || [],
-          thresholds: integrationData.monitoring.alerting.thresholds || []
+          thresholds: integrationData.monitoring.alerting.thresholds || [],
+          escalation: integrationData.monitoring.alerting.escalation || []
         }
       },
       lastSync: null,
