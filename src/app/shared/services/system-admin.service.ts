@@ -253,6 +253,11 @@ export class SystemAdminService {
           channels: integrationData.monitoring.alerting.channels || [],
           thresholds: integrationData.monitoring.alerting.thresholds || [],
           escalation: integrationData.monitoring.alerting.escalation || []
+        },
+        dashboard: {
+          enabled: true,
+          widgets: [],
+          refreshInterval: 60
         }
       },
       lastSync: undefined,
