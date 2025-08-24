@@ -78,7 +78,53 @@ export class HeaderComponent {
   @Input() subtitle = '';
   @Output() menuToggle = new EventEmitter<void>();
 
+  protected readonly showUserMenu = signal(false);
+  protected readonly currentUser = signal<User | null>(null);
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
+    // Subscribe to current user
+    this.authService.currentUser$.subscribe(user => {
+      this.currentUser.set(user);
+    });
+  }
+
   onMenuToggle() {
     this.menuToggle.emit();
+  }
+
+  toggleUserMenu() {
+    this.showUserMenu.update(show => !show);
+  }
+
+  onLogout() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(['/login']);
+    });
+  }
+
+  getUserInitials(): string {
+    const user = this.currentUser();
+    if (!user) return 'U';
+
+    const names = user.name.split(' ');
+    if (names.length >= 2) {
+      return `${names[0][0]}${names[1][0]}`.toUpperCase();
+    }
+    return user.name[0].toUpperCase();
+  }
+
+  getUserRole(): string {
+    const user = this.currentUser();
+    if (!user) return '';
+
+    switch (user.role) {
+      case 'admin': return 'Administrator';
+      case 'manager': return 'Manager';
+      case 'user': return 'User';
+      default: return user.role;
+    }
   }
 }
