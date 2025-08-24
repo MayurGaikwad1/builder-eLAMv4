@@ -595,7 +595,7 @@ export class SystemAdminService {
       id: 'config-001',
       name: 'Production Configuration',
       description: 'Production environment system configuration',
-      category: ConfigCategory.General,
+      category: ConfigCategory.Performance,
       settings: configData,
       isActive: true,
       version: '1.0.1',
