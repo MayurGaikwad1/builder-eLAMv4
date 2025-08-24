@@ -1,6 +1,10 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard.component';
 import { AccessRequestsComponent } from './pages/access-requests.component';
+import { UserManagementComponent } from './pages/user-management/user-management.component';
+import { AllUsersComponent } from './pages/user-management/all-users.component';
+import { UserProvisioningComponent } from './pages/user-management/user-provisioning.component';
+import { UserDeprovisioningComponent } from './pages/user-management/user-deprovisioning.component';
 import { PlaceholderComponent } from './pages/placeholder.component';
 
 export const routes: Routes = [
@@ -46,33 +50,19 @@ export const routes: Routes = [
   },
   { 
     path: 'users', 
-    component: PlaceholderComponent,
-    data: { 
-      title: 'User Lifecycle Management', 
-      moduleType: 'user management system',
-      plannedFeatures: [
-        'Automated provisioning/deprovisioning',
-        'HRMS integration for JML',
-        'Role mining and recommendations',
-        'User access reviews',
-        'Bulk user operations'
-      ]
-    }
+    component: UserManagementComponent
   },
   { 
     path: 'users/all', 
-    component: PlaceholderComponent,
-    data: { title: 'All Users', moduleType: 'user directory' }
+    component: AllUsersComponent
   },
   { 
     path: 'users/provisioning', 
-    component: PlaceholderComponent,
-    data: { title: 'User Provisioning', moduleType: 'provisioning system' }
+    component: UserProvisioningComponent
   },
   { 
     path: 'users/deprovisioning', 
-    component: PlaceholderComponent,
-    data: { title: 'User Deprovisioning', moduleType: 'deprovisioning system' }
+    component: UserDeprovisioningComponent
   },
   { 
     path: 'audit', 
