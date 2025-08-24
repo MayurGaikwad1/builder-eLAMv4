@@ -556,7 +556,7 @@ interface AuditFilters {
             </div>
 
             <!-- Metadata -->
-            <div class="mt-6" *ngIf="selectedLog()!.metadata && Object.keys(selectedLog()!.metadata).length > 0">
+            <div class="mt-6" *ngIf="selectedLog()!.metadata && hasMetadata(selectedLog()!.metadata)">
               <label class="block text-sm font-medium text-secondary-700 mb-2">Additional Metadata</label>
               <div class="bg-secondary-50 rounded-lg p-3">
                 <pre class="text-xs text-secondary-900 whitespace-pre-wrap">{{ formatMetadata(selectedLog()!.metadata) }}</pre>
