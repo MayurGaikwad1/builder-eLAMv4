@@ -248,6 +248,128 @@ export class SystemAdminService {
     }).pipe(delay(3000));
   }
 
+  getIntegration(id: string): Observable<SystemIntegration | null> {
+    const integrations = this.integrationsSubject.value;
+    const integration = integrations.find(i => i.id === id);
+    return of(integration || null).pipe(delay(500));
+  }
+
+  testIntegrationConfiguration(configData: any): Observable<any> {
+    // Simulate configuration test
+    return of({
+      success: Math.random() > 0.3, // 70% success rate for demo
+      message: Math.random() > 0.3 ? 'Connection successful' : 'Connection failed: Invalid credentials',
+      details: Math.random() > 0.3 ? 'All configuration parameters validated successfully' : 'Authentication failed at endpoint verification'
+    }).pipe(delay(2000));
+  }
+
+  createIntegration(integrationData: any): Observable<SystemIntegration> {
+    const newIntegration: SystemIntegration = {
+      id: `int-${Date.now()}`,
+      name: integrationData.name,
+      displayName: integrationData.displayName,
+      description: integrationData.description,
+      type: integrationData.type,
+      category: integrationData.category,
+      vendor: integrationData.vendor,
+      version: integrationData.version || '1.0.0',
+      status: integrationData.isActive ? IntegrationStatus.Active : IntegrationStatus.Inactive,
+      isEnabled: integrationData.isActive,
+      configuration: {
+        endpoint: integrationData.configuration.endpoint,
+        protocol: integrationData.configuration.protocol,
+        port: integrationData.configuration.port,
+        connectionString: integrationData.configuration.connectionString,
+        timeout: integrationData.configuration.timeout || 30,
+        retryAttempts: integrationData.configuration.retryAttempts || 3,
+        batchSize: integrationData.configuration.batchSize || 100,
+        syncInterval: integrationData.configuration.syncInterval || 3600,
+        customSettings: integrationData.configuration.customSettings || {}
+      },
+      authentication: {
+        type: integrationData.authentication.type,
+        credentials: {}, // Don't store sensitive data in mock
+        tokenExpiry: 3600,
+        refreshToken: false
+      },
+      dataMappings: integrationData.dataMappings || [],
+      healthCheck: {
+        enabled: integrationData.healthCheck.enabled || false,
+        interval: integrationData.healthCheck.interval || 300,
+        timeout: integrationData.healthCheck.timeout || 30,
+        retryAttempts: integrationData.healthCheck.retryAttempts || 3,
+        checks: integrationData.healthCheck.checks || []
+      },
+      monitoring: {
+        enabled: integrationData.monitoring.enabled || false,
+        metricsCollection: integrationData.monitoring.metricsCollection || false,
+        logLevel: integrationData.monitoring.logLevel || LogLevel.Info,
+        alerting: {
+          enabled: integrationData.monitoring.alerting.enabled || false,
+          channels: integrationData.monitoring.alerting.channels || [],
+          thresholds: integrationData.monitoring.alerting.thresholds || []
+        }
+      },
+      lastSync: null,
+      lastHealthCheck: null,
+      createdAt: new Date(),
+      modifiedAt: new Date(),
+      modifiedBy: 'system-admin'
+    };
+
+    // Add to the subject
+    const currentIntegrations = this.integrationsSubject.value;
+    this.integrationsSubject.next([...currentIntegrations, newIntegration]);
+
+    return of(newIntegration).pipe(delay(1000));
+  }
+
+  updateIntegration(id: string, integrationData: any): Observable<SystemIntegration> {
+    const currentIntegrations = this.integrationsSubject.value;
+    const index = currentIntegrations.findIndex(i => i.id === id);
+
+    if (index === -1) {
+      throw new Error('Integration not found');
+    }
+
+    const updatedIntegration: SystemIntegration = {
+      ...currentIntegrations[index],
+      name: integrationData.name,
+      displayName: integrationData.displayName,
+      description: integrationData.description,
+      type: integrationData.type,
+      category: integrationData.category,
+      vendor: integrationData.vendor,
+      version: integrationData.version,
+      status: integrationData.isActive ? IntegrationStatus.Active : IntegrationStatus.Inactive,
+      isEnabled: integrationData.isActive,
+      configuration: {
+        ...currentIntegrations[index].configuration,
+        ...integrationData.configuration
+      },
+      authentication: {
+        ...currentIntegrations[index].authentication,
+        type: integrationData.authentication.type
+      },
+      dataMappings: integrationData.dataMappings || [],
+      healthCheck: {
+        ...currentIntegrations[index].healthCheck,
+        ...integrationData.healthCheck
+      },
+      monitoring: {
+        ...currentIntegrations[index].monitoring,
+        ...integrationData.monitoring
+      },
+      modifiedAt: new Date(),
+      modifiedBy: 'system-admin'
+    };
+
+    currentIntegrations[index] = updatedIntegration;
+    this.integrationsSubject.next([...currentIntegrations]);
+
+    return of(updatedIntegration).pipe(delay(1000));
+  }
+
   // System Configuration
   getConfigurations(): Observable<SystemConfiguration[]> {
     return this.configurationsSubject.asObservable();
