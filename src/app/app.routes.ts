@@ -125,37 +125,45 @@ export const routes: Routes = [
       ]
     }
   },
-  { 
-    path: 'users', 
-    component: UserManagementComponent
+  {
+    path: 'users',
+    component: UserManagementComponent,
+    canActivate: [AuthGuard]
   },
-  { 
-    path: 'users/all', 
-    component: AllUsersComponent
+  {
+    path: 'users/all',
+    component: AllUsersComponent,
+    canActivate: [AuthGuard]
   },
-  { 
-    path: 'users/provisioning', 
-    component: UserProvisioningComponent
+  {
+    path: 'users/provisioning',
+    component: UserProvisioningComponent,
+    canActivate: [AuthGuard]
   },
-  { 
-    path: 'users/deprovisioning', 
-    component: UserDeprovisioningComponent
+  {
+    path: 'users/deprovisioning',
+    component: UserDeprovisioningComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'audit',
-    component: AuditComplianceComponent
+    component: AuditComplianceComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'audit/logs',
-    component: AuditLogsComponent
+    component: AuditLogsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'audit/compliance',
-    component: ComplianceReportsComponent
+    component: ComplianceReportsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'audit/reviews',
-    component: AccessReviewsComponent
+    component: AccessReviewsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin',
