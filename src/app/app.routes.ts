@@ -5,6 +5,8 @@ import { UserManagementComponent } from './pages/user-management/user-management
 import { AllUsersComponent } from './pages/user-management/all-users.component';
 import { UserProvisioningComponent } from './pages/user-management/user-provisioning.component';
 import { UserDeprovisioningComponent } from './pages/user-management/user-deprovisioning.component';
+import { ApprovalManagementComponent } from './pages/approval-management/approval-management.component';
+import { ApprovalQueueComponent } from './pages/approval-management/approval-queue.component';
 import { PlaceholderComponent } from './pages/placeholder.component';
 
 export const routes: Routes = [
@@ -35,16 +37,69 @@ export const routes: Routes = [
   },
   { 
     path: 'approvals', 
+    component: ApprovalManagementComponent
+  },
+  { 
+    path: 'approvals/queue', 
+    component: ApprovalQueueComponent
+  },
+  { 
+    path: 'approvals/bulk', 
     component: PlaceholderComponent,
     data: { 
-      title: 'Approval Management', 
-      moduleType: 'approval system',
+      title: 'Bulk Approval Operations', 
+      moduleType: 'bulk approval system',
       plannedFeatures: [
-        'Multi-level approval workflows',
-        'Bulk approval capabilities',
-        'Delegation and proxy approvals',
-        'SoD conflict detection',
-        'Mobile approval interface'
+        'Advanced bulk approval workflows',
+        'Conditional bulk approvals',
+        'Risk-based auto-approval rules',
+        'Bulk delegation capabilities',
+        'Mass approval analytics'
+      ]
+    }
+  },
+  { 
+    path: 'approvals/delegations', 
+    component: PlaceholderComponent,
+    data: { 
+      title: 'Approval Delegations', 
+      moduleType: 'delegation management',
+      plannedFeatures: [
+        'Delegation rule configuration',
+        'Time-bound delegation setup',
+        'Conditional delegation policies',
+        'Delegation approval history',
+        'Auto-delegation scheduling'
+      ]
+    }
+  },
+  { 
+    path: 'approvals/escalations', 
+    component: PlaceholderComponent,
+    data: { 
+      title: 'Approval Escalations', 
+      moduleType: 'escalation management',
+      plannedFeatures: [
+        'SLA breach notifications',
+        'Auto-escalation workflows',
+        'Escalation path configuration',
+        'Emergency approval processes',
+        'Escalation analytics'
+      ]
+    }
+  },
+  { 
+    path: 'approvals/analytics', 
+    component: PlaceholderComponent,
+    data: { 
+      title: 'Approval Analytics', 
+      moduleType: 'approval analytics dashboard',
+      plannedFeatures: [
+        'Performance metrics dashboard',
+        'SLA compliance tracking',
+        'Bottleneck identification',
+        'Approval pattern analysis',
+        'Custom reporting tools'
       ]
     }
   },
@@ -123,6 +178,21 @@ export const routes: Routes = [
     path: 'admin/config', 
     component: PlaceholderComponent,
     data: { title: 'System Configuration', moduleType: 'configuration panel' }
+  },
+  { 
+    path: 'admin/workflows', 
+    component: PlaceholderComponent,
+    data: { 
+      title: 'Workflow Management', 
+      moduleType: 'workflow designer',
+      plannedFeatures: [
+        'Visual workflow builder',
+        'Multi-level approval chains',
+        'Conditional routing logic',
+        'SLA and escalation rules',
+        'Workflow testing and simulation'
+      ]
+    }
   },
   { 
     path: '**', 
