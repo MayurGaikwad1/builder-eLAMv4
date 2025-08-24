@@ -773,7 +773,7 @@ export class SystemIntegrationsComponent implements OnInit {
   }
 
   showCreateIntegrationModal(): void {
-    this.showCreateModal.set(true);
+    this.router.navigate(['/admin/integrations/configure', 'new']);
   }
 
   closeCreateModal(): void {
