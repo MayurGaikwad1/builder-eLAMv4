@@ -1178,7 +1178,7 @@ export class IntegrationConfigurationComponent implements OnInit {
       },
       authentication: {
         type: integration.authentication.type,
-        username: integration.authentication.username,
+        // username: integration.authentication.username, // Not available in interface
         // Don't populate passwords/secrets for security
       },
       healthCheck: {
