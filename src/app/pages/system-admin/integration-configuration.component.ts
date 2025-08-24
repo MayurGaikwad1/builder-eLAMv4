@@ -12,7 +12,6 @@ import {
   DataMapping,
   HealthCheck,
   MonitoringConfig,
-  IntegrationConfiguration,
   AuthenticationConfig
 } from '../../shared/interfaces/system-admin.interface';
 
