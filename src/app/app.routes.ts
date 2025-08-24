@@ -11,6 +11,9 @@ import { AuditComplianceComponent } from './pages/audit-compliance/audit-complia
 import { AuditLogsComponent } from './pages/audit-compliance/audit-logs.component';
 import { ComplianceReportsComponent } from './pages/audit-compliance/compliance-reports.component';
 import { AccessReviewsComponent } from './pages/audit-compliance/access-reviews.component';
+import { SystemAdminComponent } from './pages/system-admin/system-admin.component';
+import { RolesPoliciesComponent } from './pages/system-admin/roles-policies.component';
+import { SystemIntegrationsComponent } from './pages/system-admin/system-integrations.component';
 import { PlaceholderComponent } from './pages/placeholder.component';
 
 export const routes: Routes = [
