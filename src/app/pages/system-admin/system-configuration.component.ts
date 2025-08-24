@@ -1347,7 +1347,7 @@ export class SystemConfigurationComponent implements OnInit {
       title: 'Notifications',
       description: 'Email and alerts',
       icon: 'stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
-      category: ConfigCategory.Notifications,
+      category: ConfigCategory.Notification,
       enabled: true,
       hasChanges: false
     },
@@ -1356,7 +1356,7 @@ export class SystemConfigurationComponent implements OnInit {
       title: 'API',
       description: 'REST API and rate limiting',
       icon: 'stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
-      category: ConfigCategory.Api,
+      category: ConfigCategory.Integration,
       enabled: true,
       hasChanges: false
     },
@@ -1365,7 +1365,7 @@ export class SystemConfigurationComponent implements OnInit {
       title: 'Backup',
       description: 'Data backup and maintenance',
       icon: 'stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4',
-      category: ConfigCategory.Backup,
+      category: ConfigCategory.Performance,
       enabled: true,
       hasChanges: false
     },
@@ -1374,7 +1374,7 @@ export class SystemConfigurationComponent implements OnInit {
       title: 'Logging',
       description: 'System logs and monitoring',
       icon: 'stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
-      category: ConfigCategory.Logging,
+      category: ConfigCategory.Performance,
       enabled: true,
       hasChanges: false
     },
@@ -1383,7 +1383,7 @@ export class SystemConfigurationComponent implements OnInit {
       title: 'Features',
       description: 'Feature flags and toggles',
       icon: 'stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 011.5-1.937c1.808-.377 3.694-.377 5.502 0A2 2 0 0111 5v4.09c.448-.02.896-.035 1.342-.05L11.35 7.5A2 2 0 0112.862 6h5.276a2 2 0 011.512 3.3l-1.553 1.773 1.553 1.773A2 2 0 0117.138 16h-5.276a2 2 0 01-1.512-1.5L11.342 12.96c-.446-.015-.894-.03-1.342-.05V17a4 4 0 01-4 4z',
-      category: ConfigCategory.FeatureFlags,
+      category: ConfigCategory.Performance,
       enabled: true,
       hasChanges: false
     }
