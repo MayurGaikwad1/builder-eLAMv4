@@ -39,29 +39,33 @@ export class App {
 
   private updatePageTitle(url: string) {
     const routeTitles: Record<string, { title: string; subtitle: string }> = {
-      '/dashboard': { 
-        title: 'Executive Dashboard', 
-        subtitle: 'Enterprise access management overview' 
+      '/login': {
+        title: 'Sign In',
+        subtitle: 'Access your ELAM account'
       },
-      '/requests': { 
-        title: 'Access Requests', 
-        subtitle: 'Request and manage system access' 
+      '/dashboard': {
+        title: 'Executive Dashboard',
+        subtitle: 'Enterprise access management overview'
       },
-      '/approvals': { 
-        title: 'Approval Management', 
-        subtitle: 'Review and approve access requests' 
+      '/requests': {
+        title: 'Access Requests',
+        subtitle: 'Request and manage system access'
       },
-      '/users': { 
-        title: 'User Management', 
-        subtitle: 'Manage user lifecycle and provisioning' 
+      '/approvals': {
+        title: 'Approval Management',
+        subtitle: 'Review and approve access requests'
       },
-      '/audit': { 
-        title: 'Audit & Compliance', 
-        subtitle: 'Security monitoring and compliance reporting' 
+      '/users': {
+        title: 'User Management',
+        subtitle: 'Manage user lifecycle and provisioning'
       },
-      '/admin': { 
-        title: 'System Administration', 
-        subtitle: 'Configure roles, policies, and integrations' 
+      '/audit': {
+        title: 'Audit & Compliance',
+        subtitle: 'Security monitoring and compliance reporting'
+      },
+      '/admin': {
+        title: 'System Administration',
+        subtitle: 'Configure roles, policies, and integrations'
       }
     };
 
