@@ -252,7 +252,7 @@ import { AccessRequest, RequestType, UrgencyLevel, Role, RiskLevel } from '../sh
   `
 })
 export class AccessRequestsComponent implements OnInit {
-  showNewRequestForm = true;
+  showNewRequestForm = false;
   myRequests = signal<AccessRequest[]>([]);
   
   newRequest = {
