@@ -155,8 +155,12 @@ export const routes: Routes = [
     path: 'admin/integrations',
     component: SystemIntegrationsComponent
   },
-  { 
-    path: 'admin/config', 
+  {
+    path: 'admin/integrations/configure/:id',
+    component: IntegrationConfigurationComponent
+  },
+  {
+    path: 'admin/config',
     component: PlaceholderComponent,
     data: { title: 'System Configuration', moduleType: 'configuration panel' }
   },
