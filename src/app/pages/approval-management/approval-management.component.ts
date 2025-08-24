@@ -292,19 +292,19 @@ export class ApprovalManagementComponent implements OnInit {
     });
   }
 
-  getPerformanceMetric(metric: keyof typeof this.statistics().performanceMetrics): number {
+  getPerformanceMetric(metric: string): number {
     const metrics = this.statistics().performanceMetrics;
-    return metrics ? metrics[metric] : 0;
+    return metrics ? (metrics as any)[metric] || 0 : 0;
   }
 
-  getQueueDistribution(level: keyof typeof this.statistics().queueDistribution): number {
+  getQueueDistribution(level: string): number {
     const distribution = this.statistics().queueDistribution;
-    return distribution ? distribution[level] : 0;
+    return distribution ? (distribution as any)[level] || 0 : 0;
   }
 
-  getQueuePercentage(level: keyof typeof this.statistics().queueDistribution): number {
+  getQueuePercentage(level: string): number {
     const stats = this.statistics();
     if (!stats.queueDistribution || stats.totalPending === 0) return 0;
-    return (stats.queueDistribution[level] / stats.totalPending) * 100;
+    return ((stats.queueDistribution as any)[level] / stats.totalPending) * 100;
   }
 }
