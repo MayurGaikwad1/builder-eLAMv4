@@ -11,8 +11,10 @@ import {
   ComplianceFinding,
   AuditSeverity,
   ViolationStatus,
+  ViolationSeverity,
   ReviewStatus,
   FindingStatus,
+  FindingSeverity,
   TrendDirection
 } from '../../shared/interfaces/audit-compliance.interface';
 
