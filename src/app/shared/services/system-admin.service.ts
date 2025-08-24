@@ -255,8 +255,8 @@ export class SystemAdminService {
           escalation: integrationData.monitoring.alerting.escalation || []
         }
       },
-      lastSync: null,
-      lastHealthCheck: null,
+      lastSync: undefined,
+      lastHealthCheck: undefined,
       createdAt: new Date(),
       modifiedAt: new Date(),
       modifiedBy: 'system-admin'
