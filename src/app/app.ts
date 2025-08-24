@@ -18,8 +18,12 @@ export class App {
   protected readonly currentPageTitle = signal('Dashboard');
   protected readonly currentPageSubtitle = signal('');
   protected readonly sidebarCollapsed = signal(false);
+  protected readonly isAuthenticated = signal(false);
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {
     // Update page title based on route
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
