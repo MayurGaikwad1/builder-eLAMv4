@@ -245,7 +245,29 @@ import { UserAnalytics, IntegrationStatus, ConnectionStatus } from '../../shared
   `
 })
 export class UserManagementComponent implements OnInit {
-  analytics = signal<UserAnalytics>({} as UserAnalytics);
+  analytics = signal<UserAnalytics>({
+    totalUsers: 0,
+    activeUsers: 0,
+    inactiveUsers: 0,
+    pendingProvisioning: 0,
+    pendingDeprovisioning: 0,
+    riskDistribution: { low: 0, medium: 0, high: 0, critical: 0 },
+    complianceMetrics: {
+      compliantUsers: 0,
+      nonCompliantUsers: 0,
+      pendingReviews: 0,
+      expiredCertifications: 0,
+      violationsCount: 0
+    },
+    activityMetrics: {
+      dailyLogins: 0,
+      weeklyLogins: 0,
+      monthlyLogins: 0,
+      avgSessionDuration: 0,
+      suspiciousActivities: 0
+    },
+    trends: []
+  });
   integrations = signal<IntegrationStatus[]>([]);
 
   constructor(private userManagementService: UserManagementService) {}
@@ -269,16 +291,19 @@ export class UserManagementComponent implements OnInit {
 
   getActiveUserPercentage(): number {
     const analytics = this.analytics();
+    if (!analytics || analytics.totalUsers === 0) return 0;
     return Math.round((analytics.activeUsers / analytics.totalUsers) * 100);
   }
 
   getPendingWorkflows(): number {
     const analytics = this.analytics();
+    if (!analytics) return 0;
     return analytics.pendingProvisioning + analytics.pendingDeprovisioning;
   }
 
   getComplianceScore(): number {
     const analytics = this.analytics();
+    if (!analytics || !analytics.complianceMetrics) return 0;
     const total = analytics.complianceMetrics.compliantUsers + analytics.complianceMetrics.nonCompliantUsers;
     return total > 0 ? Math.round((analytics.complianceMetrics.compliantUsers / total) * 100) : 0;
   }
@@ -297,5 +322,11 @@ export class UserManagementComponent implements OnInit {
     if (score >= 90) return 'text-success-600';
     if (score >= 70) return 'text-warning-600';
     return 'text-danger-600';
+  }
+
+  getRiskPercentage(riskLevel: 'low' | 'medium' | 'high' | 'critical'): number {
+    const analytics = this.analytics();
+    if (!analytics || !analytics.riskDistribution || analytics.totalUsers === 0) return 0;
+    return (analytics.riskDistribution[riskLevel] / analytics.totalUsers) * 100;
   }
 }

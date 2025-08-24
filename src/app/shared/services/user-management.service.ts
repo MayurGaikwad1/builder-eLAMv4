@@ -226,8 +226,8 @@ export class UserManagementService {
 
   // Analytics
   getUserAnalytics(): Observable<UserAnalytics> {
-    const users = this.usersSubject.value;
-    const workflows = this.workflowsSubject.value;
+    const users = this.usersSubject.value || [];
+    const workflows = this.workflowsSubject.value || [];
     
     const analytics: UserAnalytics = {
       totalUsers: users.length,
