@@ -142,30 +142,17 @@ export const routes: Routes = [
     path: 'audit/reviews',
     component: AccessReviewsComponent
   },
-  { 
-    path: 'admin', 
-    component: PlaceholderComponent,
-    data: { 
-      title: 'System Administration', 
-      moduleType: 'admin console',
-      plannedFeatures: [
-        'Role and policy management',
-        'Integration configuration',
-        'Workflow design tools',
-        'System monitoring',
-        'Security configuration'
-      ]
-    }
+  {
+    path: 'admin',
+    component: SystemAdminComponent
   },
-  { 
-    path: 'admin/roles', 
-    component: PlaceholderComponent,
-    data: { title: 'Roles & Policies', moduleType: 'role management' }
+  {
+    path: 'admin/roles',
+    component: RolesPoliciesComponent
   },
-  { 
-    path: 'admin/integrations', 
-    component: PlaceholderComponent,
-    data: { title: 'System Integrations', moduleType: 'integration management' }
+  {
+    path: 'admin/integrations',
+    component: SystemIntegrationsComponent
   },
   { 
     path: 'admin/config', 
