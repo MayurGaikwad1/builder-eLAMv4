@@ -130,37 +130,37 @@ import { UserAnalytics, IntegrationStatus, ConnectionStatus } from '../../shared
                 <span class="text-sm font-medium text-danger-600">{{ analytics().riskDistribution.critical }} users</span>
               </div>
               <div class="w-full bg-secondary-200 rounded-full h-2">
-                <div class="bg-danger-600 h-2 rounded-full" [style.width.%]="(analytics().riskDistribution.critical / analytics().totalUsers) * 100"></div>
+                <div class="bg-danger-600 h-2 rounded-full" [style.width.%]="getRiskPercentage('critical')"></div>
               </div>
             </div>
-            
+
             <div class="space-y-2">
               <div class="flex items-center justify-between">
                 <span class="text-sm text-secondary-600">High Risk</span>
                 <span class="text-sm font-medium text-warning-600">{{ analytics().riskDistribution.high }} users</span>
               </div>
               <div class="w-full bg-secondary-200 rounded-full h-2">
-                <div class="bg-warning-600 h-2 rounded-full" [style.width.%]="(analytics().riskDistribution.high / analytics().totalUsers) * 100"></div>
+                <div class="bg-warning-600 h-2 rounded-full" [style.width.%]="getRiskPercentage('high')"></div>
               </div>
             </div>
-            
+
             <div class="space-y-2">
               <div class="flex items-center justify-between">
                 <span class="text-sm text-secondary-600">Medium Risk</span>
                 <span class="text-sm font-medium text-primary-600">{{ analytics().riskDistribution.medium }} users</span>
               </div>
               <div class="w-full bg-secondary-200 rounded-full h-2">
-                <div class="bg-primary-600 h-2 rounded-full" [style.width.%]="(analytics().riskDistribution.medium / analytics().totalUsers) * 100"></div>
+                <div class="bg-primary-600 h-2 rounded-full" [style.width.%]="getRiskPercentage('medium')"></div>
               </div>
             </div>
-            
+
             <div class="space-y-2">
               <div class="flex items-center justify-between">
                 <span class="text-sm text-secondary-600">Low Risk</span>
                 <span class="text-sm font-medium text-success-600">{{ analytics().riskDistribution.low }} users</span>
               </div>
               <div class="w-full bg-secondary-200 rounded-full h-2">
-                <div class="bg-success-600 h-2 rounded-full" [style.width.%]="(analytics().riskDistribution.low / analytics().totalUsers) * 100"></div>
+                <div class="bg-success-600 h-2 rounded-full" [style.width.%]="getRiskPercentage('low')"></div>
               </div>
             </div>
           </div>
