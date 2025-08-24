@@ -24,6 +24,11 @@ export class App {
     private router: Router,
     private authService: AuthService
   ) {
+    // Subscribe to authentication state
+    this.authService.isAuthenticated$.subscribe(isAuth => {
+      this.isAuthenticated.set(isAuth);
+    });
+
     // Update page title based on route
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
