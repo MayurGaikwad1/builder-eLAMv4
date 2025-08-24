@@ -242,7 +242,6 @@ export class SystemAdminService {
         enabled: integrationData.healthCheck.enabled || false,
         interval: integrationData.healthCheck.interval || 300,
         timeout: integrationData.healthCheck.timeout || 30,
-        retryAttempts: integrationData.healthCheck.retryAttempts || 3,
         checks: integrationData.healthCheck.checks || []
       },
       monitoring: {
