@@ -89,7 +89,11 @@ import { AuthService, User } from "../../shared/services/auth.service";
           </div>
 
           <!-- Quick Actions -->
-          <button (click)="onNewRequest()" class="btn-primary">
+          <button
+            *ngIf="showNewRequestButton()"
+            (click)="onNewRequest()"
+            class="btn-primary"
+          >
             <svg
               class="w-4 h-4 mr-2"
               fill="none"
