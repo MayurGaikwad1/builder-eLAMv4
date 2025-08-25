@@ -193,18 +193,8 @@ export const routes: Routes = [
   },
   {
     path: "admin/workflows",
-    component: PlaceholderComponent,
-    data: {
-      title: "Workflow Management",
-      moduleType: "workflow designer",
-      plannedFeatures: [
-        "Visual workflow builder",
-        "Multi-level approval chains",
-        "Conditional routing logic",
-        "SLA and escalation rules",
-        "Workflow testing and simulation",
-      ],
-    },
+    component: WorkflowManagementComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: "**",
