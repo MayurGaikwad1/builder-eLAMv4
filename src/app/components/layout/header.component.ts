@@ -88,7 +88,7 @@ import { AuthService, User } from "../../shared/services/auth.service";
           </div>
 
           <!-- Quick Actions -->
-          <button class="btn-primary">
+          <button (click)="onNewRequest()" class="btn-primary">
             <svg
               class="w-4 h-4 mr-2"
               fill="none"
