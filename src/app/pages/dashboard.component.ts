@@ -11,7 +11,7 @@ import {
 @Component({
   selector: "app-dashboard",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NewRequestModalComponent],
   template: `
     <div class="space-y-6">
       <!-- Metrics Row -->
