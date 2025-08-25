@@ -463,19 +463,19 @@ export class DashboardComponent implements OnInit {
 
   // Navigation methods for dashboard buttons
   viewAllRequests() {
-    this.router.navigate(['/requests']);
+    this.router.navigate(["/requests"]);
   }
 
   navigateToUserProvisioning() {
-    this.router.navigate(['/users/provisioning']);
+    this.router.navigate(["/users/provisioning"]);
   }
 
   navigateToApprovals() {
-    this.router.navigate(['/approvals/queue']);
+    this.router.navigate(["/approvals/queue"]);
   }
 
   navigateToReports() {
-    this.router.navigate(['/audit/compliance']);
+    this.router.navigate(["/audit/compliance"]);
   }
 
   trackByRequestId(index: number, request: AccessRequest): string {

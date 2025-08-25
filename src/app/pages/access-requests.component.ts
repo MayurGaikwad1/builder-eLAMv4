@@ -430,7 +430,7 @@ export class AccessRequestsComponent implements OnInit {
 
   private checkRouteForNewRequest() {
     const url = this.router.url;
-    if (url.includes('/requests/new')) {
+    if (url.includes("/requests/new")) {
       this.showNewRequestForm = true;
     }
   }
@@ -476,8 +476,8 @@ export class AccessRequestsComponent implements OnInit {
           this.resetForm();
           this.loadMyRequests();
           // Navigate back to requests if we came from /requests/new
-          if (this.router.url.includes('/requests/new')) {
-            this.router.navigate(['/requests']);
+          if (this.router.url.includes("/requests/new")) {
+            this.router.navigate(["/requests"]);
           }
         });
     }
@@ -486,8 +486,8 @@ export class AccessRequestsComponent implements OnInit {
   cancelNewRequest() {
     this.showNewRequestForm = false;
     this.resetForm();
-    if (this.router.url.includes('/requests/new')) {
-      this.router.navigate(['/requests']);
+    if (this.router.url.includes("/requests/new")) {
+      this.router.navigate(["/requests"]);
     }
   }
 
