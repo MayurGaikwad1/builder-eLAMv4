@@ -319,6 +319,10 @@ export class HeaderComponent {
     this.menuToggle.emit();
   }
 
+  onNewRequest() {
+    this.router.navigate(["/requests/new"]);
+  }
+
   toggleUserMenu() {
     this.showUserMenu.update((show) => !show);
   }
