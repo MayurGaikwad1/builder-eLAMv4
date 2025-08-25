@@ -416,10 +416,18 @@ export class DashboardComponent implements OnInit {
   recentRequests = signal<AccessRequest[]>([]);
   showNewRequestModal = signal(false);
 
-  constructor(private mockDataService: MockDataService) {}
+  constructor(
+    private mockDataService: MockDataService,
+    private modalService: ModalService,
+  ) {}
 
   ngOnInit() {
     this.loadDashboardData();
+
+    // Subscribe to new request modal events
+    this.modalService.newRequest$.subscribe(() => {
+      this.openNewRequestModal();
+    });
   }
 
   private loadDashboardData() {
