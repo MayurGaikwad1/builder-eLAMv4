@@ -479,6 +479,14 @@ export class AccessRequestsComponent implements OnInit {
     }
   }
 
+  cancelNewRequest() {
+    this.showNewRequestForm = false;
+    this.resetForm();
+    if (this.router.url.includes('/requests/new')) {
+      this.router.navigate(['/requests']);
+    }
+  }
+
   private resetForm() {
     this.newRequest = {
       requestType: "",
