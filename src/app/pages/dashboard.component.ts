@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MockDataService } from "../shared/services/mock-data.service";
 import { NewRequestModalComponent } from "../shared/components/new-request-modal.component";
+import { ModalService } from "../shared/services/modal.service";
 import {
   AccessRequest,
   RequestStatus,
