@@ -345,7 +345,8 @@ import {
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <button
-            class="flex items-center p-4 border border-secondary-200 rounded-lg hover:bg-secondary-50 text-left"
+            (click)="navigateToUserProvisioning()"
+            class="flex items-center p-4 border border-secondary-200 rounded-lg hover:bg-secondary-50 text-left transition-colors"
           >
             <svg
               class="w-8 h-8 text-primary-600 mr-4"
