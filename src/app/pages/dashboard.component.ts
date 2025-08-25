@@ -401,6 +401,13 @@ import {
         </div>
       </div>
     </div>
+
+    <!-- New Request Modal -->
+    <app-new-request-modal
+      *ngIf="showNewRequestModal()"
+      (close)="closeNewRequestModal()"
+      (submitted)="onRequestSubmitted()"
+    ></app-new-request-modal>
   `,
 })
 export class DashboardComponent implements OnInit {
