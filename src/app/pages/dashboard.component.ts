@@ -420,6 +420,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private mockDataService: MockDataService,
     private modalService: ModalService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
