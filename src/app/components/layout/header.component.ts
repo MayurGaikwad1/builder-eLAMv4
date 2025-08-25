@@ -301,9 +301,11 @@ export class HeaderComponent {
   @Input() title = "Dashboard";
   @Input() subtitle = "";
   @Output() menuToggle = new EventEmitter<void>();
+  @Output() newRequest = new EventEmitter<void>();
 
   protected readonly showUserMenu = signal(false);
   protected readonly currentUser = signal<User | null>(null);
+  protected readonly showNewRequestButton = signal(true);
 
   constructor(
     private authService: AuthService,
@@ -312,6 +314,13 @@ export class HeaderComponent {
     // Subscribe to current user
     this.authService.currentUser$.subscribe((user) => {
       this.currentUser.set(user);
+    });
+
+    // Monitor route changes to show/hide New Request button
+    this.router.events.subscribe(() => {
+      const url = this.router.url;
+      const isRequestsPage = url.includes('/requests');
+      this.showNewRequestButton.set(!isRequestsPage);
     });
   }
 
