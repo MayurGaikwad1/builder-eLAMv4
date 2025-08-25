@@ -307,7 +307,6 @@ export class HeaderComponent {
   @Input() title = "Dashboard";
   @Input() subtitle = "";
   @Output() menuToggle = new EventEmitter<void>();
-  @Output() newRequest = new EventEmitter<void>();
 
   protected readonly showUserMenu = signal(false);
   protected readonly currentUser = signal<User | null>(null);
@@ -316,6 +315,7 @@ export class HeaderComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private modalService: ModalService,
   ) {
     // Subscribe to current user
     this.authService.currentUser$.subscribe((user) => {
