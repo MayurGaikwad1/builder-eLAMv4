@@ -341,7 +341,7 @@ export class HeaderComponent {
   }
 
   onNewRequest() {
-    this.router.navigate(["/requests/new"]);
+    this.newRequest.emit();
   }
 
   toggleUserMenu() {
