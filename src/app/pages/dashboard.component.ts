@@ -187,7 +187,10 @@ import {
             <h2 class="text-lg font-semibold text-secondary-900">
               Recent Access Requests
             </h2>
-            <button class="text-sm text-primary-600 hover:text-primary-700">
+            <button
+              (click)="viewAllRequests()"
+              class="text-sm text-primary-600 hover:text-primary-700"
+            >
               View All
             </button>
           </div>
