@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { Router } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
+import { filter } from "rxjs/operators";
 import { AuthService, User } from "../../shared/services/auth.service";
 
 @Component({
