@@ -235,7 +235,7 @@ import {
           <div class="flex items-center justify-end space-x-3">
             <button
               type="button"
-              (click)="showNewRequestForm = false"
+              (click)="cancelNewRequest()"
               class="btn-secondary"
             >
               Cancel
