@@ -318,11 +318,18 @@ export class HeaderComponent {
     });
 
     // Monitor route changes to show/hide New Request button
-    this.router.events.subscribe(() => {
-      const url = this.router.url;
-      const isRequestsPage = url.includes('/requests');
-      this.showNewRequestButton.set(!isRequestsPage);
-    });
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        const url = this.router.url;
+        const isRequestsPage = url.includes('/requests');
+        this.showNewRequestButton.set(!isRequestsPage);
+      });
+
+    // Initial check
+    const currentUrl = this.router.url;
+    const isRequestsPage = currentUrl.includes('/requests');
+    this.showNewRequestButton.set(!isRequestsPage);
   }
 
   onMenuToggle() {
