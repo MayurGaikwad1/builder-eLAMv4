@@ -417,10 +417,22 @@ export class AccessRequestsComponent implements OnInit {
     },
   ];
 
-  constructor(private mockDataService: MockDataService) {}
+  constructor(
+    private mockDataService: MockDataService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
     this.loadMyRequests();
+    this.checkRouteForNewRequest();
+  }
+
+  private checkRouteForNewRequest() {
+    const url = this.router.url;
+    if (url.includes('/requests/new')) {
+      this.showNewRequestForm = true;
+    }
   }
 
   private loadMyRequests() {
