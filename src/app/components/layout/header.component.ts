@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { Router, NavigationEnd } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { AuthService, User } from "../../shared/services/auth.service";
+import { ModalService } from "../../shared/services/modal.service";
 
 @Component({
   selector: "app-header",
