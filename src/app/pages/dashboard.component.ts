@@ -364,7 +364,8 @@ import {
           </button>
 
           <button
-            class="flex items-center p-4 border border-secondary-200 rounded-lg hover:bg-secondary-50 text-left"
+            (click)="navigateToApprovals()"
+            class="flex items-center p-4 border border-secondary-200 rounded-lg hover:bg-secondary-50 text-left transition-colors"
           >
             <svg
               class="w-8 h-8 text-warning-600 mr-4"
