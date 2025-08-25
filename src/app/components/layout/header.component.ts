@@ -342,7 +342,7 @@ export class HeaderComponent {
   }
 
   onNewRequest() {
-    this.newRequest.emit();
+    this.modalService.openNewRequestModal();
   }
 
   toggleUserMenu() {
