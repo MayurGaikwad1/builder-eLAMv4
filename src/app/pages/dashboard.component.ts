@@ -413,6 +413,7 @@ import {
 export class DashboardComponent implements OnInit {
   metrics = signal<any>({});
   recentRequests = signal<AccessRequest[]>([]);
+  showNewRequestModal = signal(false);
 
   constructor(private mockDataService: MockDataService) {}
 
