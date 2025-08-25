@@ -431,6 +431,19 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  openNewRequestModal() {
+    this.showNewRequestModal.set(true);
+  }
+
+  closeNewRequestModal() {
+    this.showNewRequestModal.set(false);
+  }
+
+  onRequestSubmitted() {
+    // Refresh the recent requests after a new request is submitted
+    this.loadDashboardData();
+  }
+
   trackByRequestId(index: number, request: AccessRequest): string {
     return request.id;
   }
