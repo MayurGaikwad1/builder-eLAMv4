@@ -520,6 +520,7 @@ export class AccessRequestsComponent implements OnInit {
   private resetForm() {
     this.newRequest = {
       requestType: "",
+      application: "",
       urgency: UrgencyLevel.Medium,
       requestedRoles: [],
       requestedResources: [],
@@ -530,6 +531,7 @@ export class AccessRequestsComponent implements OnInit {
   isFormValid(): boolean {
     return (
       this.newRequest.requestType !== "" &&
+      this.newRequest.application !== "" &&
       this.newRequest.requestedRoles.length > 0 &&
       this.newRequest.justification.trim() !== ""
     );
