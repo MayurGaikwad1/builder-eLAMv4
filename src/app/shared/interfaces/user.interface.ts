@@ -35,6 +35,7 @@ export interface AccessRequest {
   targetUserId?: string;
   targetUserName?: string;
   requestType: RequestType;
+  application: string;
   requestedRoles: Role[];
   requestedResources: string[];
   justification: string;
