@@ -26,6 +26,7 @@ export class App {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private automationService: AutomationService,
   ) {
     // Subscribe to authentication state
     this.authService.isAuthenticated$.subscribe((isAuth) => {
