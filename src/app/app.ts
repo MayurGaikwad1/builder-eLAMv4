@@ -71,6 +71,22 @@ export class App {
         title: "System Administration",
         subtitle: "Configure roles, policies, and integrations",
       },
+      "/access-management": {
+        title: "Access Management",
+        subtitle: "Manage user access through structured workflows",
+      },
+      "/access-management/user-access": {
+        title: "User Access Management",
+        subtitle: "Workflow-driven access requests with multi-level approvals",
+      },
+      "/access-management/exceptions": {
+        title: "Exception Handling",
+        subtitle: "Manage AD validation failures and retention policies",
+      },
+      "/access-management/app-owner-dashboard": {
+        title: "Application Owner Dashboard",
+        subtitle: "Monitor and manage access requests for your applications",
+      },
     };
 
     // Find matching route (check for partial matches too)
