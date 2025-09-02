@@ -90,7 +90,10 @@ interface NavItem {
       </nav>
 
       <!-- User Info -->
-      <div class="px-4 py-4 border-t border-secondary-200" *ngIf="currentUser()">
+      <div
+        class="px-4 py-4 border-t border-secondary-200"
+        *ngIf="currentUser()"
+      >
         <div class="flex items-center space-x-3">
           <div
             *ngIf="currentUser()?.avatar"
@@ -107,7 +110,7 @@ interface NavItem {
             class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center"
           >
             <span class="text-sm font-medium text-primary-700">
-              {{ getInitials(currentUser()?.name || '') }}
+              {{ getInitials(currentUser()?.name || "") }}
             </span>
           </div>
           <div class="flex-1 min-w-0">
@@ -194,7 +197,7 @@ export class SidebarComponent implements OnInit {
     const user = this.currentUser();
     if (!user) return [];
 
-    return this.allNavItems.filter(item => {
+    return this.allNavItems.filter((item) => {
       if (!item.requiredRoles) return true;
       return item.requiredRoles.includes(user.role);
     });
@@ -204,18 +207,18 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     // Subscribe to current user changes
-    this.authService.currentUser$.subscribe(user => {
+    this.authService.currentUser$.subscribe((user) => {
       this.currentUser.set(user);
     });
   }
 
   getInitials(name: string): string {
-    if (!name) return 'U';
+    if (!name) return "U";
     return name
-      .split(' ')
-      .map(part => part.charAt(0).toUpperCase())
+      .split(" ")
+      .map((part) => part.charAt(0).toUpperCase())
       .slice(0, 2)
-      .join('');
+      .join("");
   }
 
   getIconPath(iconName: string): string {
