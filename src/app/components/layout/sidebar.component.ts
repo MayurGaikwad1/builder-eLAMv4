@@ -108,20 +108,24 @@ interface NavItem {
     </aside>
   `,
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
   @Input() collapsed = false;
 
-  navItems: NavItem[] = [
+  currentUser = signal<any>(null);
+
+  private allNavItems: NavItem[] = [
     {
       label: "Dashboard",
       icon: "dashboard",
       route: "/dashboard",
+      requiredRoles: ["admin", "manager", "user"],
     },
     {
       label: "Access Requests",
       icon: "requests",
       route: "/requests",
       badge: 5,
+      requiredRoles: ["admin", "manager", "user"],
       children: [
         { label: "My Requests", icon: "", route: "/requests/my-requests" },
         { label: "New Request", icon: "", route: "/requests/new" },
@@ -133,11 +137,13 @@ export class SidebarComponent {
       icon: "approvals",
       route: "/approvals",
       badge: 3,
+      requiredRoles: ["admin", "manager"],
     },
     {
       label: "User Management",
       icon: "users",
       route: "/users",
+      requiredRoles: ["admin", "manager"],
       children: [
         { label: "All Users", icon: "", route: "/users/all" },
         { label: "Provisioning", icon: "", route: "/users/provisioning" },
@@ -148,6 +154,7 @@ export class SidebarComponent {
       label: "Audit & Compliance",
       icon: "audit",
       route: "/audit",
+      requiredRoles: ["admin"],
       children: [
         { label: "Audit Logs", icon: "", route: "/audit/logs" },
         { label: "Compliance Reports", icon: "", route: "/audit/compliance" },
@@ -158,6 +165,7 @@ export class SidebarComponent {
       label: "Administration",
       icon: "admin",
       route: "/admin",
+      requiredRoles: ["admin"],
       children: [
         { label: "Roles & Policies", icon: "", route: "/admin/roles" },
         { label: "Integrations", icon: "", route: "/admin/integrations" },
@@ -165,6 +173,26 @@ export class SidebarComponent {
       ],
     },
   ];
+
+  // Computed property for filtered navigation items
+  navItems = computed(() => {
+    const user = this.currentUser();
+    if (!user) return [];
+
+    return this.allNavItems.filter(item => {
+      if (!item.requiredRoles) return true;
+      return item.requiredRoles.includes(user.role);
+    });
+  });
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    // Subscribe to current user changes
+    this.authService.currentUser$.subscribe(user => {
+      this.currentUser.set(user);
+    });
+  }
 
   getIconPath(iconName: string): string {
     const icons: Record<string, string> = {
