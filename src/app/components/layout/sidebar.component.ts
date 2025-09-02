@@ -47,7 +47,7 @@ interface NavItem {
 
       <!-- Navigation -->
       <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
-        <ng-container *ngFor="let item of navItems">
+        <ng-container *ngFor="let item of navItems()">
           <div>
             <a
               [routerLink]="item.route"
