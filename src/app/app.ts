@@ -5,6 +5,7 @@ import { filter } from "rxjs/operators";
 import { SidebarComponent } from "./components/layout/sidebar.component";
 import { HeaderComponent } from "./components/layout/header.component";
 import { AuthService } from "./shared/services/auth.service";
+import { AutomationService } from "./shared/services/automation.service";
 
 @Component({
   selector: "app-root",
