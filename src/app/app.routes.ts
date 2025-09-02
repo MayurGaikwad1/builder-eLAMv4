@@ -60,11 +60,13 @@ export const routes: Routes = [
     path: "approvals",
     component: ApprovalManagementComponent,
     canActivate: [AuthGuard],
+    data: { roles: ["admin", "manager"] },
   },
   {
     path: "approvals/queue",
     component: ApprovalQueueComponent,
     canActivate: [AuthGuard],
+    data: { roles: ["admin", "manager"] },
   },
   {
     path: "approvals/bulk",
