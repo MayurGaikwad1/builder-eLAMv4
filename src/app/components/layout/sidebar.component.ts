@@ -1,6 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit, signal, computed } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
+import { AuthService } from "../../shared/services/auth.service";
 
 interface NavItem {
   label: string;
@@ -8,6 +9,7 @@ interface NavItem {
   route: string;
   badge?: number;
   children?: NavItem[];
+  requiredRoles?: string[];
 }
 
 @Component({
