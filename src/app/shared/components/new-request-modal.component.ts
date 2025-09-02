@@ -246,6 +246,7 @@ export class NewRequestModalComponent {
 
   newRequest = {
     requestType: "",
+    application: "",
     urgency: UrgencyLevel.Medium,
     requestedRoles: [] as Role[],
     requestedResources: [] as string[],
