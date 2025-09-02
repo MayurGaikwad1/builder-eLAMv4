@@ -23,28 +23,50 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean> | Promise<boolean> | boolean {
-    return this.checkAuth(state.url);
+    return this.checkAuth(route, state.url);
   }
 
   canActivateChild(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean> | Promise<boolean> | boolean {
-    return this.checkAuth(state.url);
+    return this.checkAuth(route, state.url);
   }
 
-  private checkAuth(url: string): Observable<boolean> {
+  private checkAuth(route: ActivatedRouteSnapshot, url: string): Observable<boolean> {
     return this.authService.isAuthenticated$.pipe(
       take(1),
       map((isAuthenticated) => {
-        if (isAuthenticated) {
-          return true;
-        } else {
+        if (!isAuthenticated) {
           // Store the attempted URL for redirecting after login
           sessionStorage.setItem("elam_redirect_url", url);
           this.router.navigate(["/login"]);
           return false;
         }
+
+        // Check role requirements if specified in route data
+        const requiredRoles = route.data?.['roles'] as string[];
+        const requiredPermissions = route.data?.['permissions'] as string[];
+
+        if (requiredRoles?.length > 0) {
+          const hasRequiredRole = this.authService.hasAnyRole(requiredRoles);
+          if (!hasRequiredRole) {
+            this.router.navigate(["/dashboard"]);
+            return false;
+          }
+        }
+
+        if (requiredPermissions?.length > 0) {
+          const hasAllPermissions = requiredPermissions.every(permission =>
+            this.authService.hasPermission(permission)
+          );
+          if (!hasAllPermissions) {
+            this.router.navigate(["/dashboard"]);
+            return false;
+          }
+        }
+
+        return true;
       }),
     );
   }
