@@ -359,6 +359,7 @@ export class AccessRequestsComponent implements OnInit {
 
   newRequest = {
     requestType: "",
+    application: "",
     urgency: UrgencyLevel.Medium,
     requestedRoles: [] as Role[],
     requestedResources: [] as string[],
