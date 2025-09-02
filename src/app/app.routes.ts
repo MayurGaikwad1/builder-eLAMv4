@@ -20,6 +20,9 @@ import { SystemConfigurationComponent } from "./pages/system-admin/system-config
 import { WorkflowManagementComponent } from "./pages/workflow-management/workflow-management.component";
 import { PlaceholderComponent } from "./pages/placeholder.component";
 import { AuthGuard } from "./shared/guards/auth.guard";
+import { UserAccessManagementComponent } from "./pages/access-management/user-access-management.component";
+import { ExceptionHandlingComponent } from "./pages/access-management/exception-handling.component";
+import { AppOwnerDashboardComponent } from "./pages/access-management/app-owner-dashboard.component";
 
 export const routes: Routes = [
   {
