@@ -91,6 +91,30 @@ import {
 
             <div>
               <label class="block text-sm font-medium text-secondary-700 mb-2"
+                >Application/System</label
+              >
+              <select
+                [(ngModel)]="newRequest.application"
+                name="application"
+                class="w-full border border-secondary-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                required
+              >
+                <option value="">Select application</option>
+                <option value="salesforce">Salesforce CRM</option>
+                <option value="aws">AWS Console</option>
+                <option value="office365">Office 365</option>
+                <option value="jira">JIRA</option>
+                <option value="confluence">Confluence</option>
+                <option value="github">GitHub Enterprise</option>
+                <option value="database">Production Database</option>
+                <option value="hr-system">HR Management System</option>
+                <option value="finance-system">Finance System</option>
+                <option value="vpn">VPN Access</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-secondary-700 mb-2"
                 >Requested Role/System</label
               >
               <select
