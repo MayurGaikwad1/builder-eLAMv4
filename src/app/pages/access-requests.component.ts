@@ -491,6 +491,7 @@ export class AccessRequestsComponent implements OnInit {
       this.mockDataService
         .submitAccessRequest({
           requestType: this.newRequest.requestType as RequestType,
+          application: this.newRequest.application,
           urgency: this.newRequest.urgency,
           requestedRoles: this.newRequest.requestedRoles,
           requestedResources: this.newRequest.requestedResources,
