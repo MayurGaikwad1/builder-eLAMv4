@@ -180,6 +180,17 @@ export class SidebarComponent implements OnInit {
       ],
     },
     {
+      label: "Access Management",
+      icon: "access_management",
+      route: "/access-management",
+      requiredRoles: ["admin", "manager"],
+      children: [
+        { label: "User Access Requests", icon: "", route: "/access-management/user-access" },
+        { label: "Exception Handling", icon: "", route: "/access-management/exceptions" },
+        { label: "Owner Dashboard", icon: "", route: "/access-management/app-owner-dashboard" },
+      ],
+    },
+    {
       label: "Administration",
       icon: "admin",
       route: "/admin",
