@@ -421,8 +421,7 @@ import {
             <div class="flex items-center space-x-2">
               <div
                 *ngFor="
-                  let level of selectedApplication()?.approvalWorkflow
-                    .approvalLevels;
+                  let level of selectedApplication()?.approvalWorkflow?.approvalLevels;
                   let i = index
                 "
                 class="flex items-center"
@@ -440,9 +439,7 @@ import {
                 <svg
                   *ngIf="
                     i <
-                    selectedApplication()!.approvalWorkflow.approvalLevels
-                      .length -
-                      1
+                    (selectedApplication()?.approvalWorkflow?.approvalLevels?.length || 0) - 1
                   "
                   class="w-4 h-4 text-primary-400 mx-2"
                   fill="none"
@@ -460,7 +457,7 @@ import {
             </div>
             <p class="text-xs text-primary-600 mt-2">
               Expected processing time:
-              {{ selectedApplication()?.approvalWorkflow.deadlineHours }} hours
+              {{ selectedApplication()?.approvalWorkflow?.deadlineHours }} hours
             </p>
           </div>
 

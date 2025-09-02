@@ -292,7 +292,7 @@ import {
                   >Auto-Delete Date</label
                 >
                 <p
-                  [class]="getAutoDeleteClass(selectedException()?.autoDeleteDate || new Date())"
+                  [class]="getAutoDeleteClass(selectedException()?.autoDeleteDate)"
                   class="text-sm"
                 >
                   {{

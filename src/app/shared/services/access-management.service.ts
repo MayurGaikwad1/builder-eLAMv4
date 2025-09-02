@@ -24,7 +24,7 @@ import {
   UploadStatus,
   ActivityAction,
   EntityType,
-} from "../interfaces/access-management.interface.ts";
+} from "../interfaces/access-management.interface";
 
 @Injectable({
   providedIn: "root",
