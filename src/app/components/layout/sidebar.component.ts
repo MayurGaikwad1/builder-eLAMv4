@@ -90,18 +90,33 @@ interface NavItem {
       </nav>
 
       <!-- User Info -->
-      <div class="px-4 py-4 border-t border-secondary-200">
+      <div class="px-4 py-4 border-t border-secondary-200" *ngIf="currentUser()">
         <div class="flex items-center space-x-3">
           <div
+            *ngIf="currentUser()?.avatar"
+            class="w-8 h-8 rounded-full overflow-hidden"
+          >
+            <img
+              [src]="currentUser()?.avatar"
+              [alt]="currentUser()?.name"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div
+            *ngIf="!currentUser()?.avatar"
             class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center"
           >
-            <span class="text-sm font-medium text-primary-700">JD</span>
+            <span class="text-sm font-medium text-primary-700">
+              {{ getInitials(currentUser()?.name || '') }}
+            </span>
           </div>
           <div class="flex-1 min-w-0">
             <p class="text-sm font-medium text-secondary-900 truncate">
-              John Doe
+              {{ currentUser()?.name }}
             </p>
-            <p class="text-xs text-secondary-500 truncate">Engineering</p>
+            <p class="text-xs text-secondary-500 truncate capitalize">
+              {{ currentUser()?.role }}
+            </p>
           </div>
         </div>
       </div>
