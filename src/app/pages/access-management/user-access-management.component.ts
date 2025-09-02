@@ -275,9 +275,7 @@ import {
                     {{ upload.fileName }}
                   </p>
                   <p class="text-sm text-secondary-600">
-                    {{ upload.successfulRecords }}/{{
-                      upload.totalRecords
-                    }}
+                    {{ upload.successfulRecords }}/{{ upload.totalRecords }}
                     successful •
                     {{ upload.uploadedAt | date: "MMM d, y h:mm a" }}
                   </p>
@@ -421,7 +419,8 @@ import {
             <div class="flex items-center space-x-2">
               <div
                 *ngFor="
-                  let level of selectedApplication()?.approvalWorkflow?.approvalLevels;
+                  let level of selectedApplication()?.approvalWorkflow
+                    ?.approvalLevels;
                   let i = index
                 "
                 class="flex items-center"
@@ -439,7 +438,9 @@ import {
                 <svg
                   *ngIf="
                     i <
-                    (selectedApplication()?.approvalWorkflow?.approvalLevels?.length || 0) - 1
+                    (selectedApplication()?.approvalWorkflow?.approvalLevels
+                      ?.length || 0) -
+                      1
                   "
                   class="w-4 h-4 text-primary-400 mx-2"
                   fill="none"
