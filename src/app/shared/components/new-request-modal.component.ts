@@ -362,6 +362,7 @@ export class NewRequestModalComponent {
       this.mockDataService
         .submitAccessRequest({
           requestType: this.newRequest.requestType as RequestType,
+          application: this.newRequest.application,
           urgency: this.newRequest.urgency,
           requestedRoles: this.newRequest.requestedRoles,
           requestedResources: this.newRequest.requestedResources,
@@ -384,6 +385,7 @@ export class NewRequestModalComponent {
   private resetForm() {
     this.newRequest = {
       requestType: "",
+      application: "",
       urgency: UrgencyLevel.Medium,
       requestedRoles: [],
       requestedResources: [],
@@ -394,6 +396,7 @@ export class NewRequestModalComponent {
   isFormValid(): boolean {
     return (
       this.newRequest.requestType !== "" &&
+      this.newRequest.application !== "" &&
       this.newRequest.requestedRoles.length > 0 &&
       this.newRequest.justification.trim() !== ""
     );
