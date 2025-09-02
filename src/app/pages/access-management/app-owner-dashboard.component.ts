@@ -13,7 +13,7 @@ import {
   AccessRequestStatus,
   ExceptionStatus,
   ExceptionDecision,
-  Priority
+  Priority,
 } from "../../shared/interfaces/access-management.interface";
 
 @Component({
@@ -25,18 +25,28 @@ import {
       <!-- Header -->
       <div class="flex items-center justify-between">
         <div>
-          <h1 class="text-2xl font-bold text-secondary-900">Application Owner Dashboard</h1>
+          <h1 class="text-2xl font-bold text-secondary-900">
+            Application Owner Dashboard
+          </h1>
           <p class="text-secondary-600">
-            Monitor and manage access requests and exceptions for your applications
+            Monitor and manage access requests and exceptions for your
+            applications
           </p>
         </div>
         <div class="flex space-x-3">
-          <button
-            (click)="refreshData()"
-            class="btn-secondary"
-          >
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          <button (click)="refreshData()" class="btn-secondary">
+            <svg
+              class="w-4 h-4 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              ></path>
             </svg>
             Refresh
           </button>
@@ -57,37 +67,49 @@ import {
       <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
         <div class="metric-card">
           <div class="text-center">
-            <p class="text-2xl font-bold text-secondary-900">{{ totalRequests() }}</p>
+            <p class="text-2xl font-bold text-secondary-900">
+              {{ totalRequests() }}
+            </p>
             <p class="text-sm text-secondary-600">Total Requests</p>
           </div>
         </div>
         <div class="metric-card">
           <div class="text-center">
-            <p class="text-2xl font-bold text-warning-600">{{ pendingRequests() }}</p>
+            <p class="text-2xl font-bold text-warning-600">
+              {{ pendingRequests() }}
+            </p>
             <p class="text-sm text-secondary-600">Pending Approval</p>
           </div>
         </div>
         <div class="metric-card">
           <div class="text-center">
-            <p class="text-2xl font-bold text-danger-600">{{ overdueRequests() }}</p>
+            <p class="text-2xl font-bold text-danger-600">
+              {{ overdueRequests() }}
+            </p>
             <p class="text-sm text-secondary-600">Overdue</p>
           </div>
         </div>
         <div class="metric-card">
           <div class="text-center">
-            <p class="text-2xl font-bold text-purple-600">{{ totalExceptions() }}</p>
+            <p class="text-2xl font-bold text-purple-600">
+              {{ totalExceptions() }}
+            </p>
             <p class="text-sm text-secondary-600">Exceptions</p>
           </div>
         </div>
         <div class="metric-card">
           <div class="text-center">
-            <p class="text-2xl font-bold text-warning-600">{{ pendingExceptions() }}</p>
+            <p class="text-2xl font-bold text-warning-600">
+              {{ pendingExceptions() }}
+            </p>
             <p class="text-sm text-secondary-600">Pending Decisions</p>
           </div>
         </div>
         <div class="metric-card">
           <div class="text-center">
-            <p class="text-2xl font-bold text-primary-600">{{ autoDeleteToday() }}</p>
+            <p class="text-2xl font-bold text-primary-600">
+              {{ autoDeleteToday() }}
+            </p>
             <p class="text-sm text-secondary-600">Auto-Delete Today</p>
           </div>
         </div>
@@ -98,33 +120,47 @@ import {
         <!-- Pending Approvals -->
         <div class="card">
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold text-secondary-900">Pending Approvals</h3>
-            <span class="bg-warning-100 text-warning-800 px-2 py-1 text-xs font-medium rounded-full">
+            <h3 class="text-lg font-semibold text-secondary-900">
+              Pending Approvals
+            </h3>
+            <span
+              class="bg-warning-100 text-warning-800 px-2 py-1 text-xs font-medium rounded-full"
+            >
               {{ pendingApprovalsList().length }} pending
             </span>
           </div>
-          
+
           <div class="space-y-3 max-h-64 overflow-y-auto">
-            <div *ngFor="let request of pendingApprovalsList().slice(0, 5)" 
-                 class="flex items-center justify-between p-3 bg-secondary-50 rounded-lg">
+            <div
+              *ngFor="let request of pendingApprovalsList().slice(0, 5)"
+              class="flex items-center justify-between p-3 bg-secondary-50 rounded-lg"
+            >
               <div class="flex-1">
                 <div class="flex items-center space-x-2">
                   <span class="font-mono text-sm">{{ request.id }}</span>
-                  <span [class]="getPriorityClass(request.priority)" class="px-2 py-1 text-xs font-medium rounded-full">
+                  <span
+                    [class]="getPriorityClass(request.priority)"
+                    class="px-2 py-1 text-xs font-medium rounded-full"
+                  >
                     {{ request.priority | titlecase }}
                   </span>
                 </div>
-                <p class="text-sm text-secondary-600">{{ request.applicationName }}</p>
-                <p class="text-xs text-secondary-500">{{ request.userIds.length }} users • {{ getTimeRemaining(request.deadline) }}</p>
+                <p class="text-sm text-secondary-600">
+                  {{ request.applicationName }}
+                </p>
+                <p class="text-xs text-secondary-500">
+                  {{ request.userIds.length }} users •
+                  {{ getTimeRemaining(request.deadline) }}
+                </p>
               </div>
               <div class="flex space-x-2">
-                <button 
+                <button
                   (click)="quickApprove(request.id)"
                   class="bg-success-600 text-white px-3 py-1 text-xs rounded hover:bg-success-700"
                 >
                   Approve
                 </button>
-                <button 
+                <button
                   (click)="quickReject(request.id)"
                   class="bg-danger-600 text-white px-3 py-1 text-xs rounded hover:bg-danger-700"
                 >
@@ -132,12 +168,18 @@ import {
                 </button>
               </div>
             </div>
-            
-            <div *ngIf="pendingApprovalsList().length === 0" class="text-center py-8 text-secondary-500">
+
+            <div
+              *ngIf="pendingApprovalsList().length === 0"
+              class="text-center py-8 text-secondary-500"
+            >
               <p>No pending approvals</p>
             </div>
-            
-            <div *ngIf="pendingApprovalsList().length > 5" class="text-center pt-2">
+
+            <div
+              *ngIf="pendingApprovalsList().length > 5"
+              class="text-center pt-2"
+            >
               <button class="text-primary-600 hover:text-primary-700 text-sm">
                 View all {{ pendingApprovalsList().length }} pending approvals
               </button>
@@ -148,33 +190,47 @@ import {
         <!-- Pending Exception Decisions -->
         <div class="card">
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold text-secondary-900">Exception Decisions</h3>
-            <span class="bg-purple-100 text-purple-800 px-2 py-1 text-xs font-medium rounded-full">
+            <h3 class="text-lg font-semibold text-secondary-900">
+              Exception Decisions
+            </h3>
+            <span
+              class="bg-purple-100 text-purple-800 px-2 py-1 text-xs font-medium rounded-full"
+            >
               {{ pendingExceptionsList().length }} pending
             </span>
           </div>
-          
+
           <div class="space-y-3 max-h-64 overflow-y-auto">
-            <div *ngFor="let exception of pendingExceptionsList().slice(0, 5)" 
-                 class="flex items-center justify-between p-3 bg-secondary-50 rounded-lg">
+            <div
+              *ngFor="let exception of pendingExceptionsList().slice(0, 5)"
+              class="flex items-center justify-between p-3 bg-secondary-50 rounded-lg"
+            >
               <div class="flex-1">
                 <div class="flex items-center space-x-2">
                   <span class="font-mono text-sm">{{ exception.userId }}</span>
-                  <span [class]="getExceptionTypeClass(exception.exceptionType)" class="px-2 py-1 text-xs font-medium rounded-full">
+                  <span
+                    [class]="getExceptionTypeClass(exception.exceptionType)"
+                    class="px-2 py-1 text-xs font-medium rounded-full"
+                  >
                     {{ getExceptionTypeLabel(exception.exceptionType) }}
                   </span>
                 </div>
-                <p class="text-sm text-secondary-600">{{ getApplicationName(exception.applicationId) }}</p>
-                <p class="text-xs text-secondary-500">Auto-delete: {{ getDaysUntilAutoDelete(exception.autoDeleteDate) }} days</p>
+                <p class="text-sm text-secondary-600">
+                  {{ getApplicationName(exception.applicationId) }}
+                </p>
+                <p class="text-xs text-secondary-500">
+                  Auto-delete:
+                  {{ getDaysUntilAutoDelete(exception.autoDeleteDate) }} days
+                </p>
               </div>
               <div class="flex space-x-2">
-                <button 
+                <button
                   (click)="quickRetain(exception.id)"
                   class="bg-success-600 text-white px-3 py-1 text-xs rounded hover:bg-success-700"
                 >
                   Retain
                 </button>
-                <button 
+                <button
                   (click)="quickDelete(exception.id)"
                   class="bg-danger-600 text-white px-3 py-1 text-xs rounded hover:bg-danger-700"
                 >
@@ -182,12 +238,18 @@ import {
                 </button>
               </div>
             </div>
-            
-            <div *ngIf="pendingExceptionsList().length === 0" class="text-center py-8 text-secondary-500">
+
+            <div
+              *ngIf="pendingExceptionsList().length === 0"
+              class="text-center py-8 text-secondary-500"
+            >
               <p>No pending exception decisions</p>
             </div>
-            
-            <div *ngIf="pendingExceptionsList().length > 5" class="text-center pt-2">
+
+            <div
+              *ngIf="pendingExceptionsList().length > 5"
+              class="text-center pt-2"
+            >
               <button class="text-primary-600 hover:text-primary-700 text-sm">
                 View all {{ pendingExceptionsList().length }} pending exceptions
               </button>
@@ -198,15 +260,22 @@ import {
 
       <!-- Application Performance -->
       <div class="card">
-        <h3 class="text-lg font-semibold text-secondary-900 mb-6">Application Performance</h3>
-        
+        <h3 class="text-lg font-semibold text-secondary-900 mb-6">
+          Application Performance
+        </h3>
+
         <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-          <div *ngFor="let appMetric of applicationMetrics()" class="border border-secondary-200 rounded-lg p-4">
+          <div
+            *ngFor="let appMetric of applicationMetrics()"
+            class="border border-secondary-200 rounded-lg p-4"
+          >
             <div class="flex items-center justify-between mb-3">
-              <h4 class="font-medium text-secondary-900">{{ appMetric.applicationName }}</h4>
+              <h4 class="font-medium text-secondary-900">
+                {{ appMetric.applicationName }}
+              </h4>
               <span class="text-xs text-secondary-500">Last 30 days</span>
             </div>
-            
+
             <div class="space-y-2">
               <div class="flex justify-between text-sm">
                 <span class="text-secondary-600">Total Requests</span>
@@ -214,18 +283,24 @@ import {
               </div>
               <div class="flex justify-between text-sm">
                 <span class="text-secondary-600">Pending</span>
-                <span class="font-medium text-warning-600">{{ appMetric.pendingRequests }}</span>
+                <span class="font-medium text-warning-600">{{
+                  appMetric.pendingRequests
+                }}</span>
               </div>
               <div class="flex justify-between text-sm">
                 <span class="text-secondary-600">Exceptions</span>
-                <span class="font-medium text-purple-600">{{ appMetric.exceptions }}</span>
+                <span class="font-medium text-purple-600">{{
+                  appMetric.exceptions
+                }}</span>
               </div>
               <div class="flex justify-between text-sm">
                 <span class="text-secondary-600">Avg Processing Time</span>
-                <span class="font-medium">{{ appMetric.averageProcessingTime }} days</span>
+                <span class="font-medium"
+                  >{{ appMetric.averageProcessingTime }} days</span
+                >
               </div>
             </div>
-            
+
             <!-- Progress Bar -->
             <div class="mt-3">
               <div class="flex justify-between text-xs text-secondary-500 mb-1">
@@ -233,7 +308,7 @@ import {
                 <span>{{ getCompletionRate(appMetric) }}%</span>
               </div>
               <div class="w-full bg-secondary-200 rounded-full h-2">
-                <div 
+                <div
                   class="bg-success-600 h-2 rounded-full transition-all duration-300"
                   [style.width.%]="getCompletionRate(appMetric)"
                 ></div>
@@ -246,30 +321,50 @@ import {
       <!-- Recent Activity -->
       <div class="card">
         <div class="flex items-center justify-between mb-6">
-          <h3 class="text-lg font-semibold text-secondary-900">Recent Activity</h3>
-          <button class="text-primary-600 hover:text-primary-700 text-sm">View All Activity</button>
+          <h3 class="text-lg font-semibold text-secondary-900">
+            Recent Activity
+          </h3>
+          <button class="text-primary-600 hover:text-primary-700 text-sm">
+            View All Activity
+          </button>
         </div>
-        
+
         <div class="space-y-4">
-          <div *ngFor="let activity of recentActivity().slice(0, 10)" 
-               class="flex items-center space-x-4 p-3 bg-secondary-50 rounded-lg">
-            <div [class]="getActivityIcon(activity.action)" class="w-8 h-8 rounded-full flex items-center justify-center">
+          <div
+            *ngFor="let activity of recentActivity().slice(0, 10)"
+            class="flex items-center space-x-4 p-3 bg-secondary-50 rounded-lg"
+          >
+            <div
+              [class]="getActivityIcon(activity.action)"
+              class="w-8 h-8 rounded-full flex items-center justify-center"
+            >
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"
+                ></path>
               </svg>
             </div>
             <div class="flex-1">
               <p class="text-sm text-secondary-900">{{ activity.details }}</p>
               <p class="text-xs text-secondary-500">
-                {{ activity.userName }} • {{ activity.timestamp | date:'MMM d, y h:mm a' }}
+                {{ activity.userName }} •
+                {{ activity.timestamp | date: "MMM d, y h:mm a" }}
               </p>
             </div>
-            <span [class]="getActivityTypeClass(activity.action)" class="px-2 py-1 text-xs font-medium rounded-full">
+            <span
+              [class]="getActivityTypeClass(activity.action)"
+              class="px-2 py-1 text-xs font-medium rounded-full"
+            >
               {{ getActivityTypeLabel(activity.action) }}
             </span>
           </div>
-          
-          <div *ngIf="recentActivity().length === 0" class="text-center py-8 text-secondary-500">
+
+          <div
+            *ngIf="recentActivity().length === 0"
+            class="text-center py-8 text-secondary-500"
+          >
             <p>No recent activity</p>
           </div>
         </div>
@@ -277,38 +372,86 @@ import {
 
       <!-- Automated Actions Summary -->
       <div class="card">
-        <h3 class="text-lg font-semibold text-secondary-900 mb-6">Automated Actions</h3>
-        
+        <h3 class="text-lg font-semibold text-secondary-900 mb-6">
+          Automated Actions
+        </h3>
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="text-center p-4 border border-secondary-200 rounded-lg">
-            <div class="w-12 h-12 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            <div
+              class="w-12 h-12 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-3"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
               </svg>
             </div>
-            <p class="text-2xl font-bold text-secondary-900">{{ autoApprovedToday() }}</p>
+            <p class="text-2xl font-bold text-secondary-900">
+              {{ autoApprovedToday() }}
+            </p>
             <p class="text-sm text-secondary-600">Auto-Approved Today</p>
-            <p class="text-xs text-secondary-500 mt-1">Deadline-based approvals</p>
+            <p class="text-xs text-secondary-500 mt-1">
+              Deadline-based approvals
+            </p>
           </div>
-          
+
           <div class="text-center p-4 border border-secondary-200 rounded-lg">
-            <div class="w-12 h-12 bg-danger-100 text-danger-600 rounded-full flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            <div
+              class="w-12 h-12 bg-danger-100 text-danger-600 rounded-full flex items-center justify-center mx-auto mb-3"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                ></path>
               </svg>
             </div>
-            <p class="text-2xl font-bold text-secondary-900">{{ autoDeletedToday() }}</p>
+            <p class="text-2xl font-bold text-secondary-900">
+              {{ autoDeletedToday() }}
+            </p>
             <p class="text-sm text-secondary-600">Auto-Deleted Today</p>
-            <p class="text-xs text-secondary-500 mt-1">Exception deadline reached</p>
+            <p class="text-xs text-secondary-500 mt-1">
+              Exception deadline reached
+            </p>
           </div>
-          
+
           <div class="text-center p-4 border border-secondary-200 rounded-lg">
-            <div class="w-12 h-12 bg-warning-100 text-warning-600 rounded-full flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+            <div
+              class="w-12 h-12 bg-warning-100 text-warning-600 rounded-full flex items-center justify-center mx-auto mb-3"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                ></path>
               </svg>
             </div>
-            <p class="text-2xl font-bold text-secondary-900">{{ notificationsSent() }}</p>
+            <p class="text-2xl font-bold text-secondary-900">
+              {{ notificationsSent() }}
+            </p>
             <p class="text-sm text-secondary-600">Notifications Sent</p>
             <p class="text-xs text-secondary-500 mt-1">Reminders and alerts</p>
           </div>
@@ -328,74 +471,84 @@ export class AppOwnerDashboardComponent implements OnInit {
   // Computed properties
   totalRequests = computed(() => {
     const requests = this.accessRequests();
-    return this.selectedApplicationId 
-      ? requests.filter(r => r.applicationId === this.selectedApplicationId).length
+    return this.selectedApplicationId
+      ? requests.filter((r) => r.applicationId === this.selectedApplicationId)
+          .length
       : requests.length;
   });
 
   pendingRequests = computed(() => {
     const requests = this.accessRequests();
-    const filtered = this.selectedApplicationId 
-      ? requests.filter(r => r.applicationId === this.selectedApplicationId)
+    const filtered = this.selectedApplicationId
+      ? requests.filter((r) => r.applicationId === this.selectedApplicationId)
       : requests;
-    return filtered.filter(r => 
-      r.status === AccessRequestStatus.InReview || 
-      r.status === AccessRequestStatus.AwaitingApproval
+    return filtered.filter(
+      (r) =>
+        r.status === AccessRequestStatus.InReview ||
+        r.status === AccessRequestStatus.AwaitingApproval,
     ).length;
   });
 
   overdueRequests = computed(() => {
     const requests = this.accessRequests();
-    const filtered = this.selectedApplicationId 
-      ? requests.filter(r => r.applicationId === this.selectedApplicationId)
+    const filtered = this.selectedApplicationId
+      ? requests.filter((r) => r.applicationId === this.selectedApplicationId)
       : requests;
-    return filtered.filter(r => new Date() > r.deadline).length;
+    return filtered.filter((r) => new Date() > r.deadline).length;
   });
 
   totalExceptions = computed(() => {
     const exceptions = this.exceptions();
-    return this.selectedApplicationId 
-      ? exceptions.filter(e => e.applicationId === this.selectedApplicationId).length
+    return this.selectedApplicationId
+      ? exceptions.filter((e) => e.applicationId === this.selectedApplicationId)
+          .length
       : exceptions.length;
   });
 
   pendingExceptions = computed(() => {
     const exceptions = this.exceptions();
-    const filtered = this.selectedApplicationId 
-      ? exceptions.filter(e => e.applicationId === this.selectedApplicationId)
+    const filtered = this.selectedApplicationId
+      ? exceptions.filter((e) => e.applicationId === this.selectedApplicationId)
       : exceptions;
-    return filtered.filter(e => !e.ownerDecision).length;
+    return filtered.filter((e) => !e.ownerDecision).length;
   });
 
   autoDeleteToday = computed(() => {
     const exceptions = this.exceptions();
     const today = new Date().toDateString();
-    const filtered = this.selectedApplicationId 
-      ? exceptions.filter(e => e.applicationId === this.selectedApplicationId)
+    const filtered = this.selectedApplicationId
+      ? exceptions.filter((e) => e.applicationId === this.selectedApplicationId)
       : exceptions;
-    return filtered.filter(e => 
-      new Date(e.autoDeleteDate).toDateString() === today
+    return filtered.filter(
+      (e) => new Date(e.autoDeleteDate).toDateString() === today,
     ).length;
   });
 
   pendingApprovalsList = computed(() => {
     const requests = this.accessRequests();
-    const filtered = this.selectedApplicationId 
-      ? requests.filter(r => r.applicationId === this.selectedApplicationId)
+    const filtered = this.selectedApplicationId
+      ? requests.filter((r) => r.applicationId === this.selectedApplicationId)
       : requests;
     return filtered
-      .filter(r => r.status === AccessRequestStatus.AwaitingApproval)
-      .sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime());
+      .filter((r) => r.status === AccessRequestStatus.AwaitingApproval)
+      .sort(
+        (a, b) =>
+          new Date(a.deadline).getTime() - new Date(b.deadline).getTime(),
+      );
   });
 
   pendingExceptionsList = computed(() => {
     const exceptions = this.exceptions();
-    const filtered = this.selectedApplicationId 
-      ? exceptions.filter(e => e.applicationId === this.selectedApplicationId)
+    const filtered = this.selectedApplicationId
+      ? exceptions.filter((e) => e.applicationId === this.selectedApplicationId)
       : exceptions;
     return filtered
-      .filter(e => !e.ownerDecision)
-      .sort((a, b) => new Date(a.autoDeleteDate).getTime() - new Date(b.autoDeleteDate).getTime());
+      .filter((e) => !e.ownerDecision)
+      .sort(
+        (a, b) =>
+          new Date(a.autoDeleteDate).getTime() -
+          new Date(b.autoDeleteDate).getTime(),
+      );
   });
 
   applicationMetrics = computed(() => {
@@ -415,19 +568,19 @@ export class AppOwnerDashboardComponent implements OnInit {
   }
 
   private loadData() {
-    this.accessManagementService.getApplications().subscribe(apps => {
+    this.accessManagementService.getApplications().subscribe((apps) => {
       this.applications.set(apps);
     });
 
-    this.accessManagementService.getAccessRequests().subscribe(requests => {
+    this.accessManagementService.getAccessRequests().subscribe((requests) => {
       this.accessRequests.set(requests);
     });
 
-    this.accessManagementService.getExceptions().subscribe(exceptions => {
+    this.accessManagementService.getExceptions().subscribe((exceptions) => {
       this.exceptions.set(exceptions);
     });
 
-    this.accessManagementService.getDashboardMetrics().subscribe(metrics => {
+    this.accessManagementService.getDashboardMetrics().subscribe((metrics) => {
       this.dashboardMetrics.set(metrics);
     });
   }
@@ -442,7 +595,8 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   // Quick Actions
   quickApprove(requestId: string) {
-    this.accessManagementService.approveRequest(requestId, "app-owner", "Quick approval from dashboard")
+    this.accessManagementService
+      .approveRequest(requestId, "app-owner", "Quick approval from dashboard")
       .subscribe(() => {
         this.loadData();
       });
@@ -450,18 +604,24 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   quickReject(requestId: string) {
     // In a real implementation, this would call a reject method
-    console.log('Rejecting request:', requestId);
+    console.log("Rejecting request:", requestId);
   }
 
   quickRetain(exceptionId: string) {
-    this.accessManagementService.markExceptionDecision(exceptionId, ExceptionDecision.Retain, "Quick retention from dashboard")
+    this.accessManagementService
+      .markExceptionDecision(
+        exceptionId,
+        ExceptionDecision.Retain,
+        "Quick retention from dashboard",
+      )
       .subscribe(() => {
         this.loadData();
       });
   }
 
   quickDelete(exceptionId: string) {
-    this.accessManagementService.markExceptionDecision(exceptionId, ExceptionDecision.Delete)
+    this.accessManagementService
+      .markExceptionDecision(exceptionId, ExceptionDecision.Delete)
       .subscribe(() => {
         this.loadData();
       });
@@ -469,7 +629,7 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   // Utility methods
   getApplicationName(applicationId: string): string {
-    const app = this.applications().find(a => a.id === applicationId);
+    const app = this.applications().find((a) => a.id === applicationId);
     return app?.name || "Unknown Application";
   }
 
@@ -478,7 +638,7 @@ export class AppOwnerDashboardComponent implements OnInit {
     const deadlineDate = new Date(deadline);
     const diffTime = deadlineDate.getTime() - now.getTime();
     const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
-    
+
     if (diffHours <= 0) return "Overdue";
     if (diffHours < 24) return `${diffHours}h remaining`;
     const diffDays = Math.ceil(diffHours / 24);
@@ -519,7 +679,7 @@ export class AppOwnerDashboardComponent implements OnInit {
       low: "bg-success-100 text-success-800",
       medium: "bg-primary-100 text-primary-800",
       high: "bg-warning-100 text-warning-800",
-      critical: "bg-danger-100 text-danger-800"
+      critical: "bg-danger-100 text-danger-800",
     };
     return classes[priority] || classes["medium"];
   }
@@ -529,7 +689,7 @@ export class AppOwnerDashboardComponent implements OnInit {
       user_not_found: "bg-danger-100 text-danger-800",
       group_not_found: "bg-warning-100 text-warning-800",
       system_not_found: "bg-primary-100 text-primary-800",
-      integration_not_found: "bg-purple-100 text-purple-800"
+      integration_not_found: "bg-purple-100 text-purple-800",
     };
     return classes[type] || classes["user_not_found"];
   }
@@ -539,7 +699,7 @@ export class AppOwnerDashboardComponent implements OnInit {
       user_not_found: "User Not Found",
       group_not_found: "Group Not Found",
       system_not_found: "System Not Found",
-      integration_not_found: "Integration Not Found"
+      integration_not_found: "Integration Not Found",
     };
     return labels[type] || "Unknown";
   }
@@ -566,7 +726,7 @@ export class AppOwnerDashboardComponent implements OnInit {
       request_rejected: "bg-danger-100 text-danger-800",
       exception_marked: "bg-purple-100 text-purple-800",
       auto_processed: "bg-primary-100 text-primary-800",
-      bulk_uploaded: "bg-warning-100 text-warning-800"
+      bulk_uploaded: "bg-warning-100 text-warning-800",
     };
     return classes[action] || "bg-secondary-100 text-secondary-800";
   }
@@ -577,7 +737,7 @@ export class AppOwnerDashboardComponent implements OnInit {
       request_rejected: "Rejected",
       exception_marked: "Exception",
       auto_processed: "Auto-Processed",
-      bulk_uploaded: "Bulk Upload"
+      bulk_uploaded: "Bulk Upload",
     };
     return labels[action] || "Activity";
   }

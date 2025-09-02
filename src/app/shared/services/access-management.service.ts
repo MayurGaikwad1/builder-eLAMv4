@@ -23,14 +23,13 @@ import {
   Priority,
   UploadStatus,
   ActivityAction,
-  EntityType
+  EntityType,
 } from "../interfaces/access-management.interface.ts";
 
 @Injectable({
   providedIn: "root",
 })
 export class AccessManagementService {
-  
   // Mock data
   private mockApplications: Application[] = [
     {
@@ -42,7 +41,7 @@ export class AccessManagementService {
         id: "owner-001",
         name: "Sarah Wilson",
         email: "sarah.wilson@company.com",
-        department: "Sales"
+        department: "Sales",
       },
       approvalWorkflow: {
         id: "wf-001",
@@ -56,7 +55,7 @@ export class AccessManagementService {
             deadlineHours: 24,
             isParallel: false,
             isOptional: false,
-            autoApproveAfterDeadline: false
+            autoApproveAfterDeadline: false,
           },
           {
             level: 2,
@@ -65,7 +64,7 @@ export class AccessManagementService {
             deadlineHours: 24,
             isParallel: false,
             isOptional: false,
-            autoApproveAfterDeadline: false
+            autoApproveAfterDeadline: false,
           },
           {
             level: 3,
@@ -74,8 +73,8 @@ export class AccessManagementService {
             deadlineHours: 48,
             isParallel: false,
             isOptional: false,
-            autoApproveAfterDeadline: true
-          }
+            autoApproveAfterDeadline: true,
+          },
         ],
         deadlineHours: 96,
         exceptionDeadlineDays: 7,
@@ -84,13 +83,13 @@ export class AccessManagementService {
           enableInApp: true,
           reminderHours: [24, 4],
           escalationNotification: true,
-          recipients: []
+          recipients: [],
         },
-        isActive: true
+        isActive: true,
       },
       isActive: true,
       adValidationRequired: true,
-      exceptionRetentionDays: 7
+      exceptionRetentionDays: 7,
     },
     {
       id: "app-002",
@@ -101,7 +100,7 @@ export class AccessManagementService {
         id: "owner-002",
         name: "Michael Chen",
         email: "michael.chen@company.com",
-        department: "IT Infrastructure"
+        department: "IT Infrastructure",
       },
       approvalWorkflow: {
         id: "wf-002",
@@ -115,7 +114,7 @@ export class AccessManagementService {
             deadlineHours: 24,
             isParallel: false,
             isOptional: false,
-            autoApproveAfterDeadline: false
+            autoApproveAfterDeadline: false,
           },
           {
             level: 2,
@@ -124,7 +123,7 @@ export class AccessManagementService {
             deadlineHours: 48,
             isParallel: false,
             isOptional: false,
-            autoApproveAfterDeadline: false
+            autoApproveAfterDeadline: false,
           },
           {
             level: 3,
@@ -133,8 +132,8 @@ export class AccessManagementService {
             deadlineHours: 24,
             isParallel: false,
             isOptional: false,
-            autoApproveAfterDeadline: true
-          }
+            autoApproveAfterDeadline: true,
+          },
         ],
         deadlineHours: 120,
         exceptionDeadlineDays: 5,
@@ -143,14 +142,14 @@ export class AccessManagementService {
           enableInApp: true,
           reminderHours: [48, 12],
           escalationNotification: true,
-          recipients: []
+          recipients: [],
         },
-        isActive: true
+        isActive: true,
       },
       isActive: true,
       adValidationRequired: true,
-      exceptionRetentionDays: 5
-    }
+      exceptionRetentionDays: 5,
+    },
   ];
 
   private mockAccessRequests: UserAccessRequest[] = [
@@ -179,7 +178,7 @@ export class AccessManagementService {
           comments: "Approved for sales team access",
           approvedAt: new Date("2024-01-15T10:00:00"),
           deadline: new Date("2024-01-16T10:00:00"),
-          autoApproved: false
+          autoApproved: false,
         },
         {
           id: "appr-002",
@@ -189,8 +188,8 @@ export class AccessManagementService {
           level: 2,
           status: ApprovalStatus.Pending,
           deadline: new Date("2024-01-17T10:00:00"),
-          autoApproved: false
-        }
+          autoApproved: false,
+        },
       ],
       submittedAt: new Date("2024-01-15T09:00:00"),
       deadline: new Date("2024-01-19T09:00:00"),
@@ -201,25 +200,25 @@ export class AccessManagementService {
           status: ADValidationStatus.Valid,
           foundInAD: true,
           adGroups: ["Sales-Team", "CRM-Users"],
-          lastValidated: new Date("2024-01-15T09:05:00")
+          lastValidated: new Date("2024-01-15T09:05:00"),
         },
         {
           userId: "asmith",
           status: ADValidationStatus.NotFound,
           errorMessage: "User not found in Active Directory",
           foundInAD: false,
-          lastValidated: new Date("2024-01-15T09:05:00")
+          lastValidated: new Date("2024-01-15T09:05:00"),
         },
         {
           userId: "bwilson",
           status: ADValidationStatus.Valid,
           foundInAD: true,
           adGroups: ["Sales-Team"],
-          lastValidated: new Date("2024-01-15T09:05:00")
-        }
+          lastValidated: new Date("2024-01-15T09:05:00"),
+        },
       ],
-      autoProcessed: false
-    }
+      autoProcessed: false,
+    },
   ];
 
   private mockExceptions: ExceptionHandling[] = [
@@ -231,8 +230,8 @@ export class AccessManagementService {
       exceptionType: ExceptionType.UserNotFound,
       ownerDecision: ExceptionDecision.Pending,
       autoDeleteDate: new Date("2024-01-22T09:00:00"),
-      status: ExceptionStatus.UnderReview
-    }
+      status: ExceptionStatus.UnderReview,
+    },
   ];
 
   private mockBulkUploads: BulkUpload[] = [
@@ -251,12 +250,12 @@ export class AccessManagementService {
           row: 2,
           field: "userId",
           value: "asmith",
-          error: "User not found in Active Directory"
-        }
+          error: "User not found in Active Directory",
+        },
       ],
       status: UploadStatus.PartialSuccess,
-      downloadUrl: "/api/downloads/bulk-001-results.xlsx"
-    }
+      downloadUrl: "/api/downloads/bulk-001-results.xlsx",
+    },
   ];
 
   private dashboardMetrics: DashboardMetrics = {
@@ -272,7 +271,7 @@ export class AccessManagementService {
         totalRequests: 45,
         pendingRequests: 8,
         exceptions: 3,
-        averageProcessingTime: 2.5
+        averageProcessingTime: 2.5,
       },
       {
         applicationId: "app-002",
@@ -280,8 +279,8 @@ export class AccessManagementService {
         totalRequests: 32,
         pendingRequests: 6,
         exceptions: 2,
-        averageProcessingTime: 3.2
-      }
+        averageProcessingTime: 3.2,
+      },
     ],
     recentActivity: [
       {
@@ -292,15 +291,21 @@ export class AccessManagementService {
         userName: "Jane Manager",
         entityType: EntityType.AccessRequest,
         entityId: "req-001",
-        details: "Approved level 1 for Salesforce CRM access"
-      }
-    ]
+        details: "Approved level 1 for Salesforce CRM access",
+      },
+    ],
   };
 
   // Subjects for real-time updates
-  private accessRequestsSubject = new BehaviorSubject<UserAccessRequest[]>(this.mockAccessRequests);
-  private exceptionsSubject = new BehaviorSubject<ExceptionHandling[]>(this.mockExceptions);
-  private dashboardMetricsSubject = new BehaviorSubject<DashboardMetrics>(this.dashboardMetrics);
+  private accessRequestsSubject = new BehaviorSubject<UserAccessRequest[]>(
+    this.mockAccessRequests,
+  );
+  private exceptionsSubject = new BehaviorSubject<ExceptionHandling[]>(
+    this.mockExceptions,
+  );
+  private dashboardMetricsSubject = new BehaviorSubject<DashboardMetrics>(
+    this.dashboardMetrics,
+  );
 
   public accessRequests$ = this.accessRequestsSubject.asObservable();
   public exceptions$ = this.exceptionsSubject.asObservable();
@@ -314,7 +319,7 @@ export class AccessManagementService {
   }
 
   getApplication(id: string): Observable<Application | undefined> {
-    const app = this.mockApplications.find(a => a.id === id);
+    const app = this.mockApplications.find((a) => a.id === id);
     return of(app).pipe(delay(200));
   }
 
@@ -323,12 +328,18 @@ export class AccessManagementService {
     return of(this.mockAccessRequests).pipe(delay(400));
   }
 
-  getAccessRequestsByApplication(applicationId: string): Observable<UserAccessRequest[]> {
-    const requests = this.mockAccessRequests.filter(r => r.applicationId === applicationId);
+  getAccessRequestsByApplication(
+    applicationId: string,
+  ): Observable<UserAccessRequest[]> {
+    const requests = this.mockAccessRequests.filter(
+      (r) => r.applicationId === applicationId,
+    );
     return of(requests).pipe(delay(300));
   }
 
-  createAccessRequest(request: Partial<UserAccessRequest>): Observable<UserAccessRequest> {
+  createAccessRequest(
+    request: Partial<UserAccessRequest>,
+  ): Observable<UserAccessRequest> {
     const newRequest: UserAccessRequest = {
       id: `req-${Date.now()}`,
       requesterId: request.requesterId || "current-user",
@@ -346,7 +357,7 @@ export class AccessManagementService {
       submittedAt: new Date(),
       deadline: new Date(Date.now() + 96 * 60 * 60 * 1000), // 96 hours from now
       priority: request.priority || Priority.Medium,
-      autoProcessed: false
+      autoProcessed: false,
     };
 
     this.mockAccessRequests.unshift(newRequest);
@@ -354,15 +365,21 @@ export class AccessManagementService {
     return of(newRequest).pipe(delay(500));
   }
 
-  approveRequest(requestId: string, approverId: string, comments?: string): Observable<boolean> {
-    const request = this.mockAccessRequests.find(r => r.id === requestId);
+  approveRequest(
+    requestId: string,
+    approverId: string,
+    comments?: string,
+  ): Observable<boolean> {
+    const request = this.mockAccessRequests.find((r) => r.id === requestId);
     if (request && request.approvals) {
-      const currentApproval = request.approvals.find(a => a.level === request.currentApprovalLevel);
+      const currentApproval = request.approvals.find(
+        (a) => a.level === request.currentApprovalLevel,
+      );
       if (currentApproval) {
         currentApproval.status = ApprovalStatus.Approved;
         currentApproval.approvedAt = new Date();
         currentApproval.comments = comments;
-        
+
         // Move to next level or complete
         if (request.currentApprovalLevel < 3) {
           request.currentApprovalLevel++;
@@ -382,13 +399,21 @@ export class AccessManagementService {
     return of(this.mockExceptions).pipe(delay(400));
   }
 
-  getExceptionsByApplication(applicationId: string): Observable<ExceptionHandling[]> {
-    const exceptions = this.mockExceptions.filter(e => e.applicationId === applicationId);
+  getExceptionsByApplication(
+    applicationId: string,
+  ): Observable<ExceptionHandling[]> {
+    const exceptions = this.mockExceptions.filter(
+      (e) => e.applicationId === applicationId,
+    );
     return of(exceptions).pipe(delay(300));
   }
 
-  markExceptionDecision(exceptionId: string, decision: ExceptionDecision, note?: string): Observable<boolean> {
-    const exception = this.mockExceptions.find(e => e.id === exceptionId);
+  markExceptionDecision(
+    exceptionId: string,
+    decision: ExceptionDecision,
+    note?: string,
+  ): Observable<boolean> {
+    const exception = this.mockExceptions.find((e) => e.id === exceptionId);
     if (exception) {
       exception.ownerDecision = decision;
       exception.retentionNote = note;
@@ -412,7 +437,7 @@ export class AccessManagementService {
       successfulRecords: 0,
       failedRecords: 0,
       validationErrors: [],
-      status: UploadStatus.Processing
+      status: UploadStatus.Processing,
     };
 
     // Simulate processing
@@ -438,24 +463,30 @@ export class AccessManagementService {
 
   // AD Validation
   validateUsersInAD(userIds: string[]): Observable<ADValidationResult[]> {
-    const results: ADValidationResult[] = userIds.map(userId => ({
+    const results: ADValidationResult[] = userIds.map((userId) => ({
       userId,
-      status: Math.random() > 0.3 ? ADValidationStatus.Valid : ADValidationStatus.NotFound,
+      status:
+        Math.random() > 0.3
+          ? ADValidationStatus.Valid
+          : ADValidationStatus.NotFound,
       foundInAD: Math.random() > 0.3,
       adGroups: Math.random() > 0.3 ? ["Users", "Employees"] : [],
-      lastValidated: new Date()
+      lastValidated: new Date(),
     }));
-    
+
     return of(results).pipe(delay(1000));
   }
 
   // Workflows
   getWorkflows(): Observable<WorkflowConfig[]> {
-    const workflows = this.mockApplications.map(app => app.approvalWorkflow);
+    const workflows = this.mockApplications.map((app) => app.approvalWorkflow);
     return of(workflows).pipe(delay(300));
   }
 
-  updateWorkflow(workflowId: string, workflow: Partial<WorkflowConfig>): Observable<boolean> {
+  updateWorkflow(
+    workflowId: string,
+    workflow: Partial<WorkflowConfig>,
+  ): Observable<boolean> {
     // Mock update
     return of(true).pipe(delay(500));
   }
@@ -463,19 +494,22 @@ export class AccessManagementService {
   // Auto Processing (simulate background processing)
   processExpiredRequests(): Observable<number> {
     let processedCount = 0;
-    this.mockAccessRequests.forEach(request => {
-      if (new Date() > request.deadline && request.status === AccessRequestStatus.AwaitingApproval) {
+    this.mockAccessRequests.forEach((request) => {
+      if (
+        new Date() > request.deadline &&
+        request.status === AccessRequestStatus.AwaitingApproval
+      ) {
         request.status = AccessRequestStatus.AutoProcessed;
         request.autoProcessed = true;
         request.completedAt = new Date();
         processedCount++;
       }
     });
-    
+
     if (processedCount > 0) {
       this.accessRequestsSubject.next([...this.mockAccessRequests]);
     }
-    
+
     return of(processedCount).pipe(delay(200));
   }
 }

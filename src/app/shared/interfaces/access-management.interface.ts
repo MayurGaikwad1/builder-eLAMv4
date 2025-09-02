@@ -188,7 +188,7 @@ export enum ApplicationType {
   CloudService = "cloud_service",
   Database = "database",
   SystemIntegration = "system_integration",
-  NetworkResource = "network_resource"
+  NetworkResource = "network_resource",
 }
 
 export enum AccessLevel {
@@ -196,14 +196,14 @@ export enum AccessLevel {
   Write = "write",
   Admin = "admin",
   Full = "full",
-  Custom = "custom"
+  Custom = "custom",
 }
 
 export enum AccessRequestType {
   NewAccess = "new_access",
   ModifyAccess = "modify_access",
   RemoveAccess = "remove_access",
-  BulkUpload = "bulk_upload"
+  BulkUpload = "bulk_upload",
 }
 
 export enum AccessRequestStatus {
@@ -216,7 +216,7 @@ export enum AccessRequestStatus {
   Exception = "exception",
   AutoProcessed = "auto_processed",
   Completed = "completed",
-  Expired = "expired"
+  Expired = "expired",
 }
 
 export enum ApprovalStatus {
@@ -224,7 +224,7 @@ export enum ApprovalStatus {
   Approved = "approved",
   Rejected = "rejected",
   Expired = "expired",
-  AutoApproved = "auto_approved"
+  AutoApproved = "auto_approved",
 }
 
 export enum ApproverRole {
@@ -232,7 +232,7 @@ export enum ApproverRole {
   ITAdmin = "it_admin",
   SecurityAdmin = "security_admin",
   ApplicationOwner = "application_owner",
-  Delegate = "delegate"
+  Delegate = "delegate",
 }
 
 export enum ADValidationStatus {
@@ -240,7 +240,7 @@ export enum ADValidationStatus {
   NotFound = "not_found",
   Inactive = "inactive",
   NoPermission = "no_permission",
-  Error = "error"
+  Error = "error",
 }
 
 export enum ExceptionType {
@@ -248,27 +248,27 @@ export enum ExceptionType {
   GroupNotFound = "group_not_found",
   SystemNotFound = "system_not_found",
   IntegrationNotFound = "integration_not_found",
-  PermissionDenied = "permission_denied"
+  PermissionDenied = "permission_denied",
 }
 
 export enum ExceptionDecision {
   Retain = "retain",
   Delete = "delete",
-  Pending = "pending"
+  Pending = "pending",
 }
 
 export enum ExceptionStatus {
   New = "new",
   UnderReview = "under_review",
   Resolved = "resolved",
-  AutoDeleted = "auto_deleted"
+  AutoDeleted = "auto_deleted",
 }
 
 export enum Priority {
   Low = "low",
   Medium = "medium",
   High = "high",
-  Critical = "critical"
+  Critical = "critical",
 }
 
 export enum ConditionOperator {
@@ -277,20 +277,20 @@ export enum ConditionOperator {
   Contains = "contains",
   GreaterThan = "greater_than",
   LessThan = "less_than",
-  In = "in"
+  In = "in",
 }
 
 export enum AutoApprovalAction {
   Approve = "approve",
   Reject = "reject",
-  Escalate = "escalate"
+  Escalate = "escalate",
 }
 
 export enum RecipientType {
   User = "user",
   Role = "role",
   Email = "email",
-  Group = "group"
+  Group = "group",
 }
 
 export enum UploadStatus {
@@ -298,7 +298,7 @@ export enum UploadStatus {
   Processing = "processing",
   Completed = "completed",
   Failed = "failed",
-  PartialSuccess = "partial_success"
+  PartialSuccess = "partial_success",
 }
 
 export enum ActivityAction {
@@ -309,7 +309,7 @@ export enum ActivityAction {
   AutoProcessed = "auto_processed",
   BulkUploaded = "bulk_uploaded",
   WorkflowModified = "workflow_modified",
-  NotificationSent = "notification_sent"
+  NotificationSent = "notification_sent",
 }
 
 export enum EntityType {
@@ -318,5 +318,5 @@ export enum EntityType {
   User = "user",
   Workflow = "workflow",
   Exception = "exception",
-  Bulk = "bulk"
+  Bulk = "bulk",
 }
