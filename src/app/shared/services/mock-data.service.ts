@@ -55,6 +55,7 @@ export class MockDataService {
       requesterId: "2",
       requesterName: "Sarah Wilson",
       requestType: RequestType.NewAccess,
+      application: "database",
       requestedRoles: [
         {
           id: "r2",
@@ -89,6 +90,7 @@ export class MockDataService {
       requesterId: "4",
       requesterName: "Alex Chen",
       requestType: RequestType.ModifyAccess,
+      application: "jira",
       requestedRoles: [
         {
           id: "r3",
@@ -112,6 +114,7 @@ export class MockDataService {
       requesterId: "5",
       requesterName: "Emma Davis",
       requestType: RequestType.Emergency,
+      application: "aws",
       requestedRoles: [
         {
           id: "r4",
@@ -179,6 +182,7 @@ export class MockDataService {
       requesterId: this.currentUser.id,
       requesterName: this.currentUser.displayName,
       requestType: request.requestType || RequestType.NewAccess,
+      application: (request as any).application || "",
       requestedRoles: request.requestedRoles || [],
       requestedResources: request.requestedResources || [],
       justification: request.justification || "",
