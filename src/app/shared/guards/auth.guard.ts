@@ -33,7 +33,10 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return this.checkAuth(route, state.url);
   }
 
-  private checkAuth(route: ActivatedRouteSnapshot, url: string): Observable<boolean> {
+  private checkAuth(
+    route: ActivatedRouteSnapshot,
+    url: string,
+  ): Observable<boolean> {
     return this.authService.isAuthenticated$.pipe(
       take(1),
       map((isAuthenticated) => {
@@ -45,8 +48,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         }
 
         // Check role requirements if specified in route data
-        const requiredRoles = route.data?.['roles'] as string[];
-        const requiredPermissions = route.data?.['permissions'] as string[];
+        const requiredRoles = route.data?.["roles"] as string[];
+        const requiredPermissions = route.data?.["permissions"] as string[];
 
         if (requiredRoles?.length > 0) {
           const hasRequiredRole = this.authService.hasAnyRole(requiredRoles);
@@ -57,8 +60,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         }
 
         if (requiredPermissions?.length > 0) {
-          const hasAllPermissions = requiredPermissions.every(permission =>
-            this.authService.hasPermission(permission)
+          const hasAllPermissions = requiredPermissions.every((permission) =>
+            this.authService.hasPermission(permission),
           );
           if (!hasAllPermissions) {
             this.router.navigate(["/dashboard"]);
