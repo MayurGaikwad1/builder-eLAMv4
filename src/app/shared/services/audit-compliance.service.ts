@@ -148,7 +148,6 @@ export class AuditComplianceService {
       map((logs) =>
         logs.filter(
           (log) =>
-            log.riskScore >= 70 ||
             log.severity === AuditSeverity.High ||
             log.severity === AuditSeverity.Critical,
         ),
