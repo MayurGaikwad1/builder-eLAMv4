@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 import { Router, NavigationEnd } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { AuthService, User } from "../../shared/services/auth.service";
-import { ModalService } from "../../shared/services/modal.service";
 
 @Component({
   selector: "app-header",
@@ -89,27 +88,6 @@ import { ModalService } from "../../shared/services/modal.service";
             </button>
           </div>
 
-          <!-- Quick Actions -->
-          <button
-            *ngIf="showNewRequestButton()"
-            (click)="onNewRequest()"
-            class="btn-primary"
-          >
-            <svg
-              class="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-              ></path>
-            </svg>
-            New Request
-          </button>
 
           <!-- User Menu -->
           <div class="relative">
@@ -310,40 +288,22 @@ export class HeaderComponent {
 
   protected readonly showUserMenu = signal(false);
   protected readonly currentUser = signal<User | null>(null);
-  protected readonly showNewRequestButton = signal(true);
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private modalService: ModalService,
   ) {
     // Subscribe to current user
     this.authService.currentUser$.subscribe((user) => {
       this.currentUser.set(user);
     });
 
-    // Monitor route changes to show/hide New Request button
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const url = this.router.url;
-        const isRequestsPage = url.includes("/requests");
-        this.showNewRequestButton.set(!isRequestsPage);
-      });
-
-    // Initial check
-    const currentUrl = this.router.url;
-    const isRequestsPage = currentUrl.includes("/requests");
-    this.showNewRequestButton.set(!isRequestsPage);
   }
 
   onMenuToggle() {
     this.menuToggle.emit();
   }
 
-  onNewRequest() {
-    this.modalService.openNewRequestModal();
-  }
 
   toggleUserMenu() {
     this.showUserMenu.update((show) => !show);
