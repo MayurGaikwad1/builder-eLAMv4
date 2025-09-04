@@ -384,7 +384,6 @@ export class ApprovalManagementService {
           department: "Engineering",
           title: "Senior Software Engineer",
           manager: "Mike Johnson",
-          riskScore: 25,
         },
         requestTitle: "Production Database Access",
         description:
