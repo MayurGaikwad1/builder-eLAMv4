@@ -653,12 +653,7 @@ interface PolicyFilters {
                         </div>
                       </div>
                       <div class="flex items-center ml-2">
-                        <span
-                          [class]="getRiskScoreClass(permission.riskScore)"
-                          class="text-xs font-medium"
-                        >
-                          {{ permission.riskScore }}
-                        </span>
+                        <!-- risk score removed -->
                       </div>
                     </div>
                   </div>
