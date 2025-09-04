@@ -750,7 +750,7 @@ export class ApprovalManagementService {
           },
         ],
         status: ApprovalStatus.Pending,
-        submittedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+        submittedAt: new Date(Date.now() - 10 * 60 * 1000),
         deadline: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
         renewalDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         slaBreachWarning: false,
