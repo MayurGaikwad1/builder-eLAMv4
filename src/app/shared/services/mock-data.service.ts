@@ -41,7 +41,6 @@ export class MockDataService {
     totalRequests: 1247,
     pendingApprovals: 23,
     activeUsers: 3842,
-    riskScore: 67,
     requestsTrend: "+12%",
     approvalsTrend: "-8%",
     usersTrend: "+3%",
