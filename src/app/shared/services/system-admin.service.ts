@@ -588,7 +588,6 @@ export class SystemAdminService {
         ],
         conditions: [],
         isActive: true,
-        riskScore: 95,
       },
     ];
 
