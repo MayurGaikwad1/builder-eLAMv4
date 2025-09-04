@@ -237,7 +237,30 @@ export const routes: Routes = [
     path: "access-management/app-owner-dashboard",
     component: AppOwnerDashboardComponent,
     canActivate: [AuthGuard],
-    data: { roles: ["admin", "manager"] },
+    data: { roles: ["admin", "manager", "application_owner"] },
+  },
+  {
+    path: "application-owner",
+    redirectTo: "/application-owner/overview",
+    pathMatch: "full",
+  },
+  {
+    path: "application-owner/overview",
+    component: AppOwnerDashboardComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ["application_owner", "admin"] },
+  },
+  {
+    path: "application-owner/exceptions",
+    component: ExceptionHandlingComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ["application_owner", "admin"] },
+  },
+  {
+    path: "application-owner/bulk",
+    component: PlaceholderComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ["application_owner", "admin"] },
   },
   {
     path: "**",
