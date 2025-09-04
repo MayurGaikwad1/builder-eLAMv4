@@ -392,27 +392,6 @@ interface AuditFilters {
                     {{ log.outcome }}
                   </span>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div class="flex-1">
-                      <div
-                        [class]="getRiskScoreClass(log.riskScore)"
-                        class="text-sm font-medium"
-                      >
-                        {{ log.riskScore }}
-                      </div>
-                      <div
-                        class="w-full bg-secondary-200 rounded-full h-1.5 mt-1"
-                      >
-                        <div
-                          [class]="getRiskBarClass(log.riskScore)"
-                          class="h-1.5 rounded-full transition-all duration-300"
-                          [style.width.%]="log.riskScore"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <button
                     (click)="viewLogDetails(log)"
