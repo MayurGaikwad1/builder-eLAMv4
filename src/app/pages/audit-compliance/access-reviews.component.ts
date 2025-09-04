@@ -391,25 +391,6 @@ interface ReviewFilters {
             </div>
           </div>
 
-          <!-- Risk Score -->
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-sm text-secondary-600">Risk Score</span>
-            <div class="flex items-center space-x-2">
-              <span
-                [class]="getRiskScoreClass(review.riskScore)"
-                class="font-medium"
-              >
-                {{ review.riskScore }}
-              </span>
-              <div class="w-16 bg-secondary-200 rounded-full h-1.5">
-                <div
-                  [class]="getRiskBarClass(review.riskScore)"
-                  class="h-1.5 rounded-full"
-                  [style.width.%]="review.riskScore"
-                ></div>
-              </div>
-            </div>
-          </div>
 
           <!-- Due Date -->
           <div class="flex items-center justify-between text-sm">
