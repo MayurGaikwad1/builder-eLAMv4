@@ -10,7 +10,6 @@ export interface ApprovalRequest {
   description: string;
   justification: string;
   urgency: UrgencyLevel;
-  riskScore: number;
   riskFactors: RiskFactor[];
   requestedAccess: RequestedAccess[];
   currentLevel: number;
