@@ -33,7 +33,6 @@ export interface UserInfo {
   department: string;
   title: string;
   manager?: string;
-  riskScore: number;
   avatar?: string;
 }
 
