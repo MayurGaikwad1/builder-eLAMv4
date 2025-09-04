@@ -522,7 +522,17 @@ export class ApprovalManagementComponent implements OnInit {
     },
   });
 
-  constructor(private approvalService: ApprovalManagementService) {}
+  constructor(private approvalService: ApprovalManagementService, private authService: AuthService, private router: Router) {}
+
+  isManager(): boolean {
+    return this.authService.hasAnyRole(["manager"]);
+  }
+
+  onPendingApprovalsClick() {
+    if (this.isManager()) {
+      this.router.navigate(["/approvals/queue"]);
+    }
+  }
 
   ngOnInit() {
     this.loadStatistics();
