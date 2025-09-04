@@ -77,7 +77,6 @@ export class UserManagementService {
       hireDate: userData.hireDate || new Date(),
       roles: userData.roles || [],
       status: UserStatus.Active,
-      riskScore: Math.floor(Math.random() * 100),
       directReports: [],
       securityClearance:
         userData.securityClearance || SecurityClearance.Internal,
