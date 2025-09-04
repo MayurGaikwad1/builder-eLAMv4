@@ -514,7 +514,6 @@ export class ApprovalManagementService {
           employeeId: "EMP002",
           department: "Security",
           title: "Security Analyst",
-          riskScore: 45,
         },
         requestTitle: "Security Analyst Role Upgrade",
         description:
