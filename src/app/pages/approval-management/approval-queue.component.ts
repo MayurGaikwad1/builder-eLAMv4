@@ -7,6 +7,7 @@ import {
   ApprovalRequest,
   ApprovalAction,
   ApprovalActionType,
+  ApprovalDecision,
   ApprovalStatus,
   RequestType,
   ApprovalPriority,
@@ -227,15 +228,6 @@ import { UrgencyLevel } from "../../shared/interfaces/user.interface";
             >
               Priority
             </button>
-            <button
-              (click)="sortBy('riskScore')"
-              [class]="
-                sortField === 'riskScore' ? 'btn-primary' : 'btn-secondary'
-              "
-              class="text-sm py-1 px-3"
-            >
-              Risk
-            </button>
           </div>
         </div>
 
@@ -255,7 +247,6 @@ import { UrgencyLevel } from "../../shared/interfaces/user.interface";
                 <th class="table-header">Requester</th>
                 <th class="table-header">Type</th>
                 <th class="table-header">Priority</th>
-                <th class="table-header">Risk Score</th>
                 <th class="table-header">SLA Status</th>
                 <th class="table-header">Actions</th>
               </tr>
@@ -290,9 +281,8 @@ import { UrgencyLevel } from "../../shared/interfaces/user.interface";
                       }}{{ request.description.length > 80 ? "..." : "" }}
                     </p>
                     <p class="text-xs text-secondary-500">
-                      ID: {{ request.id }} • Level {{ request.currentLevel }}/{{
-                        request.totalLevels
-                      }}
+                      ID: {{ request.id }} • Level {{ request.currentLevel }}/{
+                        { request.totalLevels }}
                     </p>
                   </div>
                 </td>
@@ -346,30 +336,6 @@ import { UrgencyLevel } from "../../shared/interfaces/user.interface";
                       <path
                         fill-rule="evenodd"
                         d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                </td>
-
-                <td class="table-cell">
-                  <div class="flex items-center space-x-2">
-                    <span
-                      [class]="getRiskScoreClass(request.riskScore)"
-                      class="px-2 py-1 text-xs font-medium rounded-full"
-                    >
-                      {{ request.riskScore }}
-                    </span>
-                    <svg
-                      *ngIf="request.conflictChecks.length > 0"
-                      class="w-4 h-4 text-warning-500"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      title="SoD Conflicts Detected"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                         clip-rule="evenodd"
                       ></path>
                     </svg>
@@ -508,15 +474,6 @@ import { UrgencyLevel } from "../../shared/interfaces/user.interface";
                         class="px-2 py-1 text-xs font-medium rounded-full"
                       >
                         {{ selectedRequest.urgency | titlecase }}
-                      </span>
-                    </div>
-                    <div class="flex justify-between">
-                      <span class="text-secondary-600">Risk Score:</span>
-                      <span
-                        [class]="getRiskScoreClass(selectedRequest.riskScore)"
-                        class="px-2 py-1 text-xs font-medium rounded-full"
-                      >
-                        {{ selectedRequest.riskScore }}
                       </span>
                     </div>
                   </div>
@@ -718,9 +675,6 @@ export class ApprovalQueueComponent implements OnInit {
           comparison =
             urgencyOrder[b.urgency as keyof typeof urgencyOrder] -
             urgencyOrder[a.urgency as keyof typeof urgencyOrder];
-          break;
-        case "riskScore":
-          comparison = b.riskScore - a.riskScore;
           break;
       }
 
@@ -946,13 +900,6 @@ export class ApprovalQueueComponent implements OnInit {
       [UrgencyLevel.Critical]: "bg-danger-100 text-danger-800",
     };
     return classes[urgency];
-  }
-
-  getRiskScoreClass(score: number): string {
-    if (score < 25) return "bg-success-100 text-success-800";
-    if (score < 60) return "bg-primary-100 text-primary-800";
-    if (score < 85) return "bg-warning-100 text-warning-800";
-    return "bg-danger-100 text-danger-800";
   }
 
   getSlaStatusClass(request: ApprovalRequest): string {
