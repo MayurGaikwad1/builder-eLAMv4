@@ -576,8 +576,8 @@ import { UrgencyLevel } from "../../shared/interfaces/user.interface";
 
                   <div>
                     <p class="text-xs text-secondary-600">Renewal Priority</p>
-                    <p [class]="getRenewalPriorityClass(getRenewalDate(selectedRequest))" class="font-medium rounded-full inline-block px-2 py-1 text-xs mt-1">
-                      {{ getRenewalPriorityLabel(getRenewalDate(selectedRequest)) }}
+                    <p [class]="getRenewalPriorityClass(getRenewalDate(selectedRequest) ?? undefined)" class="font-medium rounded-full inline-block px-2 py-1 text-xs mt-1">
+                      {{ getRenewalPriorityLabel(getRenewalDate(selectedRequest) ?? undefined) }}
                     </p>
                   </div>
                 </div>
