@@ -423,7 +423,6 @@ export class UserManagementService {
         hireDate: new Date("2020-03-15"),
         roles: [],
         status: UserStatus.Active,
-        riskScore: 25,
         directReports: [],
         securityClearance: SecurityClearance.Confidential,
         complianceStatus: this.generateComplianceStatus(),
