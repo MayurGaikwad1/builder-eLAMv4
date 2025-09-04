@@ -281,8 +281,7 @@ import { UrgencyLevel } from "../../shared/interfaces/user.interface";
                       }}{{ request.description.length > 80 ? "..." : "" }}
                     </p>
                     <p class="text-xs text-secondary-500">
-                      ID: {{ request.id }} • Level {{ request.currentLevel }}/{
-                        { request.totalLevels }}
+                      ID: {{ request.id }} • Level {{ request.currentLevel }}/{{ request.totalLevels }}
                     </p>
                   </div>
                 </td>
