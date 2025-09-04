@@ -471,7 +471,6 @@ export class UserManagementService {
         hireDate: new Date("2018-11-10"),
         roles: [],
         status: UserStatus.Inactive,
-        riskScore: 15,
         directReports: [],
         securityClearance: SecurityClearance.Internal,
         complianceStatus: this.generateComplianceStatus(),
