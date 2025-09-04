@@ -237,9 +237,6 @@ import { UserStatus } from "../../shared/interfaces/user.interface";
                       <p class="text-xs text-secondary-500">
                         {{ selectedUser.department }} • {{ selectedUser.title }}
                       </p>
-                      <p class="text-xs text-secondary-500">
-                        Risk Score: {{ selectedUser.riskScore }}
-                      </p>
                     </div>
                   </div>
                 </div>
