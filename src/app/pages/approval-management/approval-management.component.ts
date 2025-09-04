@@ -16,7 +16,7 @@ import { ApprovalStatistics } from "../../shared/interfaces/approval-management.
       <div class="flex items-center justify-between">
         <div>
           <h1 class="text-2xl font-bold text-secondary-900">
-            Approval Management
+            Renewal Requests Approval
           </h1>
           <p class="text-secondary-600">
             Review and approve access requests with enterprise-grade workflows
@@ -59,7 +59,7 @@ import { ApprovalStatistics } from "../../shared/interfaces/approval-management.
                 d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
               ></path>
             </svg>
-            Approval Queue
+            Renewal Requests Queue
           </button>
         </div>
       </div>
@@ -244,7 +244,7 @@ import { ApprovalStatistics } from "../../shared/interfaces/approval-management.
         <div class="lg:col-span-2 card">
           <div class="flex items-center justify-between mb-6">
             <h2 class="text-lg font-semibold text-secondary-900">
-              Approval Queue Distribution
+              Renewal Requests Queue Distribution
             </h2>
             <button
               class="text-sm text-primary-600 hover:text-primary-700"
