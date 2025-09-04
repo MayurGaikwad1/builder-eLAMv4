@@ -574,12 +574,6 @@ import { UrgencyLevel } from "../../shared/interfaces/user.interface";
                   Cancel
                 </button>
                 <button
-                  (click)="delegateRequest(selectedRequest.id)"
-                  class="btn-secondary"
-                >
-                  Delegate
-                </button>
-                <button
                   (click)="rejectRequest(selectedRequest.id)"
                   class="btn-danger"
                 >
