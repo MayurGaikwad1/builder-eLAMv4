@@ -564,6 +564,23 @@ import { UrgencyLevel } from "../../shared/interfaces/user.interface";
                 >
                   {{ selectedRequest.justification }}
                 </p>
+
+                <!-- Renewal Date & Computed Priority -->
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div>
+                    <p class="text-xs text-secondary-600">Renewal Date</p>
+                    <p class="font-medium">
+                      {{ selectedRequest?.renewalDate ? (selectedRequest?.renewalDate | date: 'MMM d, y') : 'N/A' }}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p class="text-xs text-secondary-600">Renewal Priority</p>
+                    <p [class]="getRenewalPriorityClass(selectedRequest?.renewalDate)" class="font-medium rounded-full inline-block px-2 py-1 text-xs mt-1">
+                      {{ getRenewalPriorityLabel(selectedRequest?.renewalDate) }}
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <!-- Action Buttons -->
