@@ -905,7 +905,7 @@ export class ApprovalQueueComponent implements OnInit {
     return Math.ceil(diff);
   }
 
-  getRenewalPriorityLabel(date?: Date | string): string {
+  getRenewalPriorityLabel(date?: Date | string | null): string {
     const days = this.daysUntil(date);
     if (days <= 3) return "Critical";
     if (days <= 5) return "High";
@@ -914,7 +914,7 @@ export class ApprovalQueueComponent implements OnInit {
     return "Normal";
   }
 
-  getRenewalPriorityClass(date?: Date | string): string {
+  getRenewalPriorityClass(date?: Date | string | null): string {
     const label = this.getRenewalPriorityLabel(date).toLowerCase();
     const classes: Record<string, string> = {
       critical: "bg-danger-100 text-danger-700",
