@@ -1010,19 +1010,6 @@ export class AuditLogsComponent implements OnInit {
     }
   }
 
-  getRiskScoreClass(score: number): string {
-    if (score >= 86) return "text-purple-600";
-    if (score >= 61) return "text-danger-600";
-    if (score >= 26) return "text-warning-600";
-    return "text-success-600";
-  }
-
-  getRiskBarClass(score: number): string {
-    if (score >= 86) return "bg-purple-500";
-    if (score >= 61) return "bg-danger-500";
-    if (score >= 26) return "bg-warning-500";
-    return "bg-success-500";
-  }
 
   formatMetadata(metadata: Record<string, any>): string {
     return JSON.stringify(metadata, null, 2);
