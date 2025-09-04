@@ -266,12 +266,6 @@ import { UserStatus } from "../../shared/interfaces/user.interface";
                 <td class="table-cell">
                   <div class="flex items-center space-x-2">
                     <span
-                      [class]="getRiskScoreClass(user.riskScore)"
-                      class="px-2 py-1 text-xs font-medium rounded-full"
-                    >
-                      {{ user.riskScore }}
-                    </span>
-                    <span
                       [class]="getClearanceClass(user.securityClearance)"
                       class="px-2 py-1 text-xs font-medium rounded-full"
                     >
