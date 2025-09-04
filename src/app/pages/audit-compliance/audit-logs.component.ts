@@ -325,11 +325,6 @@ interface AuditFilters {
                 <th
                   class="px-6 py-3 text-left text-xs font-medium text-secondary-500 uppercase tracking-wider"
                 >
-                  Risk Score
-                </th>
-                <th
-                  class="px-6 py-3 text-left text-xs font-medium text-secondary-500 uppercase tracking-wider"
-                >
                   Actions
                 </th>
               </tr>
