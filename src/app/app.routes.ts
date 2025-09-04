@@ -259,7 +259,7 @@ export const routes: Routes = [
   },
   {
     path: "application-owner/bulk",
-    component: PlaceholderComponent,
+    component: BulkAccessComponent,
     canActivate: [AuthGuard],
     data: { roles: ["application_owner", "admin"] },
   },
