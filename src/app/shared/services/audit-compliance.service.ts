@@ -670,7 +670,6 @@ export class AuditComplianceService {
             module: "Security Configuration",
           },
         },
-        riskScore: 25,
         complianceFlags: ["ISO27001", "NIST"],
         ipAddress: "192.168.1.110",
         location: {
