@@ -187,7 +187,6 @@ export interface PolicyViolation {
   detectedBy: DetectionSource;
   involvedUsers: ViolationUser[];
   affectedResources: string[];
-  riskScore: number;
   status: ViolationStatus;
   investigationNotes?: string;
   resolution?: ViolationResolution;
