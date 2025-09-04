@@ -19,6 +19,7 @@ import { IntegrationConfigurationComponent } from "./pages/system-admin/integrat
 import { SystemConfigurationComponent } from "./pages/system-admin/system-configuration.component";
 import { WorkflowManagementComponent } from "./pages/workflow-management/workflow-management.component";
 import { PlaceholderComponent } from "./pages/placeholder.component";
+import { BulkAccessComponent } from "./pages/application-owner/bulk-access.component";
 import { AuthGuard } from "./shared/guards/auth.guard";
 import { UserAccessManagementComponent } from "./pages/access-management/user-access-management.component";
 import { ExceptionHandlingComponent } from "./pages/access-management/exception-handling.component";
