@@ -1509,17 +1509,4 @@ export class RolesPoliciesComponent implements OnInit {
     }
   }
 
-  getRiskScoreClass(score: number): string {
-    if (score >= 80) return "text-purple-600";
-    if (score >= 60) return "text-danger-600";
-    if (score >= 30) return "text-warning-600";
-    return "text-success-600";
-  }
-
-  getRiskBarClass(score: number): string {
-    if (score >= 80) return "bg-purple-500";
-    if (score >= 60) return "bg-danger-500";
-    if (score >= 30) return "bg-warning-500";
-    return "bg-success-500";
-  }
 }
