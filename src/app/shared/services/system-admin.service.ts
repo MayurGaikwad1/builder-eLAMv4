@@ -557,7 +557,6 @@ export class SystemAdminService {
           },
         ],
         isActive: true,
-        riskScore: 65,
       },
       {
         id: "perm-003",
