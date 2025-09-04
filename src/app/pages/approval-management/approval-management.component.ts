@@ -2,6 +2,8 @@ import { Component, OnInit, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { ApprovalManagementService } from "../../shared/services/approval-management.service";
+import { AuthService } from "../../shared/services/auth.service";
+import { Router } from "@angular/router";
 import { ApprovalStatistics } from "../../shared/interfaces/approval-management.interface";
 
 @Component({
