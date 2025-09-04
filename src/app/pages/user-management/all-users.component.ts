@@ -482,12 +482,6 @@ export class AllUsersComponent implements OnInit {
     return labels[status];
   }
 
-  getRiskScoreClass(score: number): string {
-    if (score < 25) return "bg-success-100 text-success-800";
-    if (score < 60) return "bg-primary-100 text-primary-800";
-    if (score < 85) return "bg-warning-100 text-warning-800";
-    return "bg-danger-100 text-danger-800";
-  }
 
   getClearanceClass(clearance?: SecurityClearance): string {
     const classes = {
