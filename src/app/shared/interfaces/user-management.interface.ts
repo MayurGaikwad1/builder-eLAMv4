@@ -154,7 +154,6 @@ export interface AuditEvent {
   userAgent?: string;
   sessionId?: string;
   correlationId?: string;
-  riskScore: number;
   severity: RiskLevel;
 }
 
