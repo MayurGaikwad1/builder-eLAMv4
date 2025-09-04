@@ -387,7 +387,12 @@ import {
               <div
                 class="flex items-center justify-between text-xs text-secondary-500"
               >
-                <span>{{ review.completedItems }}/{{ review.totalItems }} completed</span>
+                <span
+                  >{{ review.completedItems }}/{{
+                    review.totalItems
+                  }}
+                  completed</span
+                >
                 <span>Due {{ review.endDate | date: "MMM d" }}</span>
               </div>
               <div class="w-full bg-secondary-200 rounded-full h-1.5 mt-2">

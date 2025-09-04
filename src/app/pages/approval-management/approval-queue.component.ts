@@ -281,7 +281,9 @@ import { UrgencyLevel } from "../../shared/interfaces/user.interface";
                       }}{{ request.description.length > 80 ? "..." : "" }}
                     </p>
                     <p class="text-xs text-secondary-500">
-                      ID: {{ request.id }} • Level {{ request.currentLevel }}/{{ request.totalLevels }}
+                      ID: {{ request.id }} • Level {{ request.currentLevel }}/{{
+                        request.totalLevels
+                      }}
                     </p>
                   </div>
                 </td>
@@ -526,14 +528,29 @@ import { UrgencyLevel } from "../../shared/interfaces/user.interface";
                   <div>
                     <p class="text-xs text-secondary-600">Renewal Date</p>
                     <p class="font-medium">
-                      {{ getRenewalDate(selectedRequest) ? (getRenewalDate(selectedRequest) | date: 'MMM d, y') : 'N/A' }}
+                      {{
+                        getRenewalDate(selectedRequest)
+                          ? (getRenewalDate(selectedRequest) | date: "MMM d, y")
+                          : "N/A"
+                      }}
                     </p>
                   </div>
 
                   <div>
                     <p class="text-xs text-secondary-600">Renewal Priority</p>
-                    <p [class]="getRenewalPriorityClass(getRenewalDate(selectedRequest) ?? undefined)" class="font-medium rounded-full inline-block px-2 py-1 text-xs mt-1">
-                      {{ getRenewalPriorityLabel(getRenewalDate(selectedRequest) ?? undefined) }}
+                    <p
+                      [class]="
+                        getRenewalPriorityClass(
+                          getRenewalDate(selectedRequest) ?? undefined
+                        )
+                      "
+                      class="font-medium rounded-full inline-block px-2 py-1 text-xs mt-1"
+                    >
+                      {{
+                        getRenewalPriorityLabel(
+                          getRenewalDate(selectedRequest) ?? undefined
+                        )
+                      }}
                     </p>
                   </div>
                 </div>
