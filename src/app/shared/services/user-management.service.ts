@@ -447,7 +447,6 @@ export class UserManagementService {
         hireDate: new Date("2019-08-22"),
         roles: [],
         status: UserStatus.Active,
-        riskScore: 45,
         directReports: [],
         securityClearance: SecurityClearance.Secret,
         complianceStatus: this.generateComplianceStatus(),
