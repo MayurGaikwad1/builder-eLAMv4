@@ -951,7 +951,6 @@ export class AuditComplianceService {
         approvedItems: 165,
         revokedItems: 12,
         flaggedItems: 3,
-        riskScore: 35,
         findings: [
           {
             id: "rf-001",
