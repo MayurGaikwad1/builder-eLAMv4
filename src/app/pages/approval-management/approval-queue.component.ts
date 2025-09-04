@@ -926,6 +926,18 @@ export class ApprovalQueueComponent implements OnInit {
     return classes[label] || classes["normal"];
   }
 
+  // Helper to safely extract renewal date from request
+  getRenewalDate(request: any): Date | null {
+    if (!request) return null;
+    if (request.renewalDate) return new Date(request.renewalDate);
+    // Fallback: try metadata or requested access expiry
+    if (request.requestedAccess && request.requestedAccess.length) {
+      const access = request.requestedAccess.find((a: any) => a.expiryDate);
+      if (access) return new Date(access.expiryDate);
+    }
+    return null;
+  }
+
   getUrgencyClass(urgency: UrgencyLevel): string {
     const classes = {
       [UrgencyLevel.Low]: "bg-success-100 text-success-800",
