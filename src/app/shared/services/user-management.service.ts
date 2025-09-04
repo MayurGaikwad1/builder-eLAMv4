@@ -315,13 +315,6 @@ export class UserManagementService {
           trend: "up",
         },
         {
-          metric: "riskScore",
-          period: "week",
-          value: 45,
-          change: -8,
-          trend: "down",
-        },
-        {
           metric: "compliance",
           period: "month",
           value: 94,
