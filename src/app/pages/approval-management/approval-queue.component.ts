@@ -853,7 +853,11 @@ export class ApprovalQueueComponent implements OnInit {
     const target = new Date(date as any);
     const now = new Date();
     // Zero out time to compare dates only
-    const t = new Date(target.getFullYear(), target.getMonth(), target.getDate());
+    const t = new Date(
+      target.getFullYear(),
+      target.getMonth(),
+      target.getDate(),
+    );
     const n = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const diff = (t.getTime() - n.getTime()) / (1000 * 60 * 60 * 24);
     return Math.ceil(diff);

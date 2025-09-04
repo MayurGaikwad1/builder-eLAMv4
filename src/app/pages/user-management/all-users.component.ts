@@ -415,7 +415,6 @@ export class AllUsersComponent implements OnInit {
       filtered = filtered.filter((user) => user.status === this.filters.status);
     }
 
-
     this.filteredUsers.set(filtered);
   }
 
@@ -481,7 +480,6 @@ export class AllUsersComponent implements OnInit {
     };
     return labels[status];
   }
-
 
   getClearanceClass(clearance?: SecurityClearance): string {
     const classes = {

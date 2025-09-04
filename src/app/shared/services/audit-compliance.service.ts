@@ -404,8 +404,7 @@ export class AuditComplianceService {
         low: auditLogs.filter((l) => l.severity === AuditSeverity.Low).length,
         medium: auditLogs.filter((l) => l.severity === AuditSeverity.Medium)
           .length,
-        high: auditLogs.filter((l) => l.severity === AuditSeverity.High)
-          .length,
+        high: auditLogs.filter((l) => l.severity === AuditSeverity.High).length,
         critical: auditLogs.filter((l) => l.severity === AuditSeverity.Critical)
           .length,
       },

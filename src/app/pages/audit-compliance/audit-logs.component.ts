@@ -1010,7 +1010,6 @@ export class AuditLogsComponent implements OnInit {
     }
   }
 
-
   formatMetadata(metadata: Record<string, any>): string {
     return JSON.stringify(metadata, null, 2);
   }

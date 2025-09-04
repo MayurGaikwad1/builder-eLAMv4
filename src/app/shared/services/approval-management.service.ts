@@ -705,8 +705,10 @@ export class ApprovalManagementService {
           title: "Finance Analyst",
         },
         requestTitle: "Financial Reporting System Access",
-        description: "Access required to run monthly financial reports and reconciliations.",
-        justification: "Monthly close activities require access to generate and validate reports.",
+        description:
+          "Access required to run monthly financial reports and reconciliations.",
+        justification:
+          "Monthly close activities require access to generate and validate reports.",
         urgency: UrgencyLevel.Medium,
         riskFactors: [
           {
@@ -772,8 +774,10 @@ export class ApprovalManagementService {
           title: "HR Specialist",
         },
         requestTitle: "HR System Access",
-        description: "Access requested to manage employee records and benefits enrollment.",
-        justification: "Regular HR duties require access to update employee information and process enrollments.",
+        description:
+          "Access requested to manage employee records and benefits enrollment.",
+        justification:
+          "Regular HR duties require access to update employee information and process enrollments.",
         urgency: UrgencyLevel.Low,
         riskFactors: [
           {

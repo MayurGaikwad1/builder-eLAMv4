@@ -59,7 +59,13 @@ import {
           </div>
         </div>
 
-        <div class="metric-card" [class.cursor-pointer]="isManager()" (click)="onPendingApprovalsClick()" role="button" aria-label="Open Pending Approvals">
+        <div
+          class="metric-card"
+          [class.cursor-pointer]="isManager()"
+          (click)="onPendingApprovalsClick()"
+          role="button"
+          aria-label="Open Pending Approvals"
+        >
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-secondary-600">
@@ -138,7 +144,6 @@ import {
             </div>
           </div>
         </div>
-
       </div>
 
       <!-- Main Content Grid -->
@@ -299,7 +304,6 @@ import {
           </div>
         </div>
       </div>
-
     </div>
 
     <!-- New Request Modal -->

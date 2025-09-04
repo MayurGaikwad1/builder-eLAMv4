@@ -391,7 +391,6 @@ interface ReviewFilters {
             </div>
           </div>
 
-
           <!-- Due Date -->
           <div class="flex items-center justify-between text-sm">
             <span class="text-secondary-500">
@@ -609,7 +608,6 @@ interface ReviewFilters {
                     <div class="text-sm text-secondary-600">Flagged</div>
                   </div>
                 </div>
-
               </div>
             </div>
 
@@ -1131,7 +1129,6 @@ export class AccessReviewsComponent implements OnInit {
         return reviewType;
     }
   }
-
 
   getDueDateClass(review: AccessReview): string {
     if (review.status === ReviewStatus.Completed) return "text-success-600";

@@ -88,7 +88,6 @@ import { AuthService, User } from "../../shared/services/auth.service";
             </button>
           </div>
 
-
           <!-- User Menu -->
           <div class="relative">
             <button
@@ -297,13 +296,11 @@ export class HeaderComponent {
     this.authService.currentUser$.subscribe((user) => {
       this.currentUser.set(user);
     });
-
   }
 
   onMenuToggle() {
     this.menuToggle.emit();
   }
-
 
   toggleUserMenu() {
     this.showUserMenu.update((show) => !show);

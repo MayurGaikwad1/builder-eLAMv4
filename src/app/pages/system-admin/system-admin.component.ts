@@ -266,7 +266,6 @@ import {
             </div>
           </div>
         </div>
-
       </div>
 
       <!-- Resource Usage and Service Status -->
@@ -875,5 +874,4 @@ export class SystemAdminComponent implements OnInit {
     if (errorRate > 1) return "text-warning-600";
     return "text-success-600";
   }
-
 }

@@ -66,7 +66,13 @@ import { ApprovalStatistics } from "../../shared/interfaces/approval-management.
 
       <!-- Statistics Overview -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="metric-card" [class.cursor-pointer]="isManager()" (click)="onPendingApprovalsClick()" role="button" aria-label="Open Pending Approvals">
+        <div
+          class="metric-card"
+          [class.cursor-pointer]="isManager()"
+          (click)="onPendingApprovalsClick()"
+          role="button"
+          aria-label="Open Pending Approvals"
+        >
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-secondary-600">
@@ -522,7 +528,11 @@ export class ApprovalManagementComponent implements OnInit {
     },
   });
 
-  constructor(private approvalService: ApprovalManagementService, private authService: AuthService, private router: Router) {}
+  constructor(
+    private approvalService: ApprovalManagementService,
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   isManager(): boolean {
     return this.authService.hasAnyRole(["manager"]);

@@ -611,9 +611,7 @@ interface PolicyFilters {
                     >Last Modified</label
                   >
                   <p class="mt-1 text-sm text-secondary-900">
-                    {{
-                      selectedRole()!.lastModified | date: "MMM d, y h:mm a"
-                    }}
+                    {{ selectedRole()!.lastModified | date: "MMM d, y h:mm a" }}
                     by {{ selectedRole()!.modifiedBy }}
                   </p>
                 </div>
@@ -1503,5 +1501,4 @@ export class RolesPoliciesComponent implements OnInit {
         return action;
     }
   }
-
 }
