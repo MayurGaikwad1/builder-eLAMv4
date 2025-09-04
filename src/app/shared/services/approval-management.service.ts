@@ -125,14 +125,6 @@ export class ApprovalManagementService {
               (req) => req.urgency === filters.urgency,
             );
           }
-          if (filters.riskLevel) {
-            const riskRange = this.getRiskRange(filters.riskLevel);
-            filtered = filtered.filter(
-              (req) =>
-                req.riskScore >= riskRange.min &&
-                req.riskScore <= riskRange.max,
-            );
-          }
         }
 
         return filtered;
@@ -401,7 +393,6 @@ export class ApprovalManagementService {
         justification:
           "Critical production issue affecting customer transactions. Need immediate database access to identify and resolve performance bottlenecks.",
         urgency: UrgencyLevel.High,
-        riskScore: 75,
         riskFactors: [
           {
             type: RiskFactorType.HighPrivilegeAccess,
@@ -533,7 +524,6 @@ export class ApprovalManagementService {
         justification:
           "Promotion approved by HR. Need additional privileges for advanced threat hunting and incident response.",
         urgency: UrgencyLevel.Medium,
-        riskScore: 55,
         riskFactors: [
           {
             type: RiskFactorType.HighPrivilegeAccess,
@@ -626,7 +616,6 @@ export class ApprovalManagementService {
         justification:
           "Major system outage affecting all customer services. Need immediate administrative access to restore operations.",
         urgency: UrgencyLevel.Critical,
-        riskScore: 95,
         riskFactors: [
           {
             type: RiskFactorType.EmergencyRequest,
