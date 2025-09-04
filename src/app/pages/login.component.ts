@@ -214,6 +214,15 @@ export class LoginComponent {
     });
   }
 
+  // Quick-fill helpers for demo credentials
+  fillSarah() {
+    this.loginForm.patchValue({ email: 'sarah.wilson@company.com', password: 'owner123' });
+  }
+
+  fillMichael() {
+    this.loginForm.patchValue({ email: 'michael.chen@company.com', password: 'owner123' });
+  }
+
   togglePasswordVisibility(): void {
     this.showPassword.set(!this.showPassword());
   }
