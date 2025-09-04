@@ -185,7 +185,6 @@ export class MockDataService {
       status: RequestStatus.Submitted,
       submittedAt: new Date(),
       approvals: [],
-      riskScore: Math.floor(Math.random() * 100),
     };
 
     this.mockRequests.unshift(newRequest);
