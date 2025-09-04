@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ELAM Demo — Script & Screenshot Placeholders</title>
+  <style>
+    body { font-family: Inter, Arial, sans-serif; color: #111827; margin: 32px; }
+    h1,h2,h3 { color: #0f172a; }
+    .step { margin-bottom: 28px; }
+    .meta { color: #6b7280; font-size: 13px; margin-bottom: 8px; }
+    .placeholder { width: 100%; max-width: 900px; height: 280px; border: 2px dashed #cbd5e1; display:flex; align-items:center; justify-content:center; color:#94a3b8; margin:12px 0; }
+    .caption { font-size: 13px; color: #374151; }
+    .voice { background:#f8fafc; border-left:4px solid #3b82f6; padding:8px 12px; margin-top:8px; font-size:14px; }
+    .notes { font-size:13px; color:#475569; margin-top:6px; }
+    .badge { display:inline-block; background:#e6f0ff; color:#0b61d7; padding:4px 8px; border-radius:6px; font-size:12px; }
+  </style>
+</head>
+<body>
+  <h1>ELAM — Demo Script & Screenshot Placeholders</h1>
+  <p class="meta">Prepared for: Mayur Gaikwad (CTO demo) — Open the generated HTML and print to PDF (File → Print → Save as PDF).</p>
+
+  <h2>Quick instructions</h2>
+  <ul>
+    <li>Open the app URL and hard-refresh: <span class="badge">https://e7d23a8a5b954b1e8e367b0185b6b935-8130085a89324643867662044.fly.dev/login</span></li>
+    <li>Use the demo credentials included in the login card when recording.</li>
+    <li>Capture each screenshot named exactly as indicated and replace the placeholder images if you want a final PDF with visuals.</li>
+  </ul>
+
+  <hr />
+
+  <div class="step">
+    <h3>Step 0 — Title slide (6–8s)</h3>
+    <div class="meta">Screenshot filename: <strong>15-end-slide.png</strong></div>
+    <div class="placeholder">[PLACEHOLDER: Title slide image (15-end-slide.png)]</div>
+    <div class="voice">Voiceover: “Hi — I’m Mayur. This demo shows ELAM role-based flows including the new Application Owner persona.”</div>
+  </div>
+
+  <div class="step">
+    <h3>Step 1 — Login page (20s)</h3>
+    <div class="meta">URL: <em>/login</em> — Screenshot filename: <strong>01-login.png</strong></div>
+    <div class="placeholder">[PLACEHOLDER: Login page screenshot (01-login.png)]</div>
+    <p class="caption">Annotate: highlight demo credentials card and the Quick-fill "Use Sarah" button.</p>
+    <div class="voice">Voiceover: “We provide demo credentials. I’ll sign in as the Application Owner using the quick-fill button.”</div>
+  </div>
+
+  <div class="step">
+    <h3>Step 2 — Confirm role & sidebar (15s)</h3>
+    <div class="meta">URL: <em>/dashboard</em> — Screenshot filename: <strong>02-sidebar-app-owner.png</strong></div>
+    <div class="placeholder">[PLACEHOLDER: Sidebar showing Application Owner nav (02-sidebar-app-owner.png)]</div>
+    <p class="caption">Annotate: circle "Application Owner" in the sidebar and the user role at the bottom.</p>
+    <div class="voice">Voiceover: “As Sarah, you see an Application Owner section in the sidebar — a dedicated persona alongside Admin and Manager.”</div>
+  </div>
+
+  <div class="step">
+    <h3>Step 3 — Application Owner — Overview (45–60s)</h3>
+    <div class="meta">URL: <em>/application-owner/overview</em> — Screenshot filename: <strong>03-owner-overview.png</strong></div>
+    <div class="placeholder">[PLACEHOLDER: Owner overview metrics (03-owner-overview.png)]</div>
+    <p class="caption">Annotate: label metrics (Total Requests, Pending Approvals, Exceptions) and highlight application selector drop-down.</p>
+    <div class="voice">Voiceover: “Overview gives app-scoped metrics — total requests, pending approvals, and exceptions. I’ll scope to Salesforce CRM.”</div>
+  </div>
+
+  <div class="step">
+    <h3>Step 4 — Owner quick actions: Pending Approvals (30–40s)</h3>
+    <div class="meta">Before screenshot: <strong>04-owner-pending-approvals-before.png</strong> • After quick-approve: <strong>05-owner-pending-approvals-after.png</strong></div>
+    <div class="placeholder">[PLACEHOLDER: pending approvals before (04-owner-pending-approvals-before.png)]</div>
+    <div class="placeholder">[PLACEHOLDER: pending approvals after (05-owner-pending-approvals-after.png)]</div>
+    <p class="caption">Action: click "Approve" on a request; capture before and after to show metric change.</p>
+    <div class="voice">Voiceover: “Application Owner can approve requests directly from the dashboard — quick approve updates the dashboard immediately.”</div>
+  </div>
+
+  <div class="step">
+    <h3>Step 5 — Exception Decisions (60s)</h3>
+    <div class="meta">URL: <em>/application-owner/exceptions</em> — Filenames: <strong>06-owner-exceptions-list.png</strong>, <strong>07-owner-exception-modal.png</strong></div>
+    <div class="placeholder">[PLACEHOLDER: exceptions table (06-owner-exceptions-list.png)]</div>
+    <div class="placeholder">[PLACEHOLDER: modal review (07-owner-exception-modal.png)]</div>
+    <p class="caption">Annotate: highlight a row and the Review action; in modal annotate the Retain option and retention note field.</p>
+    <div class="voice">Voiceover: “For AD validation failures, the Owner can retain or delete IDs with retention notes; here I retain one with a note.”</div>
+  </div>
+
+  <div class="step">
+    <h3>Step 6 — Reassign exception to Manager (30s)</h3>
+    <div class="meta">Filename: <strong>08-owner-reassign.png</strong></div>
+    <div class="placeholder">[PLACEHOLDER: reassign UI / assigned state (08-owner-reassign.png)]</div>
+    <div class="voice">Voiceover: “Owner can escalate or reassign exception tasks to a Manager for them to review.”</div>
+  </div>
+
+  <div class="step">
+    <h3>Step 7 — Bulk Access Operations (60s)</h3>
+    <div class="meta">URL: <em>/application-owner/bulk</em> — Filenames: <strong>09-owner-bulk-access-form.png</strong>, <strong>10-owner-bulk-success.png</strong></div>
+    <div class="placeholder">[PLACEHOLDER: bulk form (09-owner-bulk-access-form.png)]</div>
+    <div class="placeholder">[PLACEHOLDER: bulk action success (10-owner-bulk-success.png)]</div>
+    <p class="caption">Action: set Application=Salesforce CRM, Access Level=Read, User IDs=jdoe,asmith,bwilson → click Grant Access.</p>
+    <div class="voice">Voiceover: “Here the Owner can bulk grant or revoke access. I’ll grant read access for three user IDs — this creates a bulk request.”</div>
+  </div>
+
+  <div class="step">
+    <h3>Step 8 — Manager view (45s)</h3>
+    <div class="meta">Sign-in: manager@company.com / manager123 — Filenames: <strong>11-manager-sidebar.png</strong>, <strong>12-manager-approvals-queue.png</strong></div>
+    <div class="placeholder">[PLACEHOLDER: manager sidebar (11-manager-sidebar.png)]</div>
+    <div class="placeholder">[PLACEHOLDER: manager approvals queue (12-manager-approvals-queue.png)]</div>
+    <div class="voice">Voiceover: “Manager sees approvals queue for processing. Note User Management / Access Management visibility differs from Admin.”</div>
+  </div>
+
+  <div class="step">
+    <h3>Step 9 — Admin view (30s)</h3>
+    <div class="meta">Sign-in: admin@company.com / admin123 — Filenames: <strong>13-admin-sidebar.png</strong>, <strong>14-admin-roles-policies.png</strong></div>
+    <div class="placeholder">[PLACEHOLDER: admin sidebar (13-admin-sidebar.png)]</div>
+    <div class="placeholder">[PLACEHOLDER: admin roles & policies (14-admin-roles-policies.png)]</div>
+    <div class="voice">Voiceover: “Admin has full access to system configuration, roles, and integrations.”</div>
+  </div>
+
+  <div class="step">
+    <h3>Step 10 — Live scenario (60–90s)</h3>
+    <div class="meta">Suggested scenario: create a high-risk request for Salesforce CRM, Owner reassigns to Manager, Manager approves. Filenames: <strong>scenario-submission.png</strong>, <strong>scenario-manager-queue.png</strong></div>
+    <div class="placeholder">[PLACEHOLDER: scenario submission (scenario-submission.png)]</div>
+    <div class="placeholder">[PLACEHOLDER: manager queue (scenario-manager-queue.png)]</div>
+    <div class="voice">Voiceover: “Let’s simulate a high-risk access request and show the handoff between Owner and Manager.”</div>
+  </div>
+
+  <hr />
+  <h2>Annotations & notes</h2>
+  <ul>
+    <li>Use the exact placeholder filenames when saving screenshots so you can replace them in the HTML before printing to PDF.</li>
+    <li>Preferred annotation tool: macOS Markup, Windows Snipping Tool, or any screenshot app that supports arrows/labels.</li>
+    <li>Recording tips: keep cursor movements deliberate, pause 1–1.5s after each click, and keep voiceover sentences short.</li>
+  </ul>
+
+  <h2>Print to PDF</h2>
+  <ol>
+    <li>Open this file in a browser: <code>demo/demo-script.html</code> from the project or the file path shown in your editor.</li>
+    <li>Replace placeholder boxes with your screenshots if you want embedded images in the PDF.</li>
+    <li>File → Print → Destination: Save as PDF. Use A4 or Letter, scale 100%, margins: Default.</li>
+    <li>Save and use the PDF for sharing the demo slides with your CTO.</li>
+  </ol>
+
+  <p class="notes">If you'd like, I can also generate a ready-to-download PDF for you. Say “generate PDF” and I’ll create a printable PDF from this HTML and place it in the repo.</p>
+</body>
+</html>
