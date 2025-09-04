@@ -54,6 +54,11 @@ interface LoginError {
                   <div><strong>Application Owner (Sarah):</strong> sarah.wilson@company.com / owner123</div>
                   <div><strong>Application Owner (Michael):</strong> michael.chen@company.com / owner123</div>
                 </div>
+
+                <div class="mt-3 flex space-x-2">
+                  <button type="button" (click)="fillSarah()" class="px-3 py-1 bg-primary-600 text-white rounded">Use Sarah</button>
+                  <button type="button" (click)="fillMichael()" class="px-3 py-1 bg-primary-600 text-white rounded">Use Michael</button>
+                </div>
               </div>
             </div>
           </div>
