@@ -613,26 +613,6 @@ interface AuditFilters {
                     {{ selectedLog()!.outcome }}
                   </span>
                 </div>
-                <div>
-                  <label class="block text-sm font-medium text-secondary-700"
-                    >Risk Score</label
-                  >
-                  <div class="flex items-center space-x-2">
-                    <span
-                      [class]="getRiskScoreClass(selectedLog()!.riskScore)"
-                      class="font-medium"
-                    >
-                      {{ selectedLog()!.riskScore }}
-                    </span>
-                    <div class="flex-1 bg-secondary-200 rounded-full h-2">
-                      <div
-                        [class]="getRiskBarClass(selectedLog()!.riskScore)"
-                        class="h-2 rounded-full"
-                        [style.width.%]="selectedLog()!.riskScore"
-                      ></div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
