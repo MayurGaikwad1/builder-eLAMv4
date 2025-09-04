@@ -286,13 +286,7 @@ export class UserManagementService {
           w.workflowType === WorkflowType.UserDeprovisioning &&
           w.status === WorkflowStatus.Pending,
       ).length,
-      riskDistribution: {
-        low: users.filter((u) => u.riskScore < 25).length,
-        medium: users.filter((u) => u.riskScore >= 25 && u.riskScore < 60)
-          .length,
-        high: users.filter((u) => u.riskScore >= 60 && u.riskScore < 85).length,
-        critical: users.filter((u) => u.riskScore >= 85).length,
-      },
+      riskDistribution: { low: 0, medium: 0, high: 0, critical: 0 },
       complianceMetrics: {
         compliantUsers: users.filter((u) => u.complianceStatus.isCompliant)
           .length,
