@@ -511,21 +511,7 @@ interface PolicyFilters {
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
-                      <span
-                        [class]="getRiskScoreClass(permission.riskScore)"
-                        class="text-sm font-medium"
-                      >
-                        {{ permission.riskScore }}
-                      </span>
-                      <div
-                        class="ml-2 w-16 bg-secondary-200 rounded-full h-1.5"
-                      >
-                        <div
-                          [class]="getRiskBarClass(permission.riskScore)"
-                          class="h-1.5 rounded-full"
-                          [style.width.%]="permission.riskScore"
-                        ></div>
-                      </div>
+                      <!-- Risk score removed -->
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
