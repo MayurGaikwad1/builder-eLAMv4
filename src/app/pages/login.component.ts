@@ -51,6 +51,8 @@ interface LoginError {
                   <div><strong>Admin:</strong> admin@company.com / admin123</div>
                   <div><strong>Manager:</strong> manager@company.com / manager123</div>
                   <div><strong>User:</strong> user@company.com / user123</div>
+                  <div><strong>Application Owner (Sarah):</strong> sarah.wilson@company.com / owner123</div>
+                  <div><strong>Application Owner (Michael):</strong> michael.chen@company.com / owner123</div>
                 </div>
               </div>
             </div>
