@@ -296,7 +296,6 @@ export interface AccessReview {
   approvedItems: number;
   revokedItems: number;
   flaggedItems: number;
-  riskScore: number;
   findings: ReviewFinding[];
   recommendations: string[];
   nextReviewDate: Date;
