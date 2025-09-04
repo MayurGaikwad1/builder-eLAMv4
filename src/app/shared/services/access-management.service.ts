@@ -533,7 +533,9 @@ export class AccessManagementService {
     userIds: string[],
     accessLevel: AccessLevel = AccessLevel.Read,
   ): Observable<boolean> {
-    const application = this.mockApplications.find((a) => a.id === applicationId);
+    const application = this.mockApplications.find(
+      (a) => a.id === applicationId,
+    );
     const newRequest: UserAccessRequest = {
       id: `req-${Date.now()}`,
       requesterId: "app-owner",
@@ -563,7 +565,9 @@ export class AccessManagementService {
     applicationId: string,
     userIds: string[],
   ): Observable<boolean> {
-    const application = this.mockApplications.find((a) => a.id === applicationId);
+    const application = this.mockApplications.find(
+      (a) => a.id === applicationId,
+    );
     const newRequest: UserAccessRequest = {
       id: `req-${Date.now()}`,
       requesterId: "app-owner",
