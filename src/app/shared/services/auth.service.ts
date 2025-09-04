@@ -89,6 +89,34 @@ export class AuthService {
       avatar:
         "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },
+    {
+      id: "owner-001",
+      email: "sarah.wilson@company.com",
+      name: "Sarah Wilson",
+      role: "application_owner",
+      permissions: [
+        "app_owner.read",
+        "app_owner.manage",
+        "exception.assign",
+        "bulk.access",
+      ],
+      isActive: true,
+      avatar:
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    },
+    {
+      id: "owner-002",
+      email: "michael.chen@company.com",
+      name: "Michael Chen",
+      role: "application_owner",
+      permissions: [
+        "app_owner.read",
+        "app_owner.manage",
+        "exception.assign",
+        "bulk.access",
+      ],
+      isActive: true,
+    },
   ];
 
   // Demo passwords (in real app, these would be hashed)
@@ -96,6 +124,8 @@ export class AuthService {
     "admin@company.com": "admin123",
     "manager@company.com": "manager123",
     "user@company.com": "user123",
+    "sarah.wilson@company.com": "owner123",
+    "michael.chen@company.com": "owner123",
   };
 
   public currentUser$ = this.currentUserSubject.asObservable();
