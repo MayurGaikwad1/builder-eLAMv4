@@ -605,7 +605,6 @@ export class ApprovalManagementService {
           employeeId: "EMP003",
           department: "Operations",
           title: "Operations Manager",
-          riskScore: 35,
         },
         requestTitle: "Emergency Admin Access",
         description:
