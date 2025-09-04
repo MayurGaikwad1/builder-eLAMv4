@@ -144,17 +144,23 @@ export class AuthService {
     return of(null).pipe(
       delay(1500), // Simulate network delay
       map(() => {
+        // Normalize email
+        const normalizedEmail = (email || "").toString().trim().toLowerCase();
+
         // Check credentials
-        const storedPassword = this.demoCredentials[email.toLowerCase()];
+        const storedPassword = this.demoCredentials[normalizedEmail];
         if (!storedPassword || storedPassword !== password) {
+          // Debug log for developers
+          // eslint-disable-next-line no-console
+          console.warn(`Login failed for ${normalizedEmail}: storedPassword=${!!storedPassword}`);
           return false;
         }
 
         // Find user
-        const user = this.demoUsers.find(
-          (u) => u.email.toLowerCase() === email.toLowerCase(),
-        );
+        const user = this.demoUsers.find((u) => u.email.toLowerCase() === normalizedEmail);
         if (!user || !user.isActive) {
+          // eslint-disable-next-line no-console
+          console.warn(`User not found or inactive for ${normalizedEmail}`);
           return false;
         }
 
