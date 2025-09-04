@@ -42,7 +42,6 @@ export interface AccessRequest {
   status: RequestStatus;
   submittedAt: Date;
   approvals: Approval[];
-  riskScore: number;
   deadline?: Date;
 }
 
