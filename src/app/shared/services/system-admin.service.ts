@@ -534,7 +534,6 @@ export class SystemAdminService {
         ],
         conditions: [],
         isActive: true,
-        riskScore: 15,
       },
       {
         id: "perm-002",
