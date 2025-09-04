@@ -180,6 +180,17 @@ export class SidebarComponent implements OnInit {
       ],
     },
     {
+      label: "Application Owner",
+      icon: "admin",
+      route: "/application-owner/overview",
+      requiredRoles: ["application_owner"],
+      children: [
+        { label: "Overview", icon: "", route: "/application-owner/overview" },
+        { label: "Exception Decisions", icon: "", route: "/application-owner/exceptions" },
+        { label: "Bulk Access", icon: "", route: "/application-owner/bulk" },
+      ],
+    },
+    {
       label: "Access Management",
       icon: "access_management",
       route: "/access-management",
