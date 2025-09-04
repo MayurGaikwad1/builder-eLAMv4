@@ -665,7 +665,6 @@ export interface SecurityMetrics {
   securityEvents: number;
   blockedAttempts: number;
   policyViolations: number;
-  riskScore: number;
   vulnerabilities: VulnerabilityMetrics;
 }
 
