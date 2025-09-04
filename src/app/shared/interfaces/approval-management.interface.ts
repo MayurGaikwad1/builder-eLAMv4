@@ -19,6 +19,7 @@ export interface ApprovalRequest {
   status: ApprovalStatus;
   submittedAt: Date;
   deadline?: Date;
+  renewalDate?: Date;
   slaBreachWarning: boolean;
   conflictChecks: ConflictCheck[];
   attachments: RequestAttachment[];
