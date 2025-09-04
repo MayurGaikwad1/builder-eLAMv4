@@ -620,7 +620,6 @@ export class AuditComplianceService {
             requiredRole: "database_admin",
           },
         },
-        riskScore: 85,
         complianceFlags: ["SOX", "PCI-DSS"],
         ipAddress: "192.168.1.200",
         userAgent: "pgAdmin 4.28",
