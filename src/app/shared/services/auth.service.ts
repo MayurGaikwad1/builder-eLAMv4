@@ -6,7 +6,7 @@ export interface User {
   id: string;
   email: string;
   name: string;
-  role: "admin" | "manager" | "user";
+  role: "admin" | "manager" | "user" | "application_owner";
   avatar?: string;
   permissions: string[];
   isActive: boolean;
