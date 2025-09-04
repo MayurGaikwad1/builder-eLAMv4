@@ -208,7 +208,6 @@ export class ApprovalManagementService {
           employeeId: "EMP999",
           department: "Various",
           title: "Delegate",
-          riskScore: 25,
         };
         currentChainItem.status = ApprovalDecision.Delegated;
         currentChainItem.comments = comments;
