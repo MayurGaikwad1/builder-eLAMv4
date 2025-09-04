@@ -13,7 +13,6 @@ export interface AuditLog {
   action: string;
   outcome: AuditOutcome;
   details: AuditDetails;
-  riskScore: number;
   complianceFlags: string[];
   ipAddress: string;
   userAgent?: string;
