@@ -529,7 +529,6 @@ export class AuditComplianceService {
             module: "Authentication",
           },
         },
-        riskScore: 15,
         complianceFlags: ["ISO27001"],
         ipAddress: "192.168.1.150",
         userAgent:
