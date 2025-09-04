@@ -10,7 +10,6 @@ export interface User {
   roles: Role[];
   lastLogin?: Date;
   status: UserStatus;
-  riskScore: number;
 }
 
 export interface Role {
