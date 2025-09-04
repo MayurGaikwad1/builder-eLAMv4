@@ -10,14 +10,26 @@ if (typeof window !== "undefined" && window.addEventListener) {
   const isViteOverlayError = (ev: ErrorEvent | null, reason?: any) => {
     try {
       const filename = (ev as any)?.filename || "";
-      const msg = ev?.error?.message || ev?.message || (reason && reason.message) || "";
+      const msg =
+        ev?.error?.message || ev?.message || (reason && reason.message) || "";
       const stack = ev?.error?.stack || (reason && reason.stack) || "";
 
-      const fromViteClient = filename.includes("@vite/client") || stack.includes("@vite/client") || stack.includes("/vite/client");
-      const overlayMention = String(msg).toLowerCase().includes("overlay") || String(msg).toLowerCase().includes("erroroverlay");
-      const frameRead = String(msg).toLowerCase().includes("reading 'frame'") || String(msg).toLowerCase().includes("frame");
+      const fromViteClient =
+        filename.includes("@vite/client") ||
+        stack.includes("@vite/client") ||
+        stack.includes("/vite/client");
+      const overlayMention =
+        String(msg).toLowerCase().includes("overlay") ||
+        String(msg).toLowerCase().includes("erroroverlay");
+      const frameRead =
+        String(msg).toLowerCase().includes("reading 'frame'") ||
+        String(msg).toLowerCase().includes("frame");
 
-      return (fromViteClient && frameRead) || (fromViteClient && overlayMention) || (frameRead && stack.includes("ErrorOverlay"));
+      return (
+        (fromViteClient && frameRead) ||
+        (fromViteClient && overlayMention) ||
+        (frameRead && stack.includes("ErrorOverlay"))
+      );
     } catch (e) {
       return false;
     }
@@ -31,7 +43,10 @@ if (typeof window !== "undefined" && window.addEventListener) {
           ev.stopImmediatePropagation?.();
           ev.preventDefault?.();
           // eslint-disable-next-line no-console
-          console.warn("Suppressed dev-overlay related error:", ev?.message || ev?.error?.message);
+          console.warn(
+            "Suppressed dev-overlay related error:",
+            ev?.message || ev?.error?.message,
+          );
         }
       } catch (e) {
         // swallow
@@ -48,7 +63,10 @@ if (typeof window !== "undefined" && window.addEventListener) {
           ev.stopImmediatePropagation?.();
           ev.preventDefault?.();
           // eslint-disable-next-line no-console
-          console.warn("Suppressed dev-overlay related unhandled rejection:", ev?.reason);
+          console.warn(
+            "Suppressed dev-overlay related unhandled rejection:",
+            ev?.reason,
+          );
         }
       } catch (e) {
         // swallow
