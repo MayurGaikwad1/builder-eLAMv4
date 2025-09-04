@@ -770,7 +770,6 @@ export class ApprovalManagementService {
           employeeId: "EMP005",
           department: "HR",
           title: "HR Specialist",
-          riskScore: 20,
         },
         requestTitle: "HR System Access",
         description: "Access requested to manage employee records and benefits enrollment.",
