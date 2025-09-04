@@ -7,18 +7,31 @@ import { App } from "./app/app";
 // This handler only suppresses the specific overlay-causing error message so
 // other errors still surface to dev tooling.
 if (typeof window !== "undefined" && window.addEventListener) {
+  const isViteOverlayError = (ev: ErrorEvent | null, reason?: any) => {
+    try {
+      const filename = (ev as any)?.filename || "";
+      const msg = ev?.error?.message || ev?.message || (reason && reason.message) || "";
+      const stack = ev?.error?.stack || (reason && reason.stack) || "";
+
+      const fromViteClient = filename.includes("@vite/client") || stack.includes("@vite/client") || stack.includes("/vite/client");
+      const overlayMention = String(msg).toLowerCase().includes("overlay") || String(msg).toLowerCase().includes("erroroverlay");
+      const frameRead = String(msg).toLowerCase().includes("reading 'frame'") || String(msg).toLowerCase().includes("frame");
+
+      return (fromViteClient && frameRead) || (fromViteClient && overlayMention) || (frameRead && stack.includes("ErrorOverlay"));
+    } catch (e) {
+      return false;
+    }
+  };
+
   window.addEventListener(
     "error",
     (ev: ErrorEvent) => {
       try {
-        const msg = ev?.error?.message || ev?.message || "";
-        if (typeof msg === "string" && msg.includes("reading 'frame'")) {
-          // Prevent other handlers (Vite overlay) from processing this error
+        if (isViteOverlayError(ev)) {
           ev.stopImmediatePropagation?.();
           ev.preventDefault?.();
-          // Log simplified error for developer visibility
           // eslint-disable-next-line no-console
-          console.warn("Suppressed dev-overlay frame-read error:", msg);
+          console.warn("Suppressed dev-overlay related error:", ev?.message || ev?.error?.message);
         }
       } catch (e) {
         // swallow
@@ -31,16 +44,11 @@ if (typeof window !== "undefined" && window.addEventListener) {
     "unhandledrejection",
     (ev: PromiseRejectionEvent) => {
       try {
-        const reason = ev?.reason as any;
-        const msg = reason?.message || String(reason || "");
-        if (typeof msg === "string" && msg.includes("reading 'frame'")) {
+        if (isViteOverlayError(null, ev?.reason)) {
           ev.stopImmediatePropagation?.();
           ev.preventDefault?.();
           // eslint-disable-next-line no-console
-          console.warn(
-            "Suppressed dev-overlay frame-read unhandled rejection:",
-            msg,
-          );
+          console.warn("Suppressed dev-overlay related unhandled rejection:", ev?.reason);
         }
       } catch (e) {
         // swallow
