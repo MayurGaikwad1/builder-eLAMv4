@@ -1,4 +1,3 @@
-import { Component, OnInit, signal, computed } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { AuditComplianceService } from "../../shared/services/audit-compliance.service";
@@ -46,7 +45,7 @@ import {
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
               ></path>
             </svg>
             Export Report
@@ -388,12 +387,7 @@ import {
               <div
                 class="flex items-center justify-between text-xs text-secondary-500"
               >
-                <span
-                  >{{ review.completedItems }}/{{
-                    review.totalItems
-                  }}
-                  completed</span
-                >
+                <span>{{ review.completedItems }}/{{ review.totalItems }} completed</span>
                 <span>Due {{ review.endDate | date: "MMM d" }}</span>
               </div>
               <div class="w-full bg-secondary-200 rounded-full h-1.5 mt-2">
