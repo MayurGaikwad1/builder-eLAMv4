@@ -893,6 +893,39 @@ export class ApprovalQueueComponent implements OnInit {
     return labels[type] || "Unknown";
   }
 
+  // Renewal date based priority logic
+  private daysUntil(date?: Date | string): number {
+    if (!date) return Infinity;
+    const target = new Date(date as any);
+    const now = new Date();
+    // Zero out time to compare dates only
+    const t = new Date(target.getFullYear(), target.getMonth(), target.getDate());
+    const n = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const diff = (t.getTime() - n.getTime()) / (1000 * 60 * 60 * 24);
+    return Math.ceil(diff);
+  }
+
+  getRenewalPriorityLabel(date?: Date | string): string {
+    const days = this.daysUntil(date);
+    if (days <= 3) return "Critical";
+    if (days <= 5) return "High";
+    if (days <= 10) return "Medium";
+    if (days <= 15) return "Low";
+    return "Normal";
+  }
+
+  getRenewalPriorityClass(date?: Date | string): string {
+    const label = this.getRenewalPriorityLabel(date).toLowerCase();
+    const classes: Record<string, string> = {
+      critical: "bg-danger-100 text-danger-700",
+      high: "bg-warning-100 text-warning-700",
+      medium: "bg-primary-100 text-primary-700",
+      low: "bg-success-100 text-success-700",
+      normal: "bg-secondary-100 text-secondary-700",
+    };
+    return classes[label] || classes["normal"];
+  }
+
   getUrgencyClass(urgency: UrgencyLevel): string {
     const classes = {
       [UrgencyLevel.Low]: "bg-success-100 text-success-800",
