@@ -190,7 +190,7 @@ import { UserStatus } from "../../shared/interfaces/user.interface";
                 <th class="table-header">User</th>
                 <th class="table-header">Department</th>
                 <th class="table-header">Status</th>
-                <th class="table-header">Risk Score</th>
+                <th class="table-header">Clearance</th>
                 <th class="table-header">Last Activity</th>
                 <th class="table-header">Compliance</th>
                 <th class="table-header">Actions</th>
