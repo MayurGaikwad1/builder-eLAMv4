@@ -29,7 +29,6 @@ export interface Permission {
   actions: PermissionAction[];
   conditions: PermissionCondition[];
   isActive: boolean;
-  riskScore: number;
 }
 
 export interface PermissionAction {
