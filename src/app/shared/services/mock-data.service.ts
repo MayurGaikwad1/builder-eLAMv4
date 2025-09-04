@@ -104,7 +104,6 @@ export class MockDataService {
       status: RequestStatus.Submitted,
       submittedAt: new Date("2024-01-16T09:15:00"),
       approvals: [],
-      riskScore: 45,
     },
     {
       id: "req-003",
