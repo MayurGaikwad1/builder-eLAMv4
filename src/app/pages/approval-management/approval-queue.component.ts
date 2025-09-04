@@ -570,7 +570,7 @@ import { UrgencyLevel } from "../../shared/interfaces/user.interface";
                   <div>
                     <p class="text-xs text-secondary-600">Renewal Date</p>
                     <p class="font-medium">
-                      {{ selectedRequest?.renewalDate ? (selectedRequest?.renewalDate | date: 'MMM d, y') : 'N/A' }}
+                      {{ getRenewalDate(selectedRequest) ? (getRenewalDate(selectedRequest) | date: 'MMM d, y') : 'N/A' }}
                     </p>
                   </div>
 
