@@ -400,7 +400,6 @@ export class UserManagementService {
       result,
       details: { description: details },
       ipAddress: "192.168.1.100",
-      riskScore: Math.floor(Math.random() * 50),
       severity: RiskLevel.Low,
     };
 
