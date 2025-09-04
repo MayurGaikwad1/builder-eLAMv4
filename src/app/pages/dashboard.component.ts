@@ -139,45 +139,6 @@ import {
           </div>
         </div>
 
-        <div class="metric-card">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-sm font-medium text-secondary-600">Risk Score</p>
-              <p class="text-2xl font-bold text-secondary-900">
-                {{ metrics().riskScore }}
-              </p>
-              <p class="text-xs text-warning-600 flex items-center mt-1">
-                <svg
-                  class="w-3 h-3 mr-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                {{ metrics().riskTrend }}
-              </p>
-            </div>
-            <div
-              class="w-12 h-12 bg-danger-100 rounded-lg flex items-center justify-center"
-            >
-              <svg
-                class="w-6 h-6 text-danger-600"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- Main Content Grid -->
