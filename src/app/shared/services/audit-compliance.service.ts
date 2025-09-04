@@ -577,7 +577,6 @@ export class AuditComplianceService {
             module: "User Management",
           },
         },
-        riskScore: 45,
         complianceFlags: ["SOX", "ISO27001"],
         ipAddress: "192.168.1.100",
         userAgent:
