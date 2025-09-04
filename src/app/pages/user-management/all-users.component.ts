@@ -415,19 +415,6 @@ export class AllUsersComponent implements OnInit {
       filtered = filtered.filter((user) => user.status === this.filters.status);
     }
 
-    if (this.filters.riskLevel) {
-      const riskRanges = {
-        low: [0, 25],
-        medium: [26, 60],
-        high: [61, 85],
-        critical: [86, 100],
-      };
-      const [min, max] =
-        riskRanges[this.filters.riskLevel as keyof typeof riskRanges];
-      filtered = filtered.filter(
-        (user) => user.riskScore >= min && user.riskScore <= max,
-      );
-    }
 
     this.filteredUsers.set(filtered);
   }
