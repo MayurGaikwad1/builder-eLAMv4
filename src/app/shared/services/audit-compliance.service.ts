@@ -814,7 +814,6 @@ export class AuditComplianceService {
               },
             ],
             affectedResources: ["ELAM Portal", "ERP System"],
-            riskScore: 65,
             status: ViolationStatus.Resolved,
             falsePositive: false,
             resolution: {
