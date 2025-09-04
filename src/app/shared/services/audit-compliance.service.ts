@@ -1019,7 +1019,6 @@ export class AuditComplianceService {
           },
         ],
         affectedResources: ["Customer Database", "PII Records"],
-        riskScore: 80,
         status: ViolationStatus.InInvestigation,
         investigationNotes:
           "User claims legitimate business need for after-hours access. Investigating justification.",
