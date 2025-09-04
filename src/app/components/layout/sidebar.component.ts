@@ -151,7 +151,7 @@ export class SidebarComponent implements OnInit {
       ],
     },
     {
-      label: "Approvals",
+      label: "Renewal Requests Approval",
       icon: "approvals",
       route: "/approvals",
       badge: 3,
@@ -161,7 +161,7 @@ export class SidebarComponent implements OnInit {
       label: "User Management",
       icon: "users",
       route: "/users",
-      requiredRoles: ["admin", "manager"],
+      requiredRoles: ["admin"],
       children: [
         { label: "All Users", icon: "", route: "/users/all" },
         { label: "Provisioning", icon: "", route: "/users/provisioning" },
@@ -183,7 +183,7 @@ export class SidebarComponent implements OnInit {
       label: "Access Management",
       icon: "access_management",
       route: "/access-management",
-      requiredRoles: ["admin", "manager"],
+      requiredRoles: ["admin"],
       children: [
         {
           label: "User Access Requests",
@@ -221,6 +221,19 @@ export class SidebarComponent implements OnInit {
     if (!user) return [];
 
     return this.allNavItems.filter((item) => {
+      // Hide Access Requests for Admin, Manager & User roles
+      if (item.label === "Access Requests" && ["admin", "manager", "user"].includes(user.role)) {
+        return false;
+      }
+
+      // Hide User Management & Access Management for Manager & User roles
+      if (
+        (item.label === "User Management" || item.label === "Access Management") &&
+        ["manager", "user"].includes(user.role)
+      ) {
+        return false;
+      }
+
       if (!item.requiredRoles) return true;
       return item.requiredRoles.includes(user.role);
     });

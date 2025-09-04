@@ -56,7 +56,7 @@ export class App {
         subtitle: "Request and manage system access",
       },
       "/approvals": {
-        title: "Approval Management",
+        title: "Renewal Requests Approval",
         subtitle: "Review and approve access requests",
       },
       "/users": {
