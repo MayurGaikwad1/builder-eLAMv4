@@ -137,7 +137,6 @@ export class MockDataService {
           level: 1,
         },
       ],
-      riskScore: 95,
       deadline: new Date("2024-01-16T18:00:00"),
     },
   ];
