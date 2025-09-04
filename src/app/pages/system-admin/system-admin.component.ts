@@ -876,9 +876,4 @@ export class SystemAdminComponent implements OnInit {
     return "text-success-600";
   }
 
-  getSecurityScoreClass(score: number): string {
-    if (score >= 90) return "text-success-600";
-    if (score >= 75) return "text-warning-600";
-    return "text-danger-600";
-  }
 }
