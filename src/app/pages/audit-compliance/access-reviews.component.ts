@@ -610,27 +610,6 @@ interface ReviewFilters {
                   </div>
                 </div>
 
-                <!-- Risk Score -->
-                <div class="mt-6">
-                  <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-medium text-secondary-700"
-                      >Overall Risk Score</span
-                    >
-                    <span
-                      [class]="getRiskScoreClass(selectedReview()!.riskScore)"
-                      class="text-lg font-bold"
-                    >
-                      {{ selectedReview()!.riskScore }}
-                    </span>
-                  </div>
-                  <div class="w-full bg-secondary-200 rounded-full h-3">
-                    <div
-                      [class]="getRiskBarClass(selectedReview()!.riskScore)"
-                      class="h-3 rounded-full"
-                      [style.width.%]="selectedReview()!.riskScore"
-                    ></div>
-                  </div>
-                </div>
               </div>
             </div>
 
