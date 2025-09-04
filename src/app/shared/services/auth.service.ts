@@ -152,12 +152,16 @@ export class AuthService {
         if (!storedPassword || storedPassword !== password) {
           // Debug log for developers
           // eslint-disable-next-line no-console
-          console.warn(`Login failed for ${normalizedEmail}: storedPassword=${!!storedPassword}`);
+          console.warn(
+            `Login failed for ${normalizedEmail}: storedPassword=${!!storedPassword}`,
+          );
           return false;
         }
 
         // Find user
-        const user = this.demoUsers.find((u) => u.email.toLowerCase() === normalizedEmail);
+        const user = this.demoUsers.find(
+          (u) => u.email.toLowerCase() === normalizedEmail,
+        );
         if (!user || !user.isActive) {
           // eslint-disable-next-line no-console
           console.warn(`User not found or inactive for ${normalizedEmail}`);

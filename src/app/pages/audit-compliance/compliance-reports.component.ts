@@ -23,12 +23,20 @@ import {
     <div class="space-y-6">
       <div class="flex justify-between items-center">
         <div>
-          <h1 class="text-2xl font-semibold text-secondary-900">Compliance Reports</h1>
-          <p class="text-secondary-600 mt-1">Monitor compliance across frameworks and generate assessment reports</p>
+          <h1 class="text-2xl font-semibold text-secondary-900">
+            Compliance Reports
+          </h1>
+          <p class="text-secondary-600 mt-1">
+            Monitor compliance across frameworks and generate assessment reports
+          </p>
         </div>
         <div class="flex space-x-3">
-          <button class="btn-secondary" (click)="refreshReports()">Refresh</button>
-          <button class="btn-primary" (click)="showGenerateModal()">Generate Report</button>
+          <button class="btn-secondary" (click)="refreshReports()">
+            Refresh
+          </button>
+          <button class="btn-primary" (click)="showGenerateModal()">
+            Generate Report
+          </button>
         </div>
       </div>
 
@@ -39,10 +47,18 @@ import {
             <p class="card-subtitle">Current compliance status by framework</p>
           </div>
           <div class="space-y-4 p-4">
-            <div *ngFor="let framework of metrics().frameworkScores" class="flex items-center justify-between">
+            <div
+              *ngFor="let framework of metrics().frameworkScores"
+              class="flex items-center justify-between"
+            >
               <div>
-                <p class="font-medium text-secondary-900">{{ framework.framework }}</p>
-                <p class="text-sm text-secondary-500">Last assessed {{ framework.lastAssessment | date: 'MMM d, y' }}</p>
+                <p class="font-medium text-secondary-900">
+                  {{ framework.framework }}
+                </p>
+                <p class="text-sm text-secondary-500">
+                  Last assessed
+                  {{ framework.lastAssessment | date: "MMM d, y" }}
+                </p>
               </div>
               <div class="text-right">
                 <p class="font-semibold">{{ framework.score }}%</p>
@@ -61,34 +77,58 @@ import {
               <div class="flex items-center justify-between">
                 <div>
                   <div class="font-medium">{{ r.name }}</div>
-                  <div class="text-xs text-secondary-500">{{ r.generatedAt | date: 'MMM d, y' }} • {{ getStatusLabel(r.status) }}</div>
+                  <div class="text-xs text-secondary-500">
+                    {{ r.generatedAt | date: "MMM d, y" }} •
+                    {{ getStatusLabel(r.status) }}
+                  </div>
                 </div>
                 <div>
-                  <button class="text-primary-600" (click)="downloadReport(r.id)">Download</button>
+                  <button
+                    class="text-primary-600"
+                    (click)="downloadReport(r.id)"
+                  >
+                    Download
+                  </button>
                 </div>
               </div>
             </div>
-            <div *ngIf="reports().length === 0" class="text-center py-8 text-secondary-500">No reports found</div>
+            <div
+              *ngIf="reports().length === 0"
+              class="text-center py-8 text-secondary-500"
+            >
+              No reports found
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Generate Modal (simplified) -->
-      <div *ngIf="showGenerate" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div
+        *ngIf="showGenerate"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      >
         <div class="bg-white rounded-lg shadow-xl max-w-lg w-full p-6">
           <h3 class="text-lg font-medium mb-4">Generate Compliance Report</h3>
           <div class="space-y-3">
             <label class="block text-sm font-medium">Report Name</label>
-            <input [(ngModel)]="generateForm.name" class="w-full border px-3 py-2 rounded" />
+            <input
+              [(ngModel)]="generateForm.name"
+              class="w-full border px-3 py-2 rounded"
+            />
             <label class="block text-sm font-medium">Framework</label>
-            <select [(ngModel)]="generateForm.framework" class="w-full border px-3 py-2 rounded">
+            <select
+              [(ngModel)]="generateForm.framework"
+              class="w-full border px-3 py-2 rounded"
+            >
               <option value="SOX">SOX</option>
               <option value="PCI-DSS">PCI-DSS</option>
             </select>
           </div>
 
           <div class="mt-4 flex justify-end space-x-2">
-            <button class="btn-secondary" (click)="showGenerate = false">Cancel</button>
+            <button class="btn-secondary" (click)="showGenerate = false">
+              Cancel
+            </button>
             <button class="btn-primary" (click)="generate()">Generate</button>
           </div>
         </div>
@@ -102,8 +142,8 @@ export class ComplianceReportsComponent implements OnInit {
   showGenerate = false;
 
   generateForm = {
-    name: '',
-    framework: 'SOX',
+    name: "",
+    framework: "SOX",
   };
 
   constructor(private svc: AuditComplianceService) {}
@@ -129,7 +169,10 @@ export class ComplianceReportsComponent implements OnInit {
   }
 
   generate() {
-    const cfg = { name: this.generateForm.name, framework: this.generateForm.framework };
+    const cfg = {
+      name: this.generateForm.name,
+      framework: this.generateForm.framework,
+    };
     this.svc.generateComplianceReport(cfg).subscribe((id) => {
       this.showGenerate = false;
       this.refreshReports();
@@ -138,19 +181,19 @@ export class ComplianceReportsComponent implements OnInit {
 
   downloadReport(id: string) {
     // mock download
-    console.log('download', id);
+    console.log("download", id);
   }
 
   getStatusLabel(status: ReportStatus | string) {
     switch (status) {
       case ReportStatus.Draft:
-        return 'Draft';
+        return "Draft";
       case ReportStatus.Approved:
-        return 'Approved';
+        return "Approved";
       case ReportStatus.Published:
-        return 'Published';
+        return "Published";
       default:
-        return String(status || 'Unknown');
+        return String(status || "Unknown");
     }
   }
 }
