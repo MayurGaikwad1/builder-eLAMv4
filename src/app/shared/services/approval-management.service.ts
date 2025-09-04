@@ -703,7 +703,6 @@ export class ApprovalManagementService {
           employeeId: "EMP004",
           department: "Finance",
           title: "Finance Analyst",
-          riskScore: 30,
         },
         requestTitle: "Financial Reporting System Access",
         description: "Access required to run monthly financial reports and reconciliations.",
