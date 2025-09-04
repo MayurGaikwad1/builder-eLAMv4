@@ -1416,7 +1416,6 @@ export class SystemAdminService {
         securityEvents: 145,
         blockedAttempts: 23,
         policyViolations: 8,
-        riskScore: 32,
         vulnerabilities: {
           critical: 0,
           high: 2,
