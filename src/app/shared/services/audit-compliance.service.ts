@@ -117,14 +117,6 @@ export class AuditComplianceService {
           if (filters.userId) {
             filtered = filtered.filter((log) => log.userId === filters.userId);
           }
-          if (filters.riskLevel) {
-            const riskRange = this.getRiskRange(filters.riskLevel);
-            filtered = filtered.filter(
-              (log) =>
-                log.riskScore >= riskRange.min &&
-                log.riskScore <= riskRange.max,
-            );
-          }
         }
 
         return filtered.sort(
