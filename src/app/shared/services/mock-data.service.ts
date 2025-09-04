@@ -35,7 +35,6 @@ export class MockDataService {
       },
     ],
     status: UserStatus.Active,
-    riskScore: 25,
   };
 
   private dashboardMetrics = {
