@@ -401,12 +401,13 @@ export class AuditComplianceService {
         (v) => v.status === ViolationStatus.Resolved,
       ).length,
       riskDistribution: {
-        low: auditLogs.filter((l) => l.riskScore <= 25).length,
-        medium: auditLogs.filter((l) => l.riskScore > 25 && l.riskScore <= 60)
+        low: auditLogs.filter((l) => l.severity === AuditSeverity.Low).length,
+        medium: auditLogs.filter((l) => l.severity === AuditSeverity.Medium)
           .length,
-        high: auditLogs.filter((l) => l.riskScore > 60 && l.riskScore <= 85)
+        high: auditLogs.filter((l) => l.severity === AuditSeverity.High)
           .length,
-        critical: auditLogs.filter((l) => l.riskScore > 85).length,
+        critical: auditLogs.filter((l) => l.severity === AuditSeverity.Critical)
+          .length,
       },
       frameworkScores: [
         {
