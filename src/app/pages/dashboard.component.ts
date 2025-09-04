@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Router } from "@angular/router";
+import { AuthService } from "../shared/services/auth.service";
 import { MockDataService } from "../shared/services/mock-data.service";
 import { NewRequestModalComponent } from "../shared/components/new-request-modal.component";
 import { ModalService } from "../shared/services/modal.service";
@@ -58,7 +59,7 @@ import {
           </div>
         </div>
 
-        <div class="metric-card">
+        <div class="metric-card" [class.cursor-pointer]="isManager()" (click)="onPendingApprovalsClick()" role="button" aria-label="Open Pending Approvals">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-secondary-600">
@@ -427,7 +428,18 @@ export class DashboardComponent implements OnInit {
     private mockDataService: MockDataService,
     private modalService: ModalService,
     private router: Router,
+    private authService: AuthService,
   ) {}
+
+  isManager(): boolean {
+    return this.authService.hasAnyRole(["manager"]);
+  }
+
+  onPendingApprovalsClick() {
+    if (this.isManager()) {
+      this.router.navigate(["/approvals/queue"]);
+    }
+  }
 
   ngOnInit() {
     this.loadDashboardData();
