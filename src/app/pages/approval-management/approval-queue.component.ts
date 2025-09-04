@@ -894,8 +894,8 @@ export class ApprovalQueueComponent implements OnInit {
   }
 
   // Renewal date based priority logic
-  private daysUntil(date?: Date | string): number {
-    if (!date) return Infinity;
+  private daysUntil(date?: Date | string | null): number {
+    if (date === null || date === undefined) return Infinity;
     const target = new Date(date as any);
     const now = new Date();
     // Zero out time to compare dates only
