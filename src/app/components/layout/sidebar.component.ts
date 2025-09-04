@@ -220,22 +220,25 @@ export class SidebarComponent implements OnInit {
     const user = this.currentUser();
     if (!user) return [];
 
+    const role = (user.role || "").toString().toLowerCase();
+
     return this.allNavItems.filter((item) => {
       // Hide Access Requests for Admin, Manager & User roles
-      if (item.label === "Access Requests" && ["admin", "manager", "user"].includes(user.role)) {
+      if (item.label === "Access Requests" && ["admin", "manager", "user"].includes(role)) {
         return false;
       }
 
       // Hide User Management & Access Management for Manager & User roles
       if (
         (item.label === "User Management" || item.label === "Access Management") &&
-        ["manager", "user"].includes(user.role)
+        ["manager", "user"].includes(role)
       ) {
         return false;
       }
 
       if (!item.requiredRoles) return true;
-      return item.requiredRoles.includes(user.role);
+      const allowed = item.requiredRoles.map((r) => r.toLowerCase());
+      return allowed.includes(role);
     });
   });
 
