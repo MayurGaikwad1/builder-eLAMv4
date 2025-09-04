@@ -48,7 +48,7 @@ export class App {
         subtitle: "Access your ELAM account",
       },
       "/dashboard": {
-        title: "Executive Dashboard",
+        title: "Dashboard",
         subtitle: "Enterprise access management overview",
       },
       "/requests": {
