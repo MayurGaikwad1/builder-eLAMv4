@@ -512,4 +512,80 @@ export class AccessManagementService {
 
     return of(processedCount).pipe(delay(200));
   }
+
+  // Application Owner actions
+  reassignExceptionToManager(
+    exceptionId: string,
+    managerId: string,
+  ): Observable<boolean> {
+    const exception = this.mockExceptions.find((e) => e.id === exceptionId);
+    if (exception) {
+      exception.status = ExceptionStatus.UnderReview;
+      exception.markedBy = managerId;
+      this.exceptionsSubject.next([...this.mockExceptions]);
+      // also log activity (not implemented fully)
+    }
+    return of(true).pipe(delay(300));
+  }
+
+  bulkGrantAccess(
+    applicationId: string,
+    userIds: string[],
+    accessLevel: AccessLevel = AccessLevel.Read,
+  ): Observable<boolean> {
+    const application = this.mockApplications.find((a) => a.id === applicationId);
+    const newRequest: UserAccessRequest = {
+      id: `req-${Date.now()}`,
+      requesterId: "app-owner",
+      requesterName: application?.owner?.name || "Application Owner",
+      userIds: userIds,
+      applicationId,
+      applicationName: application?.name || "Unknown",
+      accessLevel,
+      justification: "Bulk grant by application owner",
+      department: application?.owner?.department || "",
+      requestType: AccessRequestType.BulkUpload,
+      status: AccessRequestStatus.Approved,
+      currentApprovalLevel: 3,
+      approvals: [],
+      submittedAt: new Date(),
+      deadline: new Date(),
+      priority: Priority.Medium,
+      autoProcessed: false,
+    };
+
+    this.mockAccessRequests.unshift(newRequest);
+    this.accessRequestsSubject.next([...this.mockAccessRequests]);
+    return of(true).pipe(delay(400));
+  }
+
+  bulkRevokeAccess(
+    applicationId: string,
+    userIds: string[],
+  ): Observable<boolean> {
+    const application = this.mockApplications.find((a) => a.id === applicationId);
+    const newRequest: UserAccessRequest = {
+      id: `req-${Date.now()}`,
+      requesterId: "app-owner",
+      requesterName: application?.owner?.name || "Application Owner",
+      userIds: userIds,
+      applicationId,
+      applicationName: application?.name || "Unknown",
+      accessLevel: AccessLevel.Read,
+      justification: "Bulk revoke by application owner",
+      department: application?.owner?.department || "",
+      requestType: AccessRequestType.RemoveAccess,
+      status: AccessRequestStatus.Completed,
+      currentApprovalLevel: 3,
+      approvals: [],
+      submittedAt: new Date(),
+      deadline: new Date(),
+      priority: Priority.Medium,
+      autoProcessed: false,
+    };
+
+    this.mockAccessRequests.unshift(newRequest);
+    this.accessRequestsSubject.next([...this.mockAccessRequests]);
+    return of(true).pipe(delay(400));
+  }
 }
