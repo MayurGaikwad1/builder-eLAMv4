@@ -38,6 +38,8 @@ export class ApprovalManagementService {
     // Keep approval service aware of the logged-in user
     this.authService.currentUser$.subscribe((u) => {
       this.currentUserId = u?.id || "current-user";
+      this.currentUserEmail = u?.email || "";
+      this.currentUserName = u?.name || "";
     });
 
     this.initializeMockData();
