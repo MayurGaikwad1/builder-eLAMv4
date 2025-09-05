@@ -198,12 +198,7 @@ export class MockDataService {
 
     // Create the access request in AccessManagementService so the Application Owner UI sees it
     try {
-      return this.approvalService
-        ? this.approvalService
-            .createApprovalRequestFromAccess
-            ? this.createRequestAndApproval(accessPayload, requesterId, requesterName)
-            : of(null as any)
-        : of(null as any);
+      return this.createRequestAndApproval(accessPayload, requesterId, requesterName);
     } catch (e) {
       return of(null as any);
     }
