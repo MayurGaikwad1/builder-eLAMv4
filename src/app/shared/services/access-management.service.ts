@@ -471,24 +471,50 @@ export class AccessManagementService {
     comments?: string,
   ): Observable<boolean> {
     const request = this.mockAccessRequests.find((r) => r.id === requestId);
-    if (request && request.approvals) {
-      const currentApproval = request.approvals.find(
+    if (request) {
+      if (!request.approvals) request.approvals = [];
+
+      // Ensure there is an approval entry for the current level; if not, create one
+      let currentApproval = request.approvals.find(
         (a) => a.level === request.currentApprovalLevel,
       );
-      if (currentApproval) {
-        currentApproval.status = ApprovalStatus.Approved;
-        currentApproval.approvedAt = new Date();
-        currentApproval.comments = comments;
 
-        // Move to next level or complete
-        if (request.currentApprovalLevel < 3) {
-          request.currentApprovalLevel++;
-          request.status = AccessRequestStatus.AwaitingApproval;
-        } else {
-          request.status = AccessRequestStatus.Approved;
-          request.completedAt = new Date();
-        }
+      const createdNow = !currentApproval;
+      if (!currentApproval) {
+        currentApproval = {
+          id: `appr-${Date.now()}`,
+          approverId: approverId,
+          approverName: approverId,
+          approverRole: ApproverRole.Manager,
+          level: request.currentApprovalLevel,
+          status: ApprovalStatus.Pending,
+          comments: undefined,
+          approvedAt: undefined,
+          deadline: request.deadline,
+          autoApproved: false,
+        } as any;
       }
+
+      // Mark as approved by the approver
+      currentApproval.status = ApprovalStatus.Approved;
+      currentApproval.approvedAt = new Date();
+      currentApproval.comments = comments;
+
+      if (createdNow) {
+        request.approvals.push(currentApproval);
+      }
+
+      // Move to next level or complete
+      // Use total of 3 levels if not otherwise defined in mock data
+      const maxLevels = 3;
+      if ((request.currentApprovalLevel || 1) < maxLevels) {
+        request.currentApprovalLevel = (request.currentApprovalLevel || 1) + 1;
+        request.status = AccessRequestStatus.AwaitingApproval;
+      } else {
+        request.status = AccessRequestStatus.Approved;
+        request.completedAt = new Date();
+      }
+
       this.accessRequestsSubject.next([...this.mockAccessRequests]);
     }
     return of(true).pipe(delay(300));
