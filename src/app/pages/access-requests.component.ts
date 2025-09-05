@@ -461,8 +461,17 @@ export class AccessRequestsComponent implements OnInit {
   }
 
   private loadMyRequests() {
-    this.mockDataService.getMyRequests("1").subscribe((requests) => {
-      this.myRequests.set(requests);
+    // Resolve the actual current user from the MockDataService and load requests for that user
+    this.mockDataService.getCurrentUser().subscribe((user) => {
+      const userId = user?.id || "";
+      if (!userId) {
+        this.myRequests.set([]);
+        return;
+      }
+
+      this.mockDataService.getMyRequests(userId).subscribe((requests) => {
+        this.myRequests.set(requests);
+      });
     });
   }
 
