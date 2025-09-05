@@ -740,6 +740,18 @@ export class AppOwnerDashboardComponent implements OnInit {
     });
   }
 
+  // Helpers for exceptions
+  hasException(request: UserAccessRequest): boolean {
+    if (!request) return false;
+    if ((request as any).exceptionHandling) return true;
+    if (request.adValidationResults && request.adValidationResults.some(r => r.status === ADValidationStatus.NotFound)) return true;
+    return false;
+  }
+
+  goToExceptions(requestId?: string) {
+    this.router.navigate(["/access-management/exception-handling"], { queryParams: { requestId } });
+  }
+
   // Utility methods
   getApplicationName(applicationId: string): string {
     const app = this.applications().find((a) => a.id === applicationId);
