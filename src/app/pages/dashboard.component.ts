@@ -183,7 +183,7 @@ import {
                     {{ request.requesterName }}
                   </p>
                   <p class="text-sm text-secondary-600">
-                    {{ request.requestedRoles[0]?.name || "Access Request" }}
+                    {{ (request.requestedRoles && request.requestedRoles.length > 0) ? request.requestedRoles[0].name : 'Access Request' }}
                   </p>
                   <p class="text-xs text-secondary-500">
                     {{ request.submittedAt | date: "short" }}
