@@ -463,14 +463,16 @@ export class AccessRequestsComponent implements OnInit {
   }
 
   private loadMyRequests() {
-    // Resolve the actual current user from the MockDataService and load requests for that user
-    this.mockDataService.getCurrentUser().subscribe((user) => {
+    // Use the AuthService current user (the logged-in identity) to load my requests
+    this.authService.currentUser$.subscribe((user) => {
       const userId = user?.id || "";
       if (!userId) {
         this.myRequests.set([]);
         return;
       }
 
+      // The MockDataService expects a numeric/string id matching its mockRequests requesterId
+      // In our demo setup, AuthService user ids align with approval service ids (e.g., 'user-001')
       this.mockDataService.getMyRequests(userId).subscribe((requests) => {
         this.myRequests.set(requests);
       });
