@@ -445,6 +445,7 @@ export class AccessRequestsComponent implements OnInit {
 
   constructor(
     private mockDataService: MockDataService,
+    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
   ) {}
