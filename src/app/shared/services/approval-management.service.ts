@@ -33,6 +33,8 @@ export class ApprovalManagementService {
   );
 
   private currentUserId = "current-user";
+  private currentUserEmail = "";
+  private currentUserName = "";
 
   constructor(private authService: AuthService) {
     // Keep approval service aware of the logged-in user
