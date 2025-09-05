@@ -261,15 +261,27 @@ export class ApprovalManagementService {
         // Sync to access management so Application Owner dashboard sees updates
         try {
           const mappedStatus = this.mapActionToDecision(action.type);
+          // Debug: log approval request and mapping
+          // eslint-disable-next-line no-console
+          console.log('[ApprovalManagement] processApprovalAction:', { actionType: action.type, mappedStatus, approvalRequestId: request.id, approvalRequestRequestId: request.requestId, currentLevel: request.currentLevel, approvalChain: request.approvalChain.map(c => ({ level: c.level, status: c.status, approverId: c.approverId, approverEmail: (c as any).approverEmail })) });
+
           if (mappedStatus === ApprovalDecision.Approved) {
             // call access management approve
-            this.accessManagementService.approveRequest(request.requestId, this.currentUserId, action.comments).subscribe();
+            this.accessManagementService.approveRequest(request.requestId, this.currentUserId, action.comments).subscribe((res) => {
+              // eslint-disable-next-line no-console
+              console.log('[ApprovalManagement] called accessManagement.approveRequest', { requestId: request.requestId, approverId: this.currentUserId, result: res });
+            });
           } else if (mappedStatus === ApprovalDecision.Rejected) {
             // call access management reject
-            this.accessManagementService.rejectRequest?.(request.requestId, this.currentUserId, action.comments)?.subscribe();
+            this.accessManagementService.rejectRequest?.(request.requestId, this.currentUserId, action.comments)?.subscribe((res) => {
+              // eslint-disable-next-line no-console
+              console.log('[ApprovalManagement] called accessManagement.rejectRequest', { requestId: request.requestId, approverId: this.currentUserId, result: res });
+            });
           }
         } catch (e) {
           // best-effort sync
+          // eslint-disable-next-line no-console
+          console.error('[ApprovalManagement] sync to access management failed', e);
         }
       }
     }
