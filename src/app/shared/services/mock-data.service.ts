@@ -179,7 +179,7 @@ export class MockDataService {
     const authUser = this.authService.getCurrentUser();
 
     const requesterId = authUser?.id || this.currentUser.id;
-    const requesterName = authUser?.displayName || this.currentUser.displayName;
+    const requesterName = authUser?.name || this.currentUser.displayName;
 
     const newRequest: AccessRequest = {
       id: `req-${Date.now()}`,
