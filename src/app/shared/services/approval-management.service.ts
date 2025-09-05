@@ -233,6 +233,20 @@ export class ApprovalManagementService {
 
         this.approvalRequestsSubject.next([...requests]);
         this.updateStatistics();
+
+        // Sync to access management so Application Owner dashboard sees updates
+        try {
+          const mappedStatus = this.mapActionToDecision(action.type);
+          if (mappedStatus === ApprovalDecision.Approved) {
+            // call access management approve
+            this.accessManagementService.approveRequest(request.requestId, this.currentUserId, action.comments).subscribe();
+          } else if (mappedStatus === ApprovalDecision.Rejected) {
+            // call access management reject
+            this.accessManagementService.rejectRequest?.(request.requestId, this.currentUserId, action.comments)?.subscribe();
+          }
+        } catch (e) {
+          // best-effort sync
+        }
       }
     }
 
