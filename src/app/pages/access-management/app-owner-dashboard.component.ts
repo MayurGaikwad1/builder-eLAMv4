@@ -681,6 +681,7 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   // Modal handlers
   openRequestDetails(request: UserAccessRequest) {
+    console.log('AppOwnerDashboard: openRequestDetails', request?.id);
     this.selectedRequest.set(request);
   }
 
@@ -690,6 +691,7 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   approveInModal(requestId?: string | null) {
     if (!requestId) return;
+    console.log('AppOwnerDashboard: approveInModal', requestId);
     this.accessManagementService
       .approveRequest(requestId, "app-owner", "Approved by application owner")
       .subscribe(() => {
@@ -700,6 +702,7 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   rejectInModal(requestId?: string | null) {
     if (!requestId) return;
+    console.log('AppOwnerDashboard: rejectInModal', requestId);
     if (!this.accessManagementService.rejectRequest) {
       console.warn('Reject action not implemented in service');
       return;
