@@ -37,7 +37,7 @@ export class ApprovalManagementService {
   private currentUserEmail = "";
   private currentUserName = "";
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private accessManagementService: AccessManagementService) {
     // Keep approval service aware of the logged-in user
     this.authService.currentUser$.subscribe((u) => {
       this.currentUserId = u?.id || "current-user";
