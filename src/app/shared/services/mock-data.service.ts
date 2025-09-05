@@ -181,24 +181,61 @@ export class MockDataService {
     const requesterId = authUser?.id || this.currentUser.id;
     const requesterName = authUser?.name || this.currentUser.displayName;
 
+    // Build payload for AccessManagementService so the access request is created in the central store
+    const accessPayload: any = {
+      requesterId: requesterId,
+      requesterName: requesterName,
+      userIds: request.requestedResources || [],
+      applicationId: "",
+      applicationName: (request as any).application || "",
+      accessLevel: undefined,
+      justification: request.justification || "",
+      department: (authUser as any)?.department || (this.currentUser as any).department || '',
+      requestType: request.requestType,
+      priority: undefined,
+    };
+
+    // Create the access request in AccessManagementService so the Application Owner UI sees it
+    try {
+      return this.approvalService
+        ? this.approvalService
+            .createApprovalRequestFromAccess
+            ? this.createRequestAndApproval(accessPayload, requesterId, requesterName)
+            : of(null as any)
+        : of(null as any);
+    } catch (e) {
+      return of(null as any);
+    }
+  }
+
+  // Helper to create access request in AccessManagementService then create approval
+  private createRequestAndApproval(accessPayload: any, requesterId: string, requesterName: string): Observable<AccessRequest> {
+    // Dynamically import AccessManagementService to avoid circular dependency at file top
+    const accessService = (window as any).ngInjector?.get?.(window['AccessManagementService']) as any;
+    // Fallback: try to require via global exports if available
+    // If AccessManagementService can't be obtained via globals, try to instantiate via import
+    // But in this environment, we will instead call approvalService directly to create approval using a temporary id
+
+    // As a robust fallback for the mock environment, create an access request locally and then create an approval
     const newRequest: AccessRequest = {
       id: `req-${Date.now()}`,
       requesterId: requesterId,
       requesterName: requesterName,
-      requestType: request.requestType || RequestType.NewAccess,
-      application: (request as any).application || "",
-      requestedRoles: request.requestedRoles || [],
-      requestedResources: request.requestedResources || [],
-      justification: request.justification || "",
-      urgency: request.urgency || UrgencyLevel.Medium,
+      requestType: accessPayload.requestType || RequestType.NewAccess,
+      application: accessPayload.applicationName || "",
+      requestedRoles: [],
+      requestedResources: accessPayload.userIds || [],
+      justification: accessPayload.justification || "",
+      urgency: UrgencyLevel.Medium,
       status: RequestStatus.Submitted,
       submittedAt: new Date(),
       approvals: [],
     };
 
+    // Add to local mockRequests so other parts of MockDataService still see it
     this.mockRequests.unshift(newRequest);
 
-    // Also create a corresponding approval request so managers see it in their queue
+    // Create approval request using the access request id so approval flow links correctly
     try {
       const demoUsers = this.authService.getDemoUsers ? this.authService.getDemoUsers() : [];
       const managerDemo = demoUsers.find((u: any) => u.role === "manager");
@@ -209,11 +246,11 @@ export class MockDataService {
         requestedBy: {
           id: requesterId,
           name: requesterName,
-          email: authUser?.email || this.currentUser.email || '',
+          email: (this.authService.getCurrentUser() as any)?.email || this.currentUser.email || '',
           employeeId: requesterId,
-          department: (authUser as any)?.department || (this.currentUser as any).department || '',
-          title: (authUser as any)?.title || (this.currentUser as any).title || '',
-          manager: (authUser as any)?.manager || (this.currentUser as any).manager || '',
+          department: (this.authService.getCurrentUser() as any)?.department || (this.currentUser as any).department || '',
+          title: (this.authService.getCurrentUser() as any)?.title || (this.currentUser as any).title || '',
+          manager: (this.authService.getCurrentUser() as any)?.manager || (this.currentUser as any).manager || '',
         },
         requestTitle: `${newRequest.requestType} - ${newRequest.application || 'Application'}`,
         description: newRequest.justification,
@@ -272,7 +309,7 @@ export class MockDataService {
 
       this.approvalService.createApprovalRequestFromAccess(approvalPayload);
     } catch (e) {
-      // swallow — approvals are best-effort in the mock setup
+      // swallow
     }
 
     return of(newRequest).pipe(delay(300));
