@@ -495,10 +495,8 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   totalExceptions = computed(() => {
     const exceptions = this.exceptions();
-    return this.selectedApplicationId
-      ? exceptions.filter((e) => e.applicationId === this.selectedApplicationId)
-          .length
-      : exceptions.length;
+    const sel = this.selectedApplicationId();
+    return sel ? exceptions.filter((e) => e.applicationId === sel).length : exceptions.length;
   });
 
   pendingExceptions = computed(() => {
