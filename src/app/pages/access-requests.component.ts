@@ -327,7 +327,7 @@ import {
                 <td class="table-cell">
                   <div>
                     <p class="font-medium">
-                      {{ request.requestedRoles[0]?.name || "Multiple Roles" }}
+                      {{ (request.requestedRoles && request.requestedRoles.length > 0) ? request.requestedRoles[0].name : 'Multiple Roles' }}
                     </p>
                     <p class="text-xs text-secondary-500">
                       {{ request.requestedResources.join(", ") }}
