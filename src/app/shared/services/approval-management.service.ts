@@ -19,6 +19,7 @@ import {
   AccessType,
 } from "../interfaces/approval-management.interface";
 import { UrgencyLevel, RiskLevel } from "../interfaces/user.interface";
+import { AuthService } from "./auth.service";
 
 @Injectable({
   providedIn: "root",
@@ -33,8 +34,56 @@ export class ApprovalManagementService {
 
   private currentUserId = "current-user";
 
-  constructor() {
+  constructor(private authService: AuthService) {
+    // Keep approval service aware of the logged-in user
+    this.authService.currentUser$.subscribe((u) => {
+      this.currentUserId = u?.id || "current-user";
+    });
+
     this.initializeMockData();
+  }
+
+  // Allows other services/components to add approval requests (e.g. when a user submits an access request)
+  public createApprovalRequestFromAccess(payload: Partial<ApprovalRequest>): ApprovalRequest {
+    const request: ApprovalRequest = {
+      id: payload.id || `apr-${Date.now()}`,
+      requestId: payload.requestId || payload.id || `req-${Date.now()}`,
+      requestType: payload.requestType || RequestType.AccessRequest,
+      requestedBy: payload.requestedBy || ({} as any),
+      requestedFor: payload.requestedFor,
+      requestTitle: payload.requestTitle || payload.requestId || "Access Request",
+      description: payload.description || payload.justification || "",
+      justification: payload.justification || "",
+      urgency: payload.urgency || UrgencyLevel.Medium,
+      riskFactors: payload.riskFactors || [],
+      requestedAccess: payload.requestedAccess || [],
+      currentLevel: payload.currentLevel || 1,
+      totalLevels: payload.totalLevels || 2,
+      approvalChain: payload.approvalChain || [],
+      status: payload.status || ApprovalStatus.Pending,
+      submittedAt: payload.submittedAt || new Date(),
+      deadline: payload.deadline,
+      renewalDate: payload.renewalDate,
+      slaBreachWarning: payload.slaBreachWarning || false,
+      conflictChecks: payload.conflictChecks || [],
+      attachments: payload.attachments || [],
+      metadata:
+        payload.metadata ||
+        ({
+          priority: ApprovalPriority.Normal,
+          source: "ui",
+          workflowId: payload.metadata?.workflowId,
+          complianceFlags: [],
+          auditTrail: [],
+          tags: [],
+        } as any),
+    };
+
+    const current = this.approvalRequestsSubject.value;
+    this.approvalRequestsSubject.next([request, ...current]);
+    this.updateStatistics();
+
+    return request;
   }
 
   // Approval Requests
