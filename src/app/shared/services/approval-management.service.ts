@@ -80,7 +80,7 @@ export class ApprovalManagementService {
         ({
           priority: ApprovalPriority.Normal,
           source: "ui",
-          workflowId: payload.metadata?.workflowId,
+          workflowId: (payload as any).metadata?.workflowId,
           complianceFlags: [],
           auditTrail: [],
           tags: [],
