@@ -200,6 +200,9 @@ export class MockDataService {
 
     // Also create a corresponding approval request so managers see it in their queue
     try {
+      const demoUsers = this.authService.getDemoUsers ? this.authService.getDemoUsers() : [];
+      const managerDemo = demoUsers.find((u: any) => u.role === "manager");
+      const ownerDemo = demoUsers.find((u: any) => u.role === "application_owner");
       const approvalPayload: any = {
         requestId: newRequest.id,
         requestType: AMRequestType.AccessRequest,
