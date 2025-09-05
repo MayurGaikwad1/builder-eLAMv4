@@ -125,8 +125,9 @@ export class ApprovalManagementService {
           if (chainMatch) return true;
 
           // Fallback: include requests where the current user is the manager of the requester
-          const mgr = (req.requestedBy && (req.requestedBy.manager || req.requestedBy.manager === 0)) ? req.requestedBy.manager : null;
-          const managerMatch = mgr && (mgr === this.currentUserName || mgr === this.currentUserEmail);
+          const mgrRaw = req.requestedBy && (req.requestedBy as any).manager ? (req.requestedBy as any).manager : null;
+          const mgr = mgrRaw ? mgrRaw.toString().toLowerCase() : null;
+          const managerMatch = mgr ? (mgr === this.currentUserName || mgr === this.currentUserEmail) : false;
 
           if (managerMatch) {
             // Only include if there is at least one pending approval in the chain
