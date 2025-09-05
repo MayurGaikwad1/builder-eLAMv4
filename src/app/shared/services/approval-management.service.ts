@@ -46,6 +46,30 @@ export class ApprovalManagementService {
     });
 
     this.initializeMockData();
+
+    // Debug helper: dump approval requests and specific request to console to aid tracing
+    // This will log on service initialization (helpful after hot-reload)
+    setTimeout(() => {
+      try {
+        // Log summary
+        // eslint-disable-next-line no-console
+        console.groupCollapsed && console.groupCollapsed('DEBUG: approvalRequests dump');
+        // eslint-disable-next-line no-console
+        console.log('Approval requests count:', this.approvalRequestsSubject.value.length);
+        // eslint-disable-next-line no-console
+        console.log(this.approvalRequestsSubject.value.map(r => ({ id: r.id, requestId: r.requestId, status: r.status, currentLevel: r.currentLevel })));
+
+        const debugId = 'req-1757052178208';
+        const byReq = this.approvalRequestsSubject.value.find(r => r.requestId === debugId || r.id === debugId);
+        // eslint-disable-next-line no-console
+        console.log('Lookup for', debugId, byReq || 'NOT FOUND');
+        // eslint-disable-next-line no-console
+        console.groupEnd && console.groupEnd();
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error('Debug dump failed', e);
+      }
+    }, 1500);
   }
 
   // Allows other services/components to add approval requests (e.g. when a user submits an access request)
