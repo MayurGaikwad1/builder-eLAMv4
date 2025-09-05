@@ -477,9 +477,8 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   pendingRequests = computed(() => {
     const requests = this.accessRequests();
-    const filtered = this.selectedApplicationId
-      ? requests.filter((r) => r.applicationId === this.selectedApplicationId)
-      : requests;
+    const sel = this.selectedApplicationId();
+    const filtered = sel ? requests.filter((r) => r.applicationId === sel) : requests;
     return filtered.filter(
       (r) =>
         r.status === AccessRequestStatus.InReview ||
