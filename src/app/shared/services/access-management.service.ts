@@ -472,6 +472,10 @@ export class AccessManagementService {
   ): Observable<boolean> {
     const request = this.mockAccessRequests.find((r) => r.id === requestId);
     if (request) {
+      // Debug: log incoming approveRequest call
+      // eslint-disable-next-line no-console
+      console.log('[AccessManagement] approveRequest called', { requestId, approverId, comments, found: !!request });
+
       if (!request.approvals) request.approvals = [];
 
       // Ensure there is an approval entry for the current level; if not, create one
@@ -518,6 +522,10 @@ export class AccessManagementService {
       }
 
       this.accessRequestsSubject.next([...this.mockAccessRequests]);
+
+      // Debug: log updated access request state
+      // eslint-disable-next-line no-console
+      console.log('[AccessManagement] access request updated', { id: request.id, status: request.status, currentApprovalLevel: request.currentApprovalLevel, approvals: request.approvals });
     }
     return of(true).pipe(delay(300));
   }
