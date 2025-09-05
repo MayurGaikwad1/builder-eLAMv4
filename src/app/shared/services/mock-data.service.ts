@@ -14,6 +14,7 @@ import {
 import { ApprovalManagementService } from "./approval-management.service";
 import { ApprovalDecision, ApprovalStatus as AMApprovalStatus, RequestType as AMRequestType } from "../interfaces/approval-management.interface";
 import { AuthService } from "./auth.service";
+import { AccessManagementService } from "./access-management.service";
 
 @Injectable({
   providedIn: "root",
