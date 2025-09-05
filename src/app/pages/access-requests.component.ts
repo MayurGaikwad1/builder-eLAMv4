@@ -330,7 +330,7 @@ import {
                       {{ (request.requestedRoles && request.requestedRoles.length > 0) ? request.requestedRoles[0].name : 'Multiple Roles' }}
                     </p>
                     <p class="text-xs text-secondary-500">
-                      {{ request.requestedResources.join(", ") }}
+                      {{ (request.requestedResources || []).length ? (request.requestedResources || []).join(', ') : '—' }}
                     </p>
                   </div>
                 </td>
