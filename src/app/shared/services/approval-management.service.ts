@@ -111,11 +111,12 @@ export class ApprovalManagementService {
     return this.approvalRequestsSubject.pipe(
       map((requests) =>
         requests.filter((req) =>
-          req.approvalChain.some(
-            (chain) =>
-              chain.approverId === this.currentUserId &&
-              chain.status === ApprovalDecision.Pending,
-          ),
+          req.approvalChain.some((chain) => {
+            const idMatch = chain.approverId === this.currentUserId;
+            const emailMatch = (chain as any).approverEmail === this.currentUserEmail;
+            const nameMatch = (chain as any).approverName === this.currentUserName;
+            return (idMatch || emailMatch || nameMatch) && chain.status === ApprovalDecision.Pending;
+          }),
         ),
       ),
     );
