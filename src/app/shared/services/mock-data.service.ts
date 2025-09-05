@@ -235,10 +235,10 @@ export class MockDataService {
         approvalChain: [
           {
             level: 1,
-            approverId: "manager-001",
-            approverName: "Department Manager",
+            approverId: managerDemo?.id || "manager-001",
+            approverName: managerDemo?.name || "Department Manager",
             approverTitle: "Manager",
-            approverEmail: "manager@company.com",
+            approverEmail: managerDemo?.email || "manager@company.com",
             status: ApprovalDecision.Pending,
             isRequired: true,
             isDelegated: false,
@@ -246,10 +246,10 @@ export class MockDataService {
           },
           {
             level: 2,
-            approverId: "owner-001",
-            approverName: "Application Owner",
+            approverId: ownerDemo?.id || "owner-001",
+            approverName: ownerDemo?.name || "Application Owner",
             approverTitle: "App Owner",
-            approverEmail: "owner@company.com",
+            approverEmail: ownerDemo?.email || "owner@company.com",
             status: ApprovalDecision.Pending,
             isRequired: true,
             isDelegated: false,
