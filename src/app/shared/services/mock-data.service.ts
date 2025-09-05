@@ -191,6 +191,81 @@ export class MockDataService {
     };
 
     this.mockRequests.unshift(newRequest);
+
+    // Also create a corresponding approval request so managers see it in their queue
+    try {
+      const approvalPayload: any = {
+        requestId: newRequest.id,
+        requestType: AMRequestType.AccessRequest,
+        requestedBy: {
+          id: this.currentUser.id,
+          name: this.currentUser.displayName,
+          email: this.currentUser.email,
+          employeeId: this.currentUser.id,
+          department: this.currentUser.department,
+          title: this.currentUser.title,
+          manager: this.currentUser.manager,
+        },
+        requestTitle: `${newRequest.requestType} - ${newRequest.application || 'Application'}`,
+        description: newRequest.justification,
+        justification: newRequest.justification,
+        urgency: newRequest.urgency,
+        riskFactors: [],
+        requestedAccess: (newRequest.requestedResources || []).map((r, idx) => ({
+          id: `ra-${idx}`,
+          type: "application_access",
+          name: r,
+          description: r,
+          riskLevel: RiskLevel.Low,
+          system: newRequest.application || "",
+          permissions: [],
+          isTemporary: false,
+        })),
+        currentLevel: 1,
+        totalLevels: 2,
+        approvalChain: [
+          {
+            level: 1,
+            approverId: "manager-001",
+            approverName: "Department Manager",
+            approverTitle: "Manager",
+            approverEmail: "manager@company.com",
+            status: ApprovalDecision.Pending,
+            isRequired: true,
+            isDelegated: false,
+            escalationLevel: 0,
+          },
+          {
+            level: 2,
+            approverId: "owner-001",
+            approverName: "Application Owner",
+            approverTitle: "App Owner",
+            approverEmail: "owner@company.com",
+            status: ApprovalDecision.Pending,
+            isRequired: true,
+            isDelegated: false,
+            escalationLevel: 0,
+          },
+        ],
+        status: AMApprovalStatus.Pending,
+        submittedAt: newRequest.submittedAt,
+        slaBreachWarning: false,
+        conflictChecks: [],
+        attachments: [],
+        metadata: {
+          priority: "normal",
+          source: "ui",
+          complianceFlags: [],
+          auditTrail: [],
+          tags: [],
+        },
+      };
+
+      this.approvalService.createApprovalRequestFromAccess(approvalPayload);
+    } catch (e) {
+      // swallow — approvals are best-effort in the mock setup
+    }
+
     return of(newRequest).pipe(delay(300));
   }
 
