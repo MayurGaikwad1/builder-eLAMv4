@@ -488,9 +488,8 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   overdueRequests = computed(() => {
     const requests = this.accessRequests();
-    const filtered = this.selectedApplicationId
-      ? requests.filter((r) => r.applicationId === this.selectedApplicationId)
-      : requests;
+    const sel = this.selectedApplicationId();
+    const filtered = sel ? requests.filter((r) => r.applicationId === sel) : requests;
     return filtered.filter((r) => new Date() > r.deadline).length;
   });
 
