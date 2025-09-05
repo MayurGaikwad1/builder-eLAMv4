@@ -491,7 +491,7 @@ import {
               </div>
               <div>
                 <p class="text-sm text-secondary-500">Users</p>
-                <p class="font-medium">{{ selectedRequest()?.userIds.join(', ') }}</p>
+                <p class="font-medium">{{ (selectedRequest()?.userIds ?? []).join(', ') }}</p>
               </div>
               <div>
                 <p class="text-sm text-secondary-500">Priority</p>
