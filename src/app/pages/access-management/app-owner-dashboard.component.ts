@@ -525,16 +525,11 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   pendingExceptionsList = computed(() => {
     const exceptions = this.exceptions();
-    const filtered = this.selectedApplicationId
-      ? exceptions.filter((e) => e.applicationId === this.selectedApplicationId)
-      : exceptions;
+    const sel = this.selectedApplicationId();
+    const filtered = sel ? exceptions.filter((e) => e.applicationId === sel) : exceptions;
     return filtered
       .filter((e) => !e.ownerDecision)
-      .sort(
-        (a, b) =>
-          new Date(a.autoDeleteDate).getTime() -
-          new Date(b.autoDeleteDate).getTime(),
-      );
+      .sort((a, b) => new Date(a.autoDeleteDate).getTime() - new Date(b.autoDeleteDate).getTime());
   });
 
   applicationMetrics = computed(() => {
