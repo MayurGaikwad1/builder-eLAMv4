@@ -516,15 +516,11 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   pendingApprovalsList = computed(() => {
     const requests = this.accessRequests();
-    const filtered = this.selectedApplicationId
-      ? requests.filter((r) => r.applicationId === this.selectedApplicationId)
-      : requests;
+    const sel = this.selectedApplicationId();
+    const filtered = sel ? requests.filter((r) => r.applicationId === sel) : requests;
     return filtered
       .filter((r) => r.status === AccessRequestStatus.AwaitingApproval)
-      .sort(
-        (a, b) =>
-          new Date(a.deadline).getTime() - new Date(b.deadline).getTime(),
-      );
+      .sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime());
   });
 
   pendingExceptionsList = computed(() => {
