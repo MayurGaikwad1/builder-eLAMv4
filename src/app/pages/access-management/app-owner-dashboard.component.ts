@@ -14,6 +14,8 @@ import {
   ExceptionStatus,
   ExceptionDecision,
   Priority,
+  ADValidationResult,
+  ADValidationStatus,
 } from "../../shared/interfaces/access-management.interface";
 
 @Component({
