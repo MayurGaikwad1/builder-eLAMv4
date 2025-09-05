@@ -147,6 +147,9 @@ import {
                   >
                     {{ request.priority | titlecase }}
                   </span>
+                  <span *ngIf="hasException(request)" class="px-2 py-1 text-xs font-medium rounded-full bg-purple-100 text-purple-800">
+                    Exception
+                  </span>
                 </div>
                 <p class="text-sm text-secondary-600">
                   {{ request.applicationName }}
