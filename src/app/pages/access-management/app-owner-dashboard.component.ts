@@ -156,6 +156,12 @@ import {
               </div>
               <div class="flex space-x-2">
                 <button
+                  (click)="$event.stopPropagation(); openRequestDetails(request)"
+                  class="text-primary-600 px-2 py-1 text-xs rounded hover:underline"
+                >
+                  View
+                </button>
+                <button
                   (click)="$event.stopPropagation(); quickApprove(request.id)"
                   class="bg-success-600 text-white px-3 py-1 text-xs rounded hover:bg-success-700"
                 >
