@@ -594,8 +594,14 @@ export class AppOwnerDashboardComponent implements OnInit {
     const requests = this.accessRequests();
     const sel = this.selectedApplicationId();
     const filtered = sel ? requests.filter((r) => r.applicationId === sel) : requests;
+    // Include requests that are either in review or explicitly awaiting approval so
+    // the list matches the pendingRequests metric and shows overdue items as well.
     return filtered
-      .filter((r) => r.status === AccessRequestStatus.AwaitingApproval)
+      .filter(
+        (r) =>
+          r.status === AccessRequestStatus.AwaitingApproval ||
+          r.status === AccessRequestStatus.InReview,
+      )
       .sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime());
   });
 
