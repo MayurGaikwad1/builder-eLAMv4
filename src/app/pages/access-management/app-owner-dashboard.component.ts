@@ -461,7 +461,7 @@ import {
   `,
 })
 export class AppOwnerDashboardComponent implements OnInit {
-  selectedApplicationId = "";
+  selectedApplicationId = signal<string>("");
 
   applications = signal<Application[]>([]);
   accessRequests = signal<UserAccessRequest[]>([]);
