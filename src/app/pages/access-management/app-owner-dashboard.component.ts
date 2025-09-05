@@ -546,9 +546,15 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   // Computed properties
   totalRequests = computed(() => {
+    // Show total number of requests that are currently actionable (match Pending Approvals list)
     const requests = this.accessRequests();
     const sel = this.selectedApplicationId();
-    return sel ? requests.filter((r) => r.applicationId === sel).length : requests.length;
+    const filtered = sel ? requests.filter((r) => r.applicationId === sel) : requests;
+    return filtered.filter(
+      (r) =>
+        r.status === AccessRequestStatus.InReview ||
+        r.status === AccessRequestStatus.AwaitingApproval,
+    ).length;
   });
 
   pendingRequests = computed(() => {
@@ -566,7 +572,11 @@ export class AppOwnerDashboardComponent implements OnInit {
     const requests = this.accessRequests();
     const sel = this.selectedApplicationId();
     const filtered = sel ? requests.filter((r) => r.applicationId === sel) : requests;
-    return filtered.filter((r) => new Date() > r.deadline).length;
+    return filtered.filter(
+      (r) =>
+        (r.status === AccessRequestStatus.InReview || r.status === AccessRequestStatus.AwaitingApproval) &&
+        new Date() > r.deadline,
+    ).length;
   });
 
   totalExceptions = computed(() => {
