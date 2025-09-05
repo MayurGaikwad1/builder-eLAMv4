@@ -515,6 +515,23 @@ import {
               <p class="font-medium">{{ selectedRequest()?.justification }}</p>
             </div>
 
+            <div *ngIf="hasException(selectedRequest()!)" class="p-4 border border-purple-100 rounded bg-purple-50">
+              <h4 class="text-sm font-semibold text-purple-800 mb-2">Exception Details</h4>
+              <div *ngIf="selectedRequest()?.adValidationResults?.length">
+                <p class="text-xs text-purple-700 mb-2">AD Validation Issues:</p>
+                <ul class="list-disc pl-5 text-xs text-purple-800">
+                  <li *ngFor="let v of selectedRequest()?.adValidationResults">
+                    {{ v.userId }} — {{ v.status }} <span *ngIf="v.errorMessage">• {{ v.errorMessage }}</span>
+                  </li>
+                </ul>
+              </div>
+              <div *ngIf="(selectedRequest() as any)?.exceptionHandling">
+                <p class="text-xs text-purple-700 mt-2">Linked Exception:</p>
+                <p class="text-sm text-purple-900">{{ (selectedRequest() as any).exceptionHandling.validationError }}</p>
+                <button class="mt-2 text-sm text-primary-600 hover:underline" (click)="goToExceptions(selectedRequest()?.id)">View exception handling</button>
+              </div>
+            </div>
+
             <div>
               <h4 class="text-sm font-semibold text-secondary-800 mb-2">Approval Trail</h4>
               <div *ngIf="(selectedRequest()?.approvals?.length ?? 0) === 0" class="p-4 bg-secondary-50 rounded">
