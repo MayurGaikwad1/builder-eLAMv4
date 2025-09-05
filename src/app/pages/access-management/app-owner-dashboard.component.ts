@@ -509,12 +509,9 @@ export class AppOwnerDashboardComponent implements OnInit {
   autoDeleteToday = computed(() => {
     const exceptions = this.exceptions();
     const today = new Date().toDateString();
-    const filtered = this.selectedApplicationId
-      ? exceptions.filter((e) => e.applicationId === this.selectedApplicationId)
-      : exceptions;
-    return filtered.filter(
-      (e) => new Date(e.autoDeleteDate).toDateString() === today,
-    ).length;
+    const sel = this.selectedApplicationId();
+    const filtered = sel ? exceptions.filter((e) => e.applicationId === sel) : exceptions;
+    return filtered.filter((e) => new Date(e.autoDeleteDate).toDateString() === today).length;
   });
 
   pendingApprovalsList = computed(() => {
