@@ -133,7 +133,8 @@ import {
           <div class="space-y-3 max-h-64 overflow-y-auto">
             <div
               *ngFor="let request of pendingApprovalsList().slice(0, 5)"
-              class="flex items-center justify-between p-3 bg-secondary-50 rounded-lg"
+              class="flex items-center justify-between p-3 bg-secondary-50 rounded-lg cursor-pointer"
+              (click)="openRequestDetails(request)"
             >
               <div class="flex-1">
                 <div class="flex items-center space-x-2">
@@ -155,13 +156,13 @@ import {
               </div>
               <div class="flex space-x-2">
                 <button
-                  (click)="quickApprove(request.id)"
+                  (click)="$event.stopPropagation(); quickApprove(request.id)"
                   class="bg-success-600 text-white px-3 py-1 text-xs rounded hover:bg-success-700"
                 >
                   Approve
                 </button>
                 <button
-                  (click)="quickReject(request.id)"
+                  (click)="$event.stopPropagation(); quickReject(request.id)"
                   class="bg-danger-600 text-white px-3 py-1 text-xs rounded hover:bg-danger-700"
                 >
                   Reject
@@ -457,6 +458,73 @@ import {
           </div>
         </div>
       </div>
+
+      <!-- Request Details Modal -->
+      <div *ngIf="selectedRequest()" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black opacity-50" (click)="closeDetails()"></div>
+        <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative z-10">
+          <div class="flex items-center justify-between p-6 border-b">
+            <div>
+              <h2 class="text-lg font-semibold text-secondary-900">Request {{ selectedRequest()?.id }}</h2>
+              <p class="text-sm text-secondary-600">{{ selectedRequest()?.applicationName }} • {{ selectedRequest()?.requesterName }}</p>
+            </div>
+            <div class="flex items-center space-x-3">
+              <button class="btn-secondary" (click)="closeDetails()">Close</button>
+              <button class="bg-success-600 text-white px-3 py-1 text-sm rounded" (click)="approveInModal(selectedRequest()?.id)">
+                Approve
+              </button>
+              <button class="bg-danger-600 text-white px-3 py-1 text-sm rounded" (click)="rejectInModal(selectedRequest()?.id)">
+                Reject
+              </button>
+            </div>
+          </div>
+
+          <div class="p-6 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p class="text-sm text-secondary-500">Submitted</p>
+                <p class="font-medium">{{ selectedRequest()?.submittedAt | date:'MMM d, y h:mm a' }}</p>
+              </div>
+              <div>
+                <p class="text-sm text-secondary-500">Deadline</p>
+                <p class="font-medium">{{ selectedRequest()?.deadline | date:'MMM d, y h:mm a' }}</p>
+              </div>
+              <div>
+                <p class="text-sm text-secondary-500">Users</p>
+                <p class="font-medium">{{ selectedRequest()?.userIds.join(', ') }}</p>
+              </div>
+              <div>
+                <p class="text-sm text-secondary-500">Priority</p>
+                <p class="font-medium">{{ selectedRequest()?.priority | titlecase }}</p>
+              </div>
+            </div>
+
+            <div>
+              <p class="text-sm text-secondary-500">Justification</p>
+              <p class="font-medium">{{ selectedRequest()?.justification }}</p>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-secondary-800 mb-2">Approval Trail</h4>
+              <div *ngIf="(selectedRequest()?.approvals?.length ?? 0) === 0" class="p-4 bg-secondary-50 rounded">
+                <p class="text-sm text-secondary-600">No approvals yet. Waiting for manager approval.</p>
+              </div>
+
+              <ul class="space-y-3">
+                <li class="flex items-start" *ngFor="let appr of selectedRequest()?.approvals">
+                  <div class="w-2 h-2 rounded-full mt-2" [class]="appr.status === 'approved' ? 'bg-success-600' : (appr.status === 'rejected' ? 'bg-danger-600' : 'bg-secondary-400')"></div>
+                  <div class="ml-3">
+                    <p class="text-sm font-medium">Level {{ appr.level }} — {{ appr.approverName || appr.approverRole }}</p>
+                    <p class="text-xs text-secondary-500">Status: {{ appr.status }} {{ appr.approvedAt ? ('• ' + (appr.approvedAt | date:'MMM d, y h:mm a')) : '' }}</p>
+                    <p *ngIf="appr.comments" class="text-xs text-secondary-600">{{ appr.comments }}</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   `,
 })
@@ -467,6 +535,8 @@ export class AppOwnerDashboardComponent implements OnInit {
   accessRequests = signal<UserAccessRequest[]>([]);
   exceptions = signal<ExceptionHandling[]>([]);
   dashboardMetrics = signal<DashboardMetrics | null>(null);
+
+  selectedRequest = signal<UserAccessRequest | null>(null);
 
   // Computed properties
   totalRequests = computed(() => {
@@ -584,8 +654,9 @@ export class AppOwnerDashboardComponent implements OnInit {
   }
 
   quickReject(requestId: string) {
-    // In a real implementation, this would call a reject method
-    console.log("Rejecting request:", requestId);
+    this.accessManagementService.rejectRequest?.(requestId, "app-owner", "Quick reject from dashboard")?.subscribe?.(() => {
+      this.loadData();
+    });
   }
 
   quickRetain(exceptionId: string) {
@@ -606,6 +677,37 @@ export class AppOwnerDashboardComponent implements OnInit {
       .subscribe(() => {
         this.loadData();
       });
+  }
+
+  // Modal handlers
+  openRequestDetails(request: UserAccessRequest) {
+    this.selectedRequest.set(request);
+  }
+
+  closeDetails() {
+    this.selectedRequest.set(null);
+  }
+
+  approveInModal(requestId?: string | null) {
+    if (!requestId) return;
+    this.accessManagementService
+      .approveRequest(requestId, "app-owner", "Approved by application owner")
+      .subscribe(() => {
+        this.loadData();
+        this.closeDetails();
+      });
+  }
+
+  rejectInModal(requestId?: string | null) {
+    if (!requestId) return;
+    if (!this.accessManagementService.rejectRequest) {
+      console.warn('Reject action not implemented in service');
+      return;
+    }
+    this.accessManagementService.rejectRequest(requestId, "app-owner", "Rejected by application owner").subscribe(() => {
+      this.loadData();
+      this.closeDetails();
+    });
   }
 
   // Utility methods

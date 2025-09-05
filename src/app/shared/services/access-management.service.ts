@@ -494,6 +494,38 @@ export class AccessManagementService {
     return of(true).pipe(delay(300));
   }
 
++  rejectRequest(
++    requestId: string,
++    approverId: string,
++    comments?: string,
++  ): Observable<boolean> {
++    const request = this.mockAccessRequests.find((r) => r.id === requestId);
++    if (request) {
++      // Mark request as rejected and append an approval record for traceability
++      request.status = AccessRequestStatus.Rejected;
++      request.completedAt = new Date();
++
++      const rejectionApproval = {
++        id: `appr-${Date.now()}`,
++        approverId: approverId,
++        approverName: approverId,
++        approverRole: ApproverRole.ApplicationOwner,
++        level: request.currentApprovalLevel || 1,
++        status: ApprovalStatus.Rejected,
++        comments: comments,
++        approvedAt: new Date(),
++        deadline: request.deadline,
++        autoApproved: false,
++      };
++
++      if (!request.approvals) request.approvals = [];
++      request.approvals.push(rejectionApproval as any);
++
++      this.accessRequestsSubject.next([...this.mockAccessRequests]);
++    }
++    return of(true).pipe(delay(300));
++  }
++
   // Exceptions
   getExceptions(): Observable<ExceptionHandling[]> {
     return of(this.mockExceptions).pipe(delay(400));
