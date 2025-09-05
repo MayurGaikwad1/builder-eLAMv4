@@ -110,14 +110,27 @@ export class ApprovalManagementService {
   getMyApprovals(): Observable<ApprovalRequest[]> {
     return this.approvalRequestsSubject.pipe(
       map((requests) =>
-        requests.filter((req) =>
-          req.approvalChain.some((chain) => {
+        requests.filter((req) => {
+          const chainMatch = req.approvalChain.some((chain) => {
             const idMatch = chain.approverId === this.currentUserId;
             const emailMatch = (chain as any).approverEmail === this.currentUserEmail;
             const nameMatch = (chain as any).approverName === this.currentUserName;
             return (idMatch || emailMatch || nameMatch) && chain.status === ApprovalDecision.Pending;
-          }),
-        ),
+          });
+
+          if (chainMatch) return true;
+
+          // Fallback: include requests where the current user is the manager of the requester
+          const mgr = (req.requestedBy && (req.requestedBy.manager || req.requestedBy.manager === 0)) ? req.requestedBy.manager : null;
+          const managerMatch = mgr && (mgr === this.currentUserName || mgr === this.currentUserEmail);
+
+          if (managerMatch) {
+            // Only include if there is at least one pending approval in the chain
+            return req.approvalChain.some((c) => c.status === ApprovalDecision.Pending);
+          }
+
+          return false;
+        }),
       ),
     );
   }
