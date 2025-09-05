@@ -12,7 +12,11 @@ import {
   ApprovalStatus,
 } from "../interfaces/user.interface";
 import { ApprovalManagementService } from "./approval-management.service";
-import { ApprovalDecision, ApprovalStatus as AMApprovalStatus, RequestType as AMRequestType } from "../interfaces/approval-management.interface";
+import {
+  ApprovalDecision,
+  ApprovalStatus as AMApprovalStatus,
+  RequestType as AMRequestType,
+} from "../interfaces/approval-management.interface";
 import { AuthService } from "./auth.service";
 import { AccessManagementService } from "./access-management.service";
 
@@ -20,7 +24,11 @@ import { AccessManagementService } from "./access-management.service";
   providedIn: "root",
 })
 export class MockDataService {
-  constructor(private approvalService: ApprovalManagementService, private authService: AuthService, private accessManagementService: AccessManagementService) {}
+  constructor(
+    private approvalService: ApprovalManagementService,
+    private authService: AuthService,
+    private accessManagementService: AccessManagementService,
+  ) {}
   private currentUser = {
     id: "1",
     email: "john.doe@company.com",
@@ -191,21 +199,32 @@ export class MockDataService {
       applicationName: (request as any).application || "",
       accessLevel: undefined,
       justification: request.justification || "",
-      department: (authUser as any)?.department || (this.currentUser as any).department || '',
+      department:
+        (authUser as any)?.department ||
+        (this.currentUser as any).department ||
+        "",
       requestType: request.requestType,
       priority: undefined,
     };
 
     // Create the access request in AccessManagementService so the Application Owner UI sees it
     try {
-      return this.createRequestAndApproval(accessPayload, requesterId, requesterName);
+      return this.createRequestAndApproval(
+        accessPayload,
+        requesterId,
+        requesterName,
+      );
     } catch (e) {
       return of(null as any);
     }
   }
 
   // Helper to create access request in AccessManagementService then create approval
-  private createRequestAndApproval(accessPayload: any, requesterId: string, requesterName: string): Observable<AccessRequest> {
+  private createRequestAndApproval(
+    accessPayload: any,
+    requesterId: string,
+    requesterName: string,
+  ): Observable<AccessRequest> {
     // Use the central AccessManagementService to create the access request so the Application Owner UI sees it
     try {
       return this.accessManagementService
@@ -214,36 +233,57 @@ export class MockDataService {
           map((created: any) => {
             // Once access request exists in AccessManagementService, create corresponding approval payload
             try {
-              const demoUsers = this.authService.getDemoUsers ? this.authService.getDemoUsers() : [];
-              const managerDemo = demoUsers.find((u: any) => u.role === "manager");
-              const ownerDemo = demoUsers.find((u: any) => u.role === "application_owner");
+              const demoUsers = this.authService.getDemoUsers
+                ? this.authService.getDemoUsers()
+                : [];
+              const managerDemo = demoUsers.find(
+                (u: any) => u.role === "manager",
+              );
+              const ownerDemo = demoUsers.find(
+                (u: any) => u.role === "application_owner",
+              );
               const approvalPayload: any = {
                 requestId: created.id,
                 requestType: AMRequestType.AccessRequest,
                 requestedBy: {
                   id: requesterId,
                   name: requesterName,
-                  email: (this.authService.getCurrentUser() as any)?.email || this.currentUser.email || '',
+                  email:
+                    (this.authService.getCurrentUser() as any)?.email ||
+                    this.currentUser.email ||
+                    "",
                   employeeId: requesterId,
-                  department: (this.authService.getCurrentUser() as any)?.department || (this.currentUser as any).department || '',
-                  title: (this.authService.getCurrentUser() as any)?.title || (this.currentUser as any).title || '',
-                  manager: (this.authService.getCurrentUser() as any)?.manager || (this.currentUser as any).manager || '',
+                  department:
+                    (this.authService.getCurrentUser() as any)?.department ||
+                    (this.currentUser as any).department ||
+                    "",
+                  title:
+                    (this.authService.getCurrentUser() as any)?.title ||
+                    (this.currentUser as any).title ||
+                    "",
+                  manager:
+                    (this.authService.getCurrentUser() as any)?.manager ||
+                    (this.currentUser as any).manager ||
+                    "",
                 },
-                requestTitle: `${created.requestType || 'Request'} - ${created.applicationName || created.application || 'Application'}`,
-                description: created.justification || '',
-                justification: created.justification || '',
+                requestTitle: `${created.requestType || "Request"} - ${created.applicationName || created.application || "Application"}`,
+                description: created.justification || "",
+                justification: created.justification || "",
                 urgency: created.urgency || UrgencyLevel.Medium,
                 riskFactors: [],
-                requestedAccess: (created.userIds || []).map((r: any, idx: number) => ({
-                  id: `ra-${idx}`,
-                  type: "application_access",
-                  name: r,
-                  description: r,
-                  riskLevel: RiskLevel.Low,
-                  system: created.applicationName || created.application || "",
-                  permissions: [],
-                  isTemporary: false,
-                })),
+                requestedAccess: (created.userIds || []).map(
+                  (r: any, idx: number) => ({
+                    id: `ra-${idx}`,
+                    type: "application_access",
+                    name: r,
+                    description: r,
+                    riskLevel: RiskLevel.Low,
+                    system:
+                      created.applicationName || created.application || "",
+                    permissions: [],
+                    isTemporary: false,
+                  }),
+                ),
                 currentLevel: 1,
                 totalLevels: 2,
                 approvalChain: [
@@ -284,7 +324,9 @@ export class MockDataService {
                 },
               };
 
-              this.approvalService.createApprovalRequestFromAccess(approvalPayload);
+              this.approvalService.createApprovalRequestFromAccess(
+                approvalPayload,
+              );
             } catch (e) {
               // swallow
             }

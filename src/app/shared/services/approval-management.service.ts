@@ -37,7 +37,10 @@ export class ApprovalManagementService {
   private currentUserEmail = "";
   private currentUserName = "";
 
-  constructor(private authService: AuthService, private accessManagementService: AccessManagementService) {
+  constructor(
+    private authService: AuthService,
+    private accessManagementService: AccessManagementService,
+  ) {
     // Keep approval service aware of the logged-in user
     this.authService.currentUser$.subscribe((u) => {
       this.currentUserId = u?.id || "current-user";
@@ -53,34 +56,50 @@ export class ApprovalManagementService {
       try {
         // Log summary
         // eslint-disable-next-line no-console
-        console.groupCollapsed && console.groupCollapsed('DEBUG: approvalRequests dump');
+        console.groupCollapsed &&
+          console.groupCollapsed("DEBUG: approvalRequests dump");
         // eslint-disable-next-line no-console
-        console.log('Approval requests count:', this.approvalRequestsSubject.value.length);
+        console.log(
+          "Approval requests count:",
+          this.approvalRequestsSubject.value.length,
+        );
         // eslint-disable-next-line no-console
-        console.log(this.approvalRequestsSubject.value.map(r => ({ id: r.id, requestId: r.requestId, status: r.status, currentLevel: r.currentLevel })));
+        console.log(
+          this.approvalRequestsSubject.value.map((r) => ({
+            id: r.id,
+            requestId: r.requestId,
+            status: r.status,
+            currentLevel: r.currentLevel,
+          })),
+        );
 
-        const debugId = 'req-1757052178208';
-        const byReq = this.approvalRequestsSubject.value.find(r => r.requestId === debugId || r.id === debugId);
+        const debugId = "req-1757052178208";
+        const byReq = this.approvalRequestsSubject.value.find(
+          (r) => r.requestId === debugId || r.id === debugId,
+        );
         // eslint-disable-next-line no-console
-        console.log('Lookup for', debugId, byReq || 'NOT FOUND');
+        console.log("Lookup for", debugId, byReq || "NOT FOUND");
         // eslint-disable-next-line no-console
         console.groupEnd && console.groupEnd();
       } catch (e) {
         // eslint-disable-next-line no-console
-        console.error('Debug dump failed', e);
+        console.error("Debug dump failed", e);
       }
     }, 1500);
   }
 
   // Allows other services/components to add approval requests (e.g. when a user submits an access request)
-  public createApprovalRequestFromAccess(payload: Partial<ApprovalRequest>): ApprovalRequest {
+  public createApprovalRequestFromAccess(
+    payload: Partial<ApprovalRequest>,
+  ): ApprovalRequest {
     const request: ApprovalRequest = {
       id: payload.id || `apr-${Date.now()}`,
       requestId: payload.requestId || payload.id || `req-${Date.now()}`,
       requestType: payload.requestType || RequestType.AccessRequest,
       requestedBy: payload.requestedBy || ({} as any),
       requestedFor: payload.requestedFor,
-      requestTitle: payload.requestTitle || payload.requestId || "Access Request",
+      requestTitle:
+        payload.requestTitle || payload.requestId || "Access Request",
       description: payload.description || payload.justification || "",
       justification: payload.justification || "",
       urgency: payload.urgency || UrgencyLevel.Medium,
@@ -142,21 +161,35 @@ export class ApprovalManagementService {
         requests.filter((req) => {
           const chainMatch = req.approvalChain.some((chain) => {
             const idMatch = chain.approverId === this.currentUserId;
-            const emailMatch = ((chain as any).approverEmail || "").toString().toLowerCase() === this.currentUserEmail;
-            const nameMatch = ((chain as any).approverName || "").toString().toLowerCase() === this.currentUserName;
-            return (idMatch || emailMatch || nameMatch) && chain.status === ApprovalDecision.Pending;
+            const emailMatch =
+              ((chain as any).approverEmail || "").toString().toLowerCase() ===
+              this.currentUserEmail;
+            const nameMatch =
+              ((chain as any).approverName || "").toString().toLowerCase() ===
+              this.currentUserName;
+            return (
+              (idMatch || emailMatch || nameMatch) &&
+              chain.status === ApprovalDecision.Pending
+            );
           });
 
           if (chainMatch) return true;
 
           // Fallback: include requests where the current user is the manager of the requester
-          const mgrRaw = req.requestedBy && (req.requestedBy as any).manager ? (req.requestedBy as any).manager : null;
+          const mgrRaw =
+            req.requestedBy && (req.requestedBy as any).manager
+              ? (req.requestedBy as any).manager
+              : null;
           const mgr = mgrRaw ? mgrRaw.toString().toLowerCase() : null;
-          const managerMatch = mgr ? (mgr === this.currentUserName || mgr === this.currentUserEmail) : false;
+          const managerMatch = mgr
+            ? mgr === this.currentUserName || mgr === this.currentUserEmail
+            : false;
 
           if (managerMatch) {
             // Only include if there is at least one pending approval in the chain
-            return req.approvalChain.some((c) => c.status === ApprovalDecision.Pending);
+            return req.approvalChain.some(
+              (c) => c.status === ApprovalDecision.Pending,
+            );
           }
 
           return false;
@@ -263,25 +296,66 @@ export class ApprovalManagementService {
           const mappedStatus = this.mapActionToDecision(action.type);
           // Debug: log approval request and mapping
           // eslint-disable-next-line no-console
-          console.log('[ApprovalManagement] processApprovalAction:', { actionType: action.type, mappedStatus, approvalRequestId: request.id, approvalRequestRequestId: request.requestId, currentLevel: request.currentLevel, approvalChain: request.approvalChain.map(c => ({ level: c.level, status: c.status, approverId: c.approverId, approverEmail: (c as any).approverEmail })) });
+          console.log("[ApprovalManagement] processApprovalAction:", {
+            actionType: action.type,
+            mappedStatus,
+            approvalRequestId: request.id,
+            approvalRequestRequestId: request.requestId,
+            currentLevel: request.currentLevel,
+            approvalChain: request.approvalChain.map((c) => ({
+              level: c.level,
+              status: c.status,
+              approverId: c.approverId,
+              approverEmail: (c as any).approverEmail,
+            })),
+          });
 
           if (mappedStatus === ApprovalDecision.Approved) {
             // call access management approve
-            this.accessManagementService.approveRequest(request.requestId, this.currentUserId, action.comments).subscribe((res) => {
-              // eslint-disable-next-line no-console
-              console.log('[ApprovalManagement] called accessManagement.approveRequest', { requestId: request.requestId, approverId: this.currentUserId, result: res });
-            });
+            this.accessManagementService
+              .approveRequest(
+                request.requestId,
+                this.currentUserId,
+                action.comments,
+              )
+              .subscribe((res) => {
+                // eslint-disable-next-line no-console
+                console.log(
+                  "[ApprovalManagement] called accessManagement.approveRequest",
+                  {
+                    requestId: request.requestId,
+                    approverId: this.currentUserId,
+                    result: res,
+                  },
+                );
+              });
           } else if (mappedStatus === ApprovalDecision.Rejected) {
             // call access management reject
-            this.accessManagementService.rejectRequest?.(request.requestId, this.currentUserId, action.comments)?.subscribe((res) => {
-              // eslint-disable-next-line no-console
-              console.log('[ApprovalManagement] called accessManagement.rejectRequest', { requestId: request.requestId, approverId: this.currentUserId, result: res });
-            });
+            this.accessManagementService
+              .rejectRequest?.(
+                request.requestId,
+                this.currentUserId,
+                action.comments,
+              )
+              ?.subscribe((res) => {
+                // eslint-disable-next-line no-console
+                console.log(
+                  "[ApprovalManagement] called accessManagement.rejectRequest",
+                  {
+                    requestId: request.requestId,
+                    approverId: this.currentUserId,
+                    result: res,
+                  },
+                );
+              });
           }
         } catch (e) {
           // best-effort sync
           // eslint-disable-next-line no-console
-          console.error('[ApprovalManagement] sync to access management failed', e);
+          console.error(
+            "[ApprovalManagement] sync to access management failed",
+            e,
+          );
         }
       }
     }

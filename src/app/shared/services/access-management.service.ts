@@ -474,7 +474,12 @@ export class AccessManagementService {
     if (request) {
       // Debug: log incoming approveRequest call
       // eslint-disable-next-line no-console
-      console.log('[AccessManagement] approveRequest called', { requestId, approverId, comments, found: !!request });
+      console.log("[AccessManagement] approveRequest called", {
+        requestId,
+        approverId,
+        comments,
+        found: !!request,
+      });
 
       if (!request.approvals) request.approvals = [];
 
@@ -525,7 +530,12 @@ export class AccessManagementService {
 
       // Debug: log updated access request state
       // eslint-disable-next-line no-console
-      console.log('[AccessManagement] access request updated', { id: request.id, status: request.status, currentApprovalLevel: request.currentApprovalLevel, approvals: request.approvals });
+      console.log("[AccessManagement] access request updated", {
+        id: request.id,
+        status: request.status,
+        currentApprovalLevel: request.currentApprovalLevel,
+        approvals: request.approvals,
+      });
     }
     return of(true).pipe(delay(300));
   }

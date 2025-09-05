@@ -54,7 +54,9 @@ import {
           </button>
           <select
             [ngModel]="selectedApplicationId()"
-            (ngModelChange)="selectedApplicationId.set($event); onApplicationSelected()"
+            (ngModelChange)="
+              selectedApplicationId.set($event); onApplicationSelected()
+            "
             class="border border-secondary-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
           >
             <option value="">All My Applications</option>
@@ -147,7 +149,10 @@ import {
                   >
                     {{ request.priority | titlecase }}
                   </span>
-                  <span *ngIf="hasException(request)" class="px-2 py-1 text-xs font-medium rounded-full bg-purple-100 text-purple-800">
+                  <span
+                    *ngIf="hasException(request)"
+                    class="px-2 py-1 text-xs font-medium rounded-full bg-purple-100 text-purple-800"
+                  >
                     Exception
                   </span>
                 </div>
@@ -161,7 +166,9 @@ import {
               </div>
               <div class="flex space-x-2">
                 <button
-                  (click)="$event.stopPropagation(); openRequestDetails(request)"
+                  (click)="
+                    $event.stopPropagation(); openRequestDetails(request)
+                  "
                   class="text-primary-600 px-2 py-1 text-xs rounded hover:underline"
                 >
                   View
@@ -471,20 +478,41 @@ import {
       </div>
 
       <!-- Request Details Modal -->
-      <div *ngIf="selectedRequest()" class="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black opacity-50" (click)="closeDetails()"></div>
-        <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative z-10">
+      <div
+        *ngIf="selectedRequest()"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4"
+      >
+        <div
+          class="absolute inset-0 bg-black opacity-50"
+          (click)="closeDetails()"
+        ></div>
+        <div
+          class="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative z-10"
+        >
           <div class="flex items-center justify-between p-6 border-b">
             <div>
-              <h2 class="text-lg font-semibold text-secondary-900">Request {{ selectedRequest()?.id }}</h2>
-              <p class="text-sm text-secondary-600">{{ selectedRequest()?.applicationName }} • {{ selectedRequest()?.requesterName }}</p>
+              <h2 class="text-lg font-semibold text-secondary-900">
+                Request {{ selectedRequest()?.id }}
+              </h2>
+              <p class="text-sm text-secondary-600">
+                {{ selectedRequest()?.applicationName }} •
+                {{ selectedRequest()?.requesterName }}
+              </p>
             </div>
             <div class="flex items-center space-x-3">
-              <button class="btn-secondary" (click)="closeDetails()">Close</button>
-              <button class="bg-success-600 text-white px-3 py-1 text-sm rounded" (click)="approveInModal(selectedRequest()?.id)">
+              <button class="btn-secondary" (click)="closeDetails()">
+                Close
+              </button>
+              <button
+                class="bg-success-600 text-white px-3 py-1 text-sm rounded"
+                (click)="approveInModal(selectedRequest()?.id)"
+              >
                 Approve
               </button>
-              <button class="bg-danger-600 text-white px-3 py-1 text-sm rounded" (click)="rejectInModal(selectedRequest()?.id)">
+              <button
+                class="bg-danger-600 text-white px-3 py-1 text-sm rounded"
+                (click)="rejectInModal(selectedRequest()?.id)"
+              >
                 Reject
               </button>
             </div>
@@ -494,19 +522,27 @@ import {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <p class="text-sm text-secondary-500">Submitted</p>
-                <p class="font-medium">{{ selectedRequest()?.submittedAt | date:'MMM d, y h:mm a' }}</p>
+                <p class="font-medium">
+                  {{ selectedRequest()?.submittedAt | date: "MMM d, y h:mm a" }}
+                </p>
               </div>
               <div>
                 <p class="text-sm text-secondary-500">Deadline</p>
-                <p class="font-medium">{{ selectedRequest()?.deadline | date:'MMM d, y h:mm a' }}</p>
+                <p class="font-medium">
+                  {{ selectedRequest()?.deadline | date: "MMM d, y h:mm a" }}
+                </p>
               </div>
               <div>
                 <p class="text-sm text-secondary-500">Users</p>
-                <p class="font-medium">{{ (selectedRequest()?.userIds ?? []).join(', ') }}</p>
+                <p class="font-medium">
+                  {{ (selectedRequest()?.userIds ?? []).join(", ") }}
+                </p>
               </div>
               <div>
                 <p class="text-sm text-secondary-500">Priority</p>
-                <p class="font-medium">{{ selectedRequest()?.priority | titlecase }}</p>
+                <p class="font-medium">
+                  {{ selectedRequest()?.priority | titlecase }}
+                </p>
               </div>
             </div>
 
@@ -515,36 +551,82 @@ import {
               <p class="font-medium">{{ selectedRequest()?.justification }}</p>
             </div>
 
-            <div *ngIf="hasException(selectedRequest())" class="p-4 border border-purple-100 rounded bg-purple-50">
-              <h4 class="text-sm font-semibold text-purple-800 mb-2">Exception Details</h4>
+            <div
+              *ngIf="hasException(selectedRequest())"
+              class="p-4 border border-purple-100 rounded bg-purple-50"
+            >
+              <h4 class="text-sm font-semibold text-purple-800 mb-2">
+                Exception Details
+              </h4>
               <div *ngIf="selectedRequest()?.adValidationResults?.length">
-                <p class="text-xs text-purple-700 mb-2">AD Validation Issues:</p>
+                <p class="text-xs text-purple-700 mb-2">
+                  AD Validation Issues:
+                </p>
                 <ul class="list-disc pl-5 text-xs text-purple-800">
                   <li *ngFor="let v of selectedRequest()?.adValidationResults">
-                    {{ v.userId }} — {{ v.status }} <span *ngIf="v.errorMessage">• {{ v.errorMessage }}</span>
+                    {{ v.userId }} — {{ v.status }}
+                    <span *ngIf="v.errorMessage">• {{ v.errorMessage }}</span>
                   </li>
                 </ul>
               </div>
               <div *ngIf="selectedRequest()?.exceptionHandling">
                 <p class="text-xs text-purple-700 mt-2">Linked Exception:</p>
-                <p class="text-sm text-purple-900">{{ selectedRequest()?.exceptionHandling?.validationError }}</p>
-                <button class="mt-2 text-sm text-primary-600 hover:underline" (click)="goToExceptions(selectedRequest()?.id)">View exception handling</button>
+                <p class="text-sm text-purple-900">
+                  {{ selectedRequest()?.exceptionHandling?.validationError }}
+                </p>
+                <button
+                  class="mt-2 text-sm text-primary-600 hover:underline"
+                  (click)="goToExceptions(selectedRequest()?.id)"
+                >
+                  View exception handling
+                </button>
               </div>
             </div>
 
             <div>
-              <h4 class="text-sm font-semibold text-secondary-800 mb-2">Approval Trail</h4>
-              <div *ngIf="(selectedRequest()?.approvals?.length ?? 0) === 0" class="p-4 bg-secondary-50 rounded">
-                <p class="text-sm text-secondary-600">No approvals yet. Waiting for manager approval.</p>
+              <h4 class="text-sm font-semibold text-secondary-800 mb-2">
+                Approval Trail
+              </h4>
+              <div
+                *ngIf="(selectedRequest()?.approvals?.length ?? 0) === 0"
+                class="p-4 bg-secondary-50 rounded"
+              >
+                <p class="text-sm text-secondary-600">
+                  No approvals yet. Waiting for manager approval.
+                </p>
               </div>
 
               <ul class="space-y-3">
-                <li class="flex items-start" *ngFor="let appr of selectedRequest()?.approvals">
-                  <div class="w-2 h-2 rounded-full mt-2" [class]="appr.status === 'approved' ? 'bg-success-600' : (appr.status === 'rejected' ? 'bg-danger-600' : 'bg-secondary-400')"></div>
+                <li
+                  class="flex items-start"
+                  *ngFor="let appr of selectedRequest()?.approvals"
+                >
+                  <div
+                    class="w-2 h-2 rounded-full mt-2"
+                    [class]="
+                      appr.status === 'approved'
+                        ? 'bg-success-600'
+                        : appr.status === 'rejected'
+                          ? 'bg-danger-600'
+                          : 'bg-secondary-400'
+                    "
+                  ></div>
                   <div class="ml-3">
-                    <p class="text-sm font-medium">Level {{ appr.level }} — {{ appr.approverName || appr.approverRole }}</p>
-                    <p class="text-xs text-secondary-500">Status: {{ appr.status }} {{ appr.approvedAt ? ('• ' + (appr.approvedAt | date:'MMM d, y h:mm a')) : '' }}</p>
-                    <p *ngIf="appr.comments" class="text-xs text-secondary-600">{{ appr.comments }}</p>
+                    <p class="text-sm font-medium">
+                      Level {{ appr.level }} —
+                      {{ appr.approverName || appr.approverRole }}
+                    </p>
+                    <p class="text-xs text-secondary-500">
+                      Status: {{ appr.status }}
+                      {{
+                        appr.approvedAt
+                          ? "• " + (appr.approvedAt | date: "MMM d, y h:mm a")
+                          : ""
+                      }}
+                    </p>
+                    <p *ngIf="appr.comments" class="text-xs text-secondary-600">
+                      {{ appr.comments }}
+                    </p>
                   </div>
                 </li>
               </ul>
@@ -552,7 +634,6 @@ import {
           </div>
         </div>
       </div>
-
     </div>
   `,
 })
@@ -571,7 +652,9 @@ export class AppOwnerDashboardComponent implements OnInit {
     // Show total number of requests that are currently actionable (match Pending Approvals list)
     const requests = this.accessRequests();
     const sel = this.selectedApplicationId();
-    const filtered = sel ? requests.filter((r) => r.applicationId === sel) : requests;
+    const filtered = sel
+      ? requests.filter((r) => r.applicationId === sel)
+      : requests;
     return filtered.filter(
       (r) =>
         r.status === AccessRequestStatus.InReview ||
@@ -582,7 +665,9 @@ export class AppOwnerDashboardComponent implements OnInit {
   pendingRequests = computed(() => {
     const requests = this.accessRequests();
     const sel = this.selectedApplicationId();
-    const filtered = sel ? requests.filter((r) => r.applicationId === sel) : requests;
+    const filtered = sel
+      ? requests.filter((r) => r.applicationId === sel)
+      : requests;
     return filtered.filter(
       (r) =>
         r.status === AccessRequestStatus.InReview ||
@@ -593,10 +678,13 @@ export class AppOwnerDashboardComponent implements OnInit {
   overdueRequests = computed(() => {
     const requests = this.accessRequests();
     const sel = this.selectedApplicationId();
-    const filtered = sel ? requests.filter((r) => r.applicationId === sel) : requests;
+    const filtered = sel
+      ? requests.filter((r) => r.applicationId === sel)
+      : requests;
     return filtered.filter(
       (r) =>
-        (r.status === AccessRequestStatus.InReview || r.status === AccessRequestStatus.AwaitingApproval) &&
+        (r.status === AccessRequestStatus.InReview ||
+          r.status === AccessRequestStatus.AwaitingApproval) &&
         new Date() > r.deadline,
     ).length;
   });
@@ -604,13 +692,17 @@ export class AppOwnerDashboardComponent implements OnInit {
   totalExceptions = computed(() => {
     const exceptions = this.exceptions();
     const sel = this.selectedApplicationId();
-    return sel ? exceptions.filter((e) => e.applicationId === sel).length : exceptions.length;
+    return sel
+      ? exceptions.filter((e) => e.applicationId === sel).length
+      : exceptions.length;
   });
 
   pendingExceptions = computed(() => {
     const exceptions = this.exceptions();
     const sel = this.selectedApplicationId();
-    const filtered = sel ? exceptions.filter((e) => e.applicationId === sel) : exceptions;
+    const filtered = sel
+      ? exceptions.filter((e) => e.applicationId === sel)
+      : exceptions;
     return filtered.filter((e) => !e.ownerDecision).length;
   });
 
@@ -618,14 +710,20 @@ export class AppOwnerDashboardComponent implements OnInit {
     const exceptions = this.exceptions();
     const today = new Date().toDateString();
     const sel = this.selectedApplicationId();
-    const filtered = sel ? exceptions.filter((e) => e.applicationId === sel) : exceptions;
-    return filtered.filter((e) => new Date(e.autoDeleteDate).toDateString() === today).length;
+    const filtered = sel
+      ? exceptions.filter((e) => e.applicationId === sel)
+      : exceptions;
+    return filtered.filter(
+      (e) => new Date(e.autoDeleteDate).toDateString() === today,
+    ).length;
   });
 
   pendingApprovalsList = computed(() => {
     const requests = this.accessRequests();
     const sel = this.selectedApplicationId();
-    const filtered = sel ? requests.filter((r) => r.applicationId === sel) : requests;
+    const filtered = sel
+      ? requests.filter((r) => r.applicationId === sel)
+      : requests;
     // Include requests that are either in review or explicitly awaiting approval so
     // the list matches the pendingRequests metric and shows overdue items as well.
     return filtered
@@ -634,16 +732,25 @@ export class AppOwnerDashboardComponent implements OnInit {
           r.status === AccessRequestStatus.AwaitingApproval ||
           r.status === AccessRequestStatus.InReview,
       )
-      .sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime());
+      .sort(
+        (a, b) =>
+          new Date(a.deadline).getTime() - new Date(b.deadline).getTime(),
+      );
   });
 
   pendingExceptionsList = computed(() => {
     const exceptions = this.exceptions();
     const sel = this.selectedApplicationId();
-    const filtered = sel ? exceptions.filter((e) => e.applicationId === sel) : exceptions;
+    const filtered = sel
+      ? exceptions.filter((e) => e.applicationId === sel)
+      : exceptions;
     return filtered
       .filter((e) => !e.ownerDecision)
-      .sort((a, b) => new Date(a.autoDeleteDate).getTime() - new Date(b.autoDeleteDate).getTime());
+      .sort(
+        (a, b) =>
+          new Date(a.autoDeleteDate).getTime() -
+          new Date(b.autoDeleteDate).getTime(),
+      );
   });
 
   applicationMetrics = computed(() => {
@@ -656,7 +763,10 @@ export class AppOwnerDashboardComponent implements OnInit {
     return metrics?.recentActivity || [];
   });
 
-  constructor(private accessManagementService: AccessManagementService, private router: Router) {}
+  constructor(
+    private accessManagementService: AccessManagementService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.loadData();
@@ -699,9 +809,11 @@ export class AppOwnerDashboardComponent implements OnInit {
   }
 
   quickReject(requestId: string) {
-    this.accessManagementService.rejectRequest?.(requestId, "app-owner", "Quick reject from dashboard")?.subscribe?.(() => {
-      this.loadData();
-    });
+    this.accessManagementService
+      .rejectRequest?.(requestId, "app-owner", "Quick reject from dashboard")
+      ?.subscribe?.(() => {
+        this.loadData();
+      });
   }
 
   quickRetain(exceptionId: string) {
@@ -726,7 +838,7 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   // Modal handlers
   openRequestDetails(request: UserAccessRequest) {
-    console.log('AppOwnerDashboard: openRequestDetails', request?.id);
+    console.log("AppOwnerDashboard: openRequestDetails", request?.id);
     this.selectedRequest.set(request);
   }
 
@@ -736,7 +848,7 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   approveInModal(requestId?: string | null) {
     if (!requestId) return;
-    console.log('AppOwnerDashboard: approveInModal', requestId);
+    console.log("AppOwnerDashboard: approveInModal", requestId);
     this.accessManagementService
       .approveRequest(requestId, "app-owner", "Approved by application owner")
       .subscribe(() => {
@@ -747,27 +859,37 @@ export class AppOwnerDashboardComponent implements OnInit {
 
   rejectInModal(requestId?: string | null) {
     if (!requestId) return;
-    console.log('AppOwnerDashboard: rejectInModal', requestId);
+    console.log("AppOwnerDashboard: rejectInModal", requestId);
     if (!this.accessManagementService.rejectRequest) {
-      console.warn('Reject action not implemented in service');
+      console.warn("Reject action not implemented in service");
       return;
     }
-    this.accessManagementService.rejectRequest(requestId, "app-owner", "Rejected by application owner").subscribe(() => {
-      this.loadData();
-      this.closeDetails();
-    });
+    this.accessManagementService
+      .rejectRequest(requestId, "app-owner", "Rejected by application owner")
+      .subscribe(() => {
+        this.loadData();
+        this.closeDetails();
+      });
   }
 
   // Helpers for exceptions
   hasException(request?: UserAccessRequest | null): boolean {
     if (!request) return false;
     if ((request as any).exceptionHandling) return true;
-    if (request.adValidationResults && request.adValidationResults.some(r => r.status === ADValidationStatus.NotFound)) return true;
+    if (
+      request.adValidationResults &&
+      request.adValidationResults.some(
+        (r) => r.status === ADValidationStatus.NotFound,
+      )
+    )
+      return true;
     return false;
   }
 
   goToExceptions(requestId?: string) {
-    this.router.navigate(["/access-management/exception-handling"], { queryParams: { requestId } });
+    this.router.navigate(["/access-management/exception-handling"], {
+      queryParams: { requestId },
+    });
   }
 
   // Utility methods
