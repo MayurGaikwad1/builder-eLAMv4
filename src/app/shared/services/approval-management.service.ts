@@ -113,8 +113,8 @@ export class ApprovalManagementService {
         requests.filter((req) => {
           const chainMatch = req.approvalChain.some((chain) => {
             const idMatch = chain.approverId === this.currentUserId;
-            const emailMatch = (chain as any).approverEmail === this.currentUserEmail;
-            const nameMatch = (chain as any).approverName === this.currentUserName;
+            const emailMatch = ((chain as any).approverEmail || "").toString().toLowerCase() === this.currentUserEmail;
+            const nameMatch = ((chain as any).approverName || "").toString().toLowerCase() === this.currentUserName;
             return (idMatch || emailMatch || nameMatch) && chain.status === ApprovalDecision.Pending;
           });
 
