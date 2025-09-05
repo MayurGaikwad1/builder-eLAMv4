@@ -515,7 +515,7 @@ import {
               <p class="font-medium">{{ selectedRequest()?.justification }}</p>
             </div>
 
-            <div *ngIf="hasException(selectedRequest()!)" class="p-4 border border-purple-100 rounded bg-purple-50">
+            <div *ngIf="hasException(selectedRequest())" class="p-4 border border-purple-100 rounded bg-purple-50">
               <h4 class="text-sm font-semibold text-purple-800 mb-2">Exception Details</h4>
               <div *ngIf="selectedRequest()?.adValidationResults?.length">
                 <p class="text-xs text-purple-700 mb-2">AD Validation Issues:</p>
@@ -525,9 +525,9 @@ import {
                   </li>
                 </ul>
               </div>
-              <div *ngIf="(selectedRequest() as any)?.exceptionHandling">
+              <div *ngIf="selectedRequest()?.exceptionHandling">
                 <p class="text-xs text-purple-700 mt-2">Linked Exception:</p>
-                <p class="text-sm text-purple-900">{{ (selectedRequest() as any).exceptionHandling.validationError }}</p>
+                <p class="text-sm text-purple-900">{{ selectedRequest()?.exceptionHandling?.validationError }}</p>
                 <button class="mt-2 text-sm text-primary-600 hover:underline" (click)="goToExceptions(selectedRequest()?.id)">View exception handling</button>
               </div>
             </div>
