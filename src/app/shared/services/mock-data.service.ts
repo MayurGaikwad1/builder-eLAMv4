@@ -176,10 +176,15 @@ export class MockDataService {
   submitAccessRequest(
     request: Partial<AccessRequest>,
   ): Observable<AccessRequest> {
+    const authUser = this.authService.getCurrentUser();
+
+    const requesterId = authUser?.id || this.currentUser.id;
+    const requesterName = authUser?.displayName || this.currentUser.displayName;
+
     const newRequest: AccessRequest = {
       id: `req-${Date.now()}`,
-      requesterId: this.currentUser.id,
-      requesterName: this.currentUser.displayName,
+      requesterId: requesterId,
+      requesterName: requesterName,
       requestType: request.requestType || RequestType.NewAccess,
       application: (request as any).application || "",
       requestedRoles: request.requestedRoles || [],
@@ -199,13 +204,13 @@ export class MockDataService {
         requestId: newRequest.id,
         requestType: AMRequestType.AccessRequest,
         requestedBy: {
-          id: this.currentUser.id,
-          name: this.currentUser.displayName,
-          email: this.currentUser.email,
-          employeeId: this.currentUser.id,
-          department: this.currentUser.department,
-          title: this.currentUser.title,
-          manager: this.currentUser.manager,
+          id: requesterId,
+          name: requesterName,
+          email: authUser?.email || this.currentUser.email,
+          employeeId: requesterId,
+          department: authUser?.department || this.currentUser.department,
+          title: authUser?.title || this.currentUser.title,
+          manager: authUser?.manager || this.currentUser.manager,
         },
         requestTitle: `${newRequest.requestType} - ${newRequest.application || 'Application'}`,
         description: newRequest.justification,
