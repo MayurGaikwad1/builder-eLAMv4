@@ -52,7 +52,7 @@ import {
           </button>
           <select
             [ngModel]="selectedApplicationId()"
-            (ngModelChange)="(value) => (selectedApplicationId.set(value), onApplicationSelected())"
+            (ngModelChange)="selectedApplicationId.set($event); onApplicationSelected()"
             class="border border-secondary-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
           >
             <option value="">All My Applications</option>
