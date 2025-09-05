@@ -667,7 +667,8 @@ export class AppOwnerDashboardComponent implements OnInit {
       this.applications.set(apps);
     });
 
-    this.accessManagementService.getAccessRequests().subscribe((requests) => {
+    // Subscribe to the access requests observable so UI updates when approvals flow through
+    this.accessManagementService.accessRequests$.subscribe((requests) => {
       this.accessRequests.set(requests);
     });
 
