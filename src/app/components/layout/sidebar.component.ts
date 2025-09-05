@@ -238,14 +238,6 @@ export class SidebarComponent implements OnInit {
     const role = (user.role || "").toString().toLowerCase();
 
     return this.allNavItems.filter((item) => {
-      // Hide Access Requests for Admin, Manager & User roles
-      if (
-        item.label === "Access Requests" &&
-        ["admin", "manager", "user"].includes(role)
-      ) {
-        return false;
-      }
-
       // Hide User Management & Access Management for Manager & User roles
       if (
         (item.label === "User Management" ||
