@@ -137,7 +137,12 @@ export class ApprovalManagementService {
 
     // Try to resolve the application owner from AccessManagementService and update approval chain
     try {
-      const system = (request.requestedAccess && request.requestedAccess.length > 0 && (request.requestedAccess as any)[0].system) || request.requestTitle || "";
+      const system =
+        (request.requestedAccess &&
+          request.requestedAccess.length > 0 &&
+          (request.requestedAccess as any)[0].system) ||
+        request.requestTitle ||
+        "";
       this.accessManagementService.getApplications().subscribe((apps) => {
         try {
           const sys = (system || "").toString().toLowerCase();
@@ -145,31 +150,57 @@ export class ApprovalManagementService {
             if (!a) return false;
             const name = (a.name || "").toString().toLowerCase();
             const id = (a.id || "").toString().toLowerCase();
-            return name === sys || id === sys || name.includes(sys) || sys.includes(name);
+            return (
+              name === sys ||
+              id === sys ||
+              name.includes(sys) ||
+              sys.includes(name)
+            );
           });
           if (found) {
             const owner = found.owner;
             if (owner) {
               // pick last level (usually application owner is last level)
-              const targetLevel = request.totalLevels || request.approvalChain.length || 2;
-              const chainItem = request.approvalChain.find((c: any) => c.level === targetLevel) || request.approvalChain[request.approvalChain.length - 1];
+              const targetLevel =
+                request.totalLevels || request.approvalChain.length || 2;
+              const chainItem =
+                request.approvalChain.find(
+                  (c: any) => c.level === targetLevel,
+                ) || request.approvalChain[request.approvalChain.length - 1];
               if (chainItem) {
-                (chainItem as any).approverEmail = (owner.email || "").toString().toLowerCase();
-                (chainItem as any).approverName = (owner.name || "").toString().toLowerCase();
-                (chainItem as any).approverId = owner.id || (chainItem as any).approverId;
+                (chainItem as any).approverEmail = (owner.email || "")
+                  .toString()
+                  .toLowerCase();
+                (chainItem as any).approverName = (owner.name || "")
+                  .toString()
+                  .toLowerCase();
+                (chainItem as any).approverId =
+                  owner.id || (chainItem as any).approverId;
 
                 // replace the request in subject so subscribers see updated approvers
-                const updated = this.approvalRequestsSubject.value.map((r) => (r.id === request.id ? request : r));
+                const updated = this.approvalRequestsSubject.value.map((r) =>
+                  r.id === request.id ? request : r,
+                );
                 this.approvalRequestsSubject.next(updated);
                 this.updateStatistics();
                 // eslint-disable-next-line no-console
-                console.log('[ApprovalManagement] mapped application owner to approval request', { requestId: request.requestId, owner: owner.email, chainItemLevel: (chainItem as any).level });
+                console.log(
+                  "[ApprovalManagement] mapped application owner to approval request",
+                  {
+                    requestId: request.requestId,
+                    owner: owner.email,
+                    chainItemLevel: (chainItem as any).level,
+                  },
+                );
               }
             }
           }
         } catch (e) {
           // eslint-disable-next-line no-console
-          console.error('[ApprovalManagement] error resolving application owner', e);
+          console.error(
+            "[ApprovalManagement] error resolving application owner",
+            e,
+          );
         }
       });
     } catch (e) {
