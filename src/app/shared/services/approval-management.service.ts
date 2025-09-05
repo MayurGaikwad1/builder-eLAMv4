@@ -20,6 +20,7 @@ import {
 } from "../interfaces/approval-management.interface";
 import { UrgencyLevel, RiskLevel } from "../interfaces/user.interface";
 import { AuthService } from "./auth.service";
+import { AccessManagementService } from "./access-management.service";
 
 @Injectable({
   providedIn: "root",
