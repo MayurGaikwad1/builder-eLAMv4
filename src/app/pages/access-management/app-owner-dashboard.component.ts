@@ -758,7 +758,7 @@ export class AppOwnerDashboardComponent implements OnInit {
   }
 
   // Helpers for exceptions
-  hasException(request: UserAccessRequest): boolean {
+  hasException(request?: UserAccessRequest | null): boolean {
     if (!request) return false;
     if ((request as any).exceptionHandling) return true;
     if (request.adValidationResults && request.adValidationResults.some(r => r.status === ADValidationStatus.NotFound)) return true;
