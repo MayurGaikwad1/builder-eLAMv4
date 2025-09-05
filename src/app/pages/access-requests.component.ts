@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { MockDataService } from "../shared/services/mock-data.service";
+import { AuthService } from "../shared/services/auth.service";
 import {
   AccessRequest,
   RequestType,
