@@ -210,109 +210,98 @@ export class MockDataService {
 
   // Helper to create access request in AccessManagementService then create approval
   private createRequestAndApproval(accessPayload: any, requesterId: string, requesterName: string): Observable<AccessRequest> {
-    // Dynamically import AccessManagementService to avoid circular dependency at file top
-    const accessService = (window as any).ngInjector?.get?.(window['AccessManagementService']) as any;
-    // Fallback: try to require via global exports if available
-    // If AccessManagementService can't be obtained via globals, try to instantiate via import
-    // But in this environment, we will instead call approvalService directly to create approval using a temporary id
-
-    // As a robust fallback for the mock environment, create an access request locally and then create an approval
-    const newRequest: AccessRequest = {
-      id: `req-${Date.now()}`,
-      requesterId: requesterId,
-      requesterName: requesterName,
-      requestType: accessPayload.requestType || RequestType.NewAccess,
-      application: accessPayload.applicationName || "",
-      requestedRoles: [],
-      requestedResources: accessPayload.userIds || [],
-      justification: accessPayload.justification || "",
-      urgency: UrgencyLevel.Medium,
-      status: RequestStatus.Submitted,
-      submittedAt: new Date(),
-      approvals: [],
-    };
-
-    // Add to local mockRequests so other parts of MockDataService still see it
-    this.mockRequests.unshift(newRequest);
-
-    // Create approval request using the access request id so approval flow links correctly
+    // Use the central AccessManagementService to create the access request so the Application Owner UI sees it
     try {
-      const demoUsers = this.authService.getDemoUsers ? this.authService.getDemoUsers() : [];
-      const managerDemo = demoUsers.find((u: any) => u.role === "manager");
-      const ownerDemo = demoUsers.find((u: any) => u.role === "application_owner");
-      const approvalPayload: any = {
-        requestId: newRequest.id,
-        requestType: AMRequestType.AccessRequest,
-        requestedBy: {
-          id: requesterId,
-          name: requesterName,
-          email: (this.authService.getCurrentUser() as any)?.email || this.currentUser.email || '',
-          employeeId: requesterId,
-          department: (this.authService.getCurrentUser() as any)?.department || (this.currentUser as any).department || '',
-          title: (this.authService.getCurrentUser() as any)?.title || (this.currentUser as any).title || '',
-          manager: (this.authService.getCurrentUser() as any)?.manager || (this.currentUser as any).manager || '',
-        },
-        requestTitle: `${newRequest.requestType} - ${newRequest.application || 'Application'}`,
-        description: newRequest.justification,
-        justification: newRequest.justification,
-        urgency: newRequest.urgency,
-        riskFactors: [],
-        requestedAccess: (newRequest.requestedResources || []).map((r, idx) => ({
-          id: `ra-${idx}`,
-          type: "application_access",
-          name: r,
-          description: r,
-          riskLevel: RiskLevel.Low,
-          system: newRequest.application || "",
-          permissions: [],
-          isTemporary: false,
-        })),
-        currentLevel: 1,
-        totalLevels: 2,
-        approvalChain: [
-          {
-            level: 1,
-            approverId: managerDemo?.id || "manager-001",
-            approverName: managerDemo?.name || "Department Manager",
-            approverTitle: "Manager",
-            approverEmail: managerDemo?.email || "manager@company.com",
-            status: ApprovalDecision.Pending,
-            isRequired: true,
-            isDelegated: false,
-            escalationLevel: 0,
-          },
-          {
-            level: 2,
-            approverId: ownerDemo?.id || "owner-001",
-            approverName: ownerDemo?.name || "Application Owner",
-            approverTitle: "App Owner",
-            approverEmail: ownerDemo?.email || "owner@company.com",
-            status: ApprovalDecision.Pending,
-            isRequired: true,
-            isDelegated: false,
-            escalationLevel: 0,
-          },
-        ],
-        status: AMApprovalStatus.Pending,
-        submittedAt: newRequest.submittedAt,
-        slaBreachWarning: false,
-        conflictChecks: [],
-        attachments: [],
-        metadata: {
-          priority: "normal",
-          source: "ui",
-          complianceFlags: [],
-          auditTrail: [],
-          tags: [],
-        },
-      };
+      return this.accessManagementService
+        .createAccessRequest(accessPayload)
+        .pipe(
+          map((created: any) => {
+            // Once access request exists in AccessManagementService, create corresponding approval payload
+            try {
+              const demoUsers = this.authService.getDemoUsers ? this.authService.getDemoUsers() : [];
+              const managerDemo = demoUsers.find((u: any) => u.role === "manager");
+              const ownerDemo = demoUsers.find((u: any) => u.role === "application_owner");
+              const approvalPayload: any = {
+                requestId: created.id,
+                requestType: AMRequestType.AccessRequest,
+                requestedBy: {
+                  id: requesterId,
+                  name: requesterName,
+                  email: (this.authService.getCurrentUser() as any)?.email || this.currentUser.email || '',
+                  employeeId: requesterId,
+                  department: (this.authService.getCurrentUser() as any)?.department || (this.currentUser as any).department || '',
+                  title: (this.authService.getCurrentUser() as any)?.title || (this.currentUser as any).title || '',
+                  manager: (this.authService.getCurrentUser() as any)?.manager || (this.currentUser as any).manager || '',
+                },
+                requestTitle: `${created.requestType || 'Request'} - ${created.applicationName || created.application || 'Application'}`,
+                description: created.justification || '',
+                justification: created.justification || '',
+                urgency: created.urgency || UrgencyLevel.Medium,
+                riskFactors: [],
+                requestedAccess: (created.userIds || []).map((r: any, idx: number) => ({
+                  id: `ra-${idx}`,
+                  type: "application_access",
+                  name: r,
+                  description: r,
+                  riskLevel: RiskLevel.Low,
+                  system: created.applicationName || created.application || "",
+                  permissions: [],
+                  isTemporary: false,
+                })),
+                currentLevel: 1,
+                totalLevels: 2,
+                approvalChain: [
+                  {
+                    level: 1,
+                    approverId: managerDemo?.id || "manager-001",
+                    approverName: managerDemo?.name || "Department Manager",
+                    approverTitle: "Manager",
+                    approverEmail: managerDemo?.email || "manager@company.com",
+                    status: ApprovalDecision.Pending,
+                    isRequired: true,
+                    isDelegated: false,
+                    escalationLevel: 0,
+                  },
+                  {
+                    level: 2,
+                    approverId: ownerDemo?.id || "owner-001",
+                    approverName: ownerDemo?.name || "Application Owner",
+                    approverTitle: "App Owner",
+                    approverEmail: ownerDemo?.email || "owner@company.com",
+                    status: ApprovalDecision.Pending,
+                    isRequired: true,
+                    isDelegated: false,
+                    escalationLevel: 0,
+                  },
+                ],
+                status: AMApprovalStatus.Pending,
+                submittedAt: created.submittedAt,
+                slaBreachWarning: false,
+                conflictChecks: [],
+                attachments: [],
+                metadata: {
+                  priority: "normal",
+                  source: "ui",
+                  complianceFlags: [],
+                  auditTrail: [],
+                  tags: [],
+                },
+              };
 
-      this.approvalService.createApprovalRequestFromAccess(approvalPayload);
+              this.approvalService.createApprovalRequestFromAccess(approvalPayload);
+            } catch (e) {
+              // swallow
+            }
+
+            // Also keep a local copy for MockDataService consumers
+            this.mockRequests.unshift(created as any);
+
+            return created as AccessRequest;
+          }),
+        );
     } catch (e) {
-      // swallow
+      return of({} as AccessRequest).pipe(delay(100));
     }
-
-    return of(newRequest).pipe(delay(300));
   }
 
   approveRequest(requestId: string, comments?: string): Observable<boolean> {
