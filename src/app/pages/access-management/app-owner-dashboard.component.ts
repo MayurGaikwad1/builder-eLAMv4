@@ -639,7 +639,7 @@ export class AppOwnerDashboardComponent implements OnInit {
     return metrics?.recentActivity || [];
   });
 
-  constructor(private accessManagementService: AccessManagementService) {}
+  constructor(private accessManagementService: AccessManagementService, private router: Router) {}
 
   ngOnInit() {
     this.loadData();
