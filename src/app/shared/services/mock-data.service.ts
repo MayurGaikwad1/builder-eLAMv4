@@ -11,11 +11,14 @@ import {
   RequestType,
   ApprovalStatus,
 } from "../interfaces/user.interface";
+import { ApprovalManagementService } from "./approval-management.service";
+import { ApprovalDecision, ApprovalStatus as AMApprovalStatus, RequestType as AMRequestType } from "../interfaces/approval-management.interface";
 
 @Injectable({
   providedIn: "root",
 })
 export class MockDataService {
+  constructor(private approvalService: ApprovalManagementService) {}
   private currentUser = {
     id: "1",
     email: "john.doe@company.com",
