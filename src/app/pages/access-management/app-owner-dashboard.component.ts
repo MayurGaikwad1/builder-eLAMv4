@@ -471,10 +471,8 @@ export class AppOwnerDashboardComponent implements OnInit {
   // Computed properties
   totalRequests = computed(() => {
     const requests = this.accessRequests();
-    return this.selectedApplicationId
-      ? requests.filter((r) => r.applicationId === this.selectedApplicationId)
-          .length
-      : requests.length;
+    const sel = this.selectedApplicationId();
+    return sel ? requests.filter((r) => r.applicationId === sel).length : requests.length;
   });
 
   pendingRequests = computed(() => {
