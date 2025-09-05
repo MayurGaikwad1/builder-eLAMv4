@@ -63,7 +63,11 @@ export class ApprovalManagementService {
       requestedAccess: payload.requestedAccess || [],
       currentLevel: payload.currentLevel || 1,
       totalLevels: payload.totalLevels || 2,
-      approvalChain: payload.approvalChain || [],
+      approvalChain: (payload.approvalChain || []).map((c: any) => ({
+        ...c,
+        approverEmail: (c?.approverEmail || "").toString().toLowerCase(),
+        approverName: (c?.approverName || "").toString().toLowerCase(),
+      })),
       status: payload.status || ApprovalStatus.Pending,
       submittedAt: payload.submittedAt || new Date(),
       deadline: payload.deadline,
