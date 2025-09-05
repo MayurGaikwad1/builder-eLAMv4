@@ -51,8 +51,8 @@ import {
             Refresh
           </button>
           <select
-            [(ngModel)]="selectedApplicationId"
-            (change)="onApplicationSelected()"
+            [ngModel]="selectedApplicationId()"
+            (ngModelChange)="(value) => { selectedApplicationId.set(value); onApplicationSelected(); }"
             class="border border-secondary-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
           >
             <option value="">All My Applications</option>
