@@ -475,12 +475,14 @@ export class AccessManagementService {
       if (!request.approvals) request.approvals = [];
 
       // Ensure there is an approval entry for the current level; if not, create one
-      let currentApproval = request.approvals.find(
+      // Use a flexible any-typed variable so we can safely create or update it
+      let currentApproval: any = request.approvals.find(
         (a) => a.level === request.currentApprovalLevel,
       );
 
-      const createdNow = !currentApproval;
+      let createdNow = false;
       if (!currentApproval) {
+        createdNow = true;
         currentApproval = {
           id: `appr-${Date.now()}`,
           approverId: approverId,
@@ -501,7 +503,7 @@ export class AccessManagementService {
       currentApproval.comments = comments;
 
       if (createdNow) {
-        request.approvals.push(currentApproval);
+        request.approvals.push(currentApproval as any);
       }
 
       // Move to next level or complete
