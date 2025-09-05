@@ -20,7 +20,7 @@ import { AccessManagementService } from "./access-management.service";
   providedIn: "root",
 })
 export class MockDataService {
-  constructor(private approvalService: ApprovalManagementService, private authService: AuthService, private accessManagementService: any) {}
+  constructor(private approvalService: ApprovalManagementService, private authService: AuthService, private accessManagementService: AccessManagementService) {}
   private currentUser = {
     id: "1",
     email: "john.doe@company.com",
